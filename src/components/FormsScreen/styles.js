@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
     appButtonContainer: {
       elevation: 8,
       backgroundColor: "lightblue",

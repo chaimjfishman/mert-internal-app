@@ -7,20 +7,20 @@ import * as auth from '../../utils/auth';
 import { User } from '../../../types'
 
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen(props: any) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const onFooterLinkPress = () => {
         console.log('onFooterLinkPress in login')
-        navigation.navigate('Registration')
+        props.navigation.navigate('Registration')
     }
 
     const onLoginPress = async () => {
         try {
             const uid: string = await auth.loginWithEmail(email, password);
             const user: User = await db.getUserDocument(uid);
-            navigation.navigate('Home', {user})
+            props.navigation.navigate('Home', {user})
         } catch (err) {
             alert(err);
         }

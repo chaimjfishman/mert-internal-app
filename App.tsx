@@ -23,7 +23,7 @@ export default function App() {
 
     useEffect(() => {
         async function getAuthStateListener() {
-            firebase.auth().onAuthStateChanged( async (user: any) => {
+            firebase.auth().onAuthStateChanged( async (user) => {
                 if (user) {
                     try {
                         const userData: User = await db.getUserDocument(user.uid);

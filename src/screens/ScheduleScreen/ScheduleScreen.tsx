@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, SafeAreaView, Image } from 'react-native';
 import styles from './styles';
 import FormLink from '../../components/FormsScreen/FormLink'
+import { BottomTabScreenProps } from '../../../types'
 
-export default function ScheduleScreen(props) {
+
+export default function ScheduleScreen(props: BottomTabScreenProps<'Forms'>) {
 
     return (
         <SafeAreaView style={styles.schedContainer}>
@@ -27,6 +29,5 @@ export default function ScheduleScreen(props) {
                 link='https://media1.giphy.com/media/3o72FkiKGMGauydfyg/giphy.gif'
             />
         </SafeAreaView>
-        
     )
 }

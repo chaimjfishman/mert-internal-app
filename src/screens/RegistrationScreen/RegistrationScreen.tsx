@@ -7,7 +7,7 @@ import * as auth from '../../utils/auth';
 import { User, Shift} from '../../../types'
 
 
-export default function RegistrationScreen({navigation}) {
+export default function RegistrationScreen(props: any) {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -15,7 +15,7 @@ export default function RegistrationScreen({navigation}) {
 
     const onFooterLinkPress = () => {
         console.log('onFooterLinkPress registration')
-        navigation.navigate('Login')
+        props.navigation.navigate('Login')
     }
 
     const onRegisterPress = async () => {
@@ -51,7 +51,7 @@ export default function RegistrationScreen({navigation}) {
             await db.createUserDocument(uid, userData);
             await db.createShiftsDocument(uid, shiftData);
 
-            navigation.navigate('Home', {user: userData})
+            props.navigation.navigate('Home', {user: userData})
         } catch (err) {
             console.log(err);
         }

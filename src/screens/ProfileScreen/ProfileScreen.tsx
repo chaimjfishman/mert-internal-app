@@ -3,8 +3,9 @@ import { Text, View, SafeAreaView, TouchableOpacity, FlatList, Image } from 'rea
 import styles from './styles';
 import * as db from '../../utils/db';
 import { User, Shift } from '../../../types'
+import { BottomTabScreenProps } from '../../../types'
 
-export default function ProfileScreen(props) {
+export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     const userID = props.extraData.id
     const userEmail = props.extraData.email
     const fullName = props.extraData.fullName
@@ -14,6 +15,7 @@ export default function ProfileScreen(props) {
 
 
     const [shifts, setShifts] = useState<Shift[]>([])
+
                 
     useEffect(() => {
         async function getShifts() {

@@ -5,7 +5,7 @@ import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes'
-import { User, Shift} from '../../constants/collectionTypes'
+import { User, Shift } from '../../constants/collectionTypes'
 
 
 export default function RegistrationScreen(props: AuthStackScreenProps<'Registration'>) {

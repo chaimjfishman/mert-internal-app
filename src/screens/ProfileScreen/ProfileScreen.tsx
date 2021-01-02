@@ -4,17 +4,18 @@ import styles from './styles';
 import * as db from '../../utils/db';
 import { User, Shift } from '../../../types'
 import { BottomTabScreenProps } from '../../../types'
+// import { UserContext } from '../../../app'
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
+
+    const [shifts, setShifts] = useState<Shift[]>([]);
+
     const userID = props.extraData.id
     const userEmail = props.extraData.email
     const fullName = props.extraData.fullName
     const gradYear = props.extraData.gradYear
     const rank = props.extraData.rank
     const profileImagePath = props.extraData.profileImagePath
-
-
-    const [shifts, setShifts] = useState<Shift[]>([])
 
                 
     useEffect(() => {

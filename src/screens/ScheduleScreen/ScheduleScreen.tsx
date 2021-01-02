@@ -5,7 +5,7 @@ import FormLink from '../../components/FormsScreen/FormLink'
 import { BottomTabScreenProps } from '../../../types'
 
 
-export default function ScheduleScreen(props: BottomTabScreenProps<'Forms'>) {
+export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
 
     return (
         <SafeAreaView style={styles.schedContainer}>

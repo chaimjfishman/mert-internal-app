@@ -4,10 +4,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
-import { User } from '../../../types'
+import { AuthStackScreenProps, User } from '../../../types'
 
 
-export default function LoginScreen(props: any) {
+export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -20,7 +20,9 @@ export default function LoginScreen(props: any) {
         try {
             const uid: string = await auth.loginWithEmail(email, password);
             const user: User = await db.getUserDocument(uid);
-            props.navigation.navigate('Home', {user})
+            
+            //TODO: handle navigation properly: https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator
+            // props.navigation.navigate('Home', {user})
         } catch (err) {
             alert(err);
         }

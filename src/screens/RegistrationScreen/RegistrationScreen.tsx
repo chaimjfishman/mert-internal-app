@@ -4,10 +4,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
-import { User, Shift} from '../../../types'
+import { AuthStackScreenProps, User, Shift} from '../../../types'
 
 
-export default function RegistrationScreen(props: any) {
+export default function RegistrationScreen(props: AuthStackScreenProps<'Registration'>) {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -51,7 +51,8 @@ export default function RegistrationScreen(props: any) {
             await db.createUserDocument(uid, userData);
             await db.createShiftsDocument(uid, shiftData);
 
-            props.navigation.navigate('Home', {user: userData})
+            //TODO: handle navigation properly: https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator
+            // props.navigation.navigate('Home', {user: userData})
         } catch (err) {
             console.log(err);
         }

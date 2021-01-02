@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 
-import { User } from './types'
+import { User } from './src/constants/collectionTypes'
 import BottomTabNavigator from './src/navigation/BottomTabNavigator'
 import AuthStackNavigator from './src/navigation/AuthStackNavigator'
 

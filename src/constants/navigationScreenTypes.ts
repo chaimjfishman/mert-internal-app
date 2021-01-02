@@ -20,8 +20,8 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = {
 };
 
 export type BottomTabParamList = {
-    Home: { extraData: User },
-    Profile: { extraData: User },
+    Home: undefined
+    Profile: undefined
     Forms: undefined,
     Schedule: undefined
 };
@@ -29,5 +29,4 @@ export type BottomTabParamList = {
 export type BottomTabScreenProps<T extends keyof BottomTabParamList> = {
   route: RouteProp<BottomTabParamList, T>;
   navigation: BottomTabNavigationProp<BottomTabParamList, T>;
-  extraData: User
 };

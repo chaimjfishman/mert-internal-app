@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Text, View } from 'react-native';
 import styles from './styles';
-import { BottomTabScreenProps } from '../../constants/navigationScreenTypes'
+import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
-    const userID = props.extraData.id
+    const { user } = useContext(AuthContext);
+
+    if (user === null) return;
+
+    const userID = user.id;
 
     return (
         <View>
@@ -12,5 +18,5 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
                 Home Screen Here
             </Text>
         </View>
-    )
+    );
 }

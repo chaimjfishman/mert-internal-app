@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View, SafeAreaView, Image } from 'react-native';
 import styles from './styles';
-import FormLink from '../../components/FormsScreen/FormLink'
-import { BottomTabScreenProps } from '../../constants/navigationScreenTypes'
-import { User, Shift} from '../../constants/collectionTypes'
+import FormLink from '../../components/FormsScreen/FormLink';
+import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
+import { User, Shift} from '../../constants/collectionTypes';
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
+    const { user } = useContext(AuthContext);
 
     return (
         <SafeAreaView style={styles.schedContainer}>
@@ -30,5 +32,5 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
                 link='https://media1.giphy.com/media/3o72FkiKGMGauydfyg/giphy.gif'
             />
         </SafeAreaView>
-    )
+    );
 }

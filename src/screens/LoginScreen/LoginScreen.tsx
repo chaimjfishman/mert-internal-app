@@ -1,29 +1,31 @@
-import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useState, useContext } from 'react';
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
-import { AuthStackScreenProps } from '../../constants/navigationScreenTypes'
-import { User } from '../../constants/collectionTypes'
+import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
+import { User } from '../../constants/collectionTypes';
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const { login } = useContext(AuthContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const onFooterLinkPress = () => {
-        console.log('onFooterLinkPress in login')
-        props.navigation.navigate('Registration')
+        props.navigation.navigate('Registration');
     }
 
     const onLoginPress = async () => {
         try {
             const uid: string = await auth.loginWithEmail(email, password);
             const user: User = await db.getUserDocument(uid);
+            login(user);
             
             //TODO: handle navigation properly: https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator
-            // props.navigation.navigate('Home', {user})
+            // props.navigation.navigate('Home');
         } catch (err) {
             alert(err);
         }
@@ -67,5 +69,5 @@ export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
                 </View>
             </KeyboardAwareScrollView>
         </View>
-    )
+    );
 }

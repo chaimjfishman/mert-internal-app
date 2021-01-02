@@ -1,30 +1,29 @@
-import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useState, useContext } from 'react';
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
-import { AuthStackScreenProps } from '../../constants/navigationScreenTypes'
-import { User, Shift } from '../../constants/collectionTypes'
+import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
+import { User, Shift } from '../../constants/collectionTypes';
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 export default function RegistrationScreen(props: AuthStackScreenProps<'Registration'>) {
-    const [fullName, setFullName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const { login } = useContext(AuthContext);
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const onFooterLinkPress = () => {
-        console.log('onFooterLinkPress registration')
-        props.navigation.navigate('Login')
+        props.navigation.navigate('Login');
     }
 
     const onRegisterPress = async () => {
-       console.log('onRegisterPress')
-
         if (password !== confirmPassword) {
-            alert("Passwords don't match.")
-            return
+            alert("Passwords don't match.");
+            return;
         }
 
         try {
@@ -51,9 +50,10 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
 
             await db.createUserDocument(uid, userData);
             await db.createShiftsDocument(uid, shiftData);
+            login(userData);
 
             //TODO: handle navigation properly: https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator
-            // props.navigation.navigate('Home', {user: userData})
+            // props.navigation.navigate('Home')
         } catch (err) {
             console.log(err);
         }

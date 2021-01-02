@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, FlatList, Image } from 'react-native';
 import styles from './styles';
 import * as db from '../../utils/db';
-import { BottomTabScreenProps } from '../../constants/navigationScreenTypes'
-import { User, Shift} from '../../constants/collectionTypes'
+import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
+import { Shift } from '../../constants/collectionTypes';
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 
+    const { user } = useContext(AuthContext);
     const [shifts, setShifts] = useState<Shift[]>([]);
 
-    const userID = props.extraData.id
-    const userEmail = props.extraData.email
-    const fullName = props.extraData.fullName
-    const gradYear = props.extraData.gradYear
-    const rank = props.extraData.rank
-    const profileImagePath = props.extraData.profileImagePath
+    if (user === null) return;
+
+    const userID = user.id;
+    const userEmail = user.email;
+    const fullName = user.fullName;
+    const gradYear = user.gradYear;
+    const rank = user.rank;
+    const profileImagePath = user.profileImagePath;
 
                 
     useEffect(() => {
@@ -41,5 +46,5 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 </View>
             </View>
         </SafeAreaView>
-    )
+    );
 }

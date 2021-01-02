@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import styles from './styles';
-import { BottomTabScreenProps } from '../../../types'
+import { BottomTabScreenProps } from '../../constants/navigationScreenTypes'
 
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const userID = props.extraData.id

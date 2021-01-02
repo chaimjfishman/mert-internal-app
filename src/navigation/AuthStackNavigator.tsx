@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import RegistrationScreen from '../screens/RegistrationScreen/RegistrationScreen';
-import { AuthStackParamList } from '../../types';
+import { AuthStackParamList } from '../constants/navigationScreenTypes'
 
 const Stack = createStackNavigator<AuthStackParamList>();
 

@@ -1,5 +1,5 @@
 import { firebase } from './firebaseConfig';
-import { User, Shift} from '../../types'
+import { User, Shift} from '../constants/collectionTypes'
 
 const firestore = firebase.firestore();
 const usersRef = firestore.collection('users')

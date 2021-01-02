@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, FlatList, Image } from 'react-native';
 import styles from './styles';
 import * as db from '../../utils/db';
-import { User, Shift } from '../../../types'
-import { BottomTabScreenProps } from '../../../types'
-// import { UserContext } from '../../../app'
+import { BottomTabScreenProps } from '../../constants/navigationScreenTypes'
+import { User, Shift} from '../../constants/collectionTypes'
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 

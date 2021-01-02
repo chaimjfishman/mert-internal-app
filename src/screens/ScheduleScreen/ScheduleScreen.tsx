@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, SafeAreaView, Image } from 'react-native';
 import styles from './styles';
 import FormLink from '../../components/FormsScreen/FormLink'
-import { BottomTabScreenProps } from '../../../types'
+import { BottomTabScreenProps } from '../../constants/navigationScreenTypes'
+import { User, Shift} from '../../constants/collectionTypes'
 
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {

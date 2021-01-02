@@ -5,9 +5,8 @@ import FormsScreen from '../screens/FormsScreen/FormsScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import ScheduleScreen from '../screens/ScheduleScreen/ScheduleScreen';
-import { BottomTabParamList } from '../../types';
-
-import { User } from '../../types'
+import { BottomTabParamList } from '../constants/navigationScreenTypes'
+import { User} from '../constants/collectionTypes'
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();

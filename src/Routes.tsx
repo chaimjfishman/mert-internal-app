@@ -13,7 +13,7 @@ import { firebase } from './utils/firebaseConfig';
 export default function Routes() {
 
     const { user, login } = useContext(AuthContext);
-    const [loading, setLoading] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         async function getAuthStateListener() {

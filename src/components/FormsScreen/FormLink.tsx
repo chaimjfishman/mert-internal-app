@@ -9,7 +9,7 @@ const FormLink = ({title, link}) => {
         <TouchableOpacity onPress={() => Linking.openURL(link)} style={styles.appButtonContainer}>
             <Text style={{textAlign: 'center'}}> {title} </Text>
         </TouchableOpacity>
-    )   
+    );   
 }
 
 export default FormLink;

@@ -5,6 +5,7 @@ import * as db from '../../utils/db';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
+import LogoutBtn from '../../components/LogoutBtn'
 
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
@@ -36,6 +37,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 
     return (
         <SafeAreaView style={styles.horizontalContainer}>
+            <LogoutBtn/>
             <View style={styles.verticalContainer}>
                 <View style={styles.horizontalContainer}>
                     <Text> Name: {fullName} </Text>

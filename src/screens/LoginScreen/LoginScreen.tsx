@@ -23,9 +23,6 @@ export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
             const uid: string = await auth.loginWithEmail(email, password);
             const user: User = await db.getUserDocument(uid);
             login(user);
-            
-            //TODO: handle navigation properly: https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator
-            // props.navigation.navigate('Home');
         } catch (err) {
             alert(err);
         }

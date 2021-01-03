@@ -51,9 +51,6 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             await db.createUserDocument(uid, userData);
             await db.createShiftsDocument(uid, shiftData);
             login(userData);
-
-            //TODO: handle navigation properly: https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator
-            // props.navigation.navigate('Home')
         } catch (err) {
             console.log(err);
         }

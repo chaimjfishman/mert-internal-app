@@ -17,6 +17,12 @@ export async function loginWithEmail(email: string, password: string): Promise<a
     return uid;
 }
 
+export async function logout(): Promise<any> {
+    //TODO: Error handling
+    await auth.signOut();
+}
+
+
 export async function authStateListener(): Promise<any> {
     //TODO: 
 }

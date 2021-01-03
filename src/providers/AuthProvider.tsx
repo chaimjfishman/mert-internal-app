@@ -21,12 +21,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             value={{
                 user,
                 login: (newUser: User) => {
-                    console.log('authprovider with new user:')
-                    console.log(newUser)
                     setUser(newUser);
                 },
                 logout: () => {
-                    //TODO
                     setUser(null);
                 }
             }}

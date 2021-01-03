@@ -35,7 +35,7 @@ export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
                 keyboardShouldPersistTaps="always">
                 <Image
                     style={styles.logo}
-                    source={require('../../../assets/icon.png')}
+                    source={require('../../../assets/Penn_MERT_Logo.png')}
                 />
                 <TextInput
                     style={styles.input}

@@ -63,7 +63,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
                 keyboardShouldPersistTaps="always">
                 <Image
                     style={styles.logo}
-                    source={require('../../../assets/icon.png')}
+                    source={require('../../../assets/Penn_MERT_Logo.png')}
                 />
                 <TextInput
                     style={styles.input}

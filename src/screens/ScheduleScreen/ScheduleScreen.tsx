@@ -17,16 +17,8 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
                 title="Click Here to See Full Schedule"
                 link='https://docs.google.com/spreadsheets/d/1Pq4hw8gndR5udZWyPe-OUQprV2KWUIl4srjstPDu1AU/edit?usp=sharing'
             />
-            <View>
-                <br></br>
-                <br></br>
-            </View>
             <Image source={require('../../../assets/Schedule.png')} 
                     style={{ resizeMode: 'stretch', width: 1000, height: 750 }}/>
-            <View>
-                <br></br>
-                <br></br>
-            </View>
             <FormLink
                 title="Schedule Form"
                 link='https://media1.giphy.com/media/3o72FkiKGMGauydfyg/giphy.gif'

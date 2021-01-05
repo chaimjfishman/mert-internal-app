@@ -8,7 +8,7 @@ export default StyleSheet.create({
       paddingVertical: 10,
       paddingHorizontal: 12,
       width: '80%',
-      padding:'20'
+      padding: 20
     },
     appButtonText: {
       fontSize: 18,

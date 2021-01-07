@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { View, SafeAreaView, Image } from 'react-native';
 import styles from './styles';
-import FormLink from '../../components/FormsScreen/FormLink';
+import FormLink from '../../components/FormLink';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { User, Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";

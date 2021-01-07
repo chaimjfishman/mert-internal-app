@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import styles from './styles';
-import FormLink from '../../components/FormsScreen/FormLink';
+import FormLink from '../../components/FormLink';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 
 export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {

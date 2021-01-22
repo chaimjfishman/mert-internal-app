@@ -37,7 +37,7 @@ export default function Routes() {
 
     return (
         <NavigationContainer>
-            {user ? <BottomTabNavigator extraData={user} /> : <AuthStackNavigator />}
+            {user ? <BottomTabNavigator /> : <AuthStackNavigator />}
         </NavigationContainer>
     );
 }

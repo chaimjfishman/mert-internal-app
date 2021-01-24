@@ -10,7 +10,7 @@ const LogoutBtn = () => {
     return (
         <Button 
             icon="logout" 
-            mode="contained" 
+            mode="text" 
             onPress={() => {
                 try {
                     auth.logout();

@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
 import { AuthProvider } from "./src/providers/AuthProvider";
+import { Provider as PaperProvider } from "react-native-paper";
 import Routes from "./src/Routes";
 
 import * as notif from './src/utils/notifications'; 
@@ -38,7 +39,9 @@ export default function App() {
 
     return (
         <AuthProvider>
-            <Routes />
+            <PaperProvider>
+                <Routes />
+            </PaperProvider>
         </AuthProvider>
     );
 }

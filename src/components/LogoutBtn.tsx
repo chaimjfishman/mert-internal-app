@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { TouchableOpacity, Text} from 'react-native';
 import { Button } from 'react-native-paper';
 import { AuthContext } from '../providers/AuthProvider';
 import * as auth from '../utils/auth';

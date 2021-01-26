@@ -4,7 +4,7 @@ import styles from './styles';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { Contact } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
-import ForwardLink from '../../components/ForwardLink.js';
+import ForwardLink from '../../components/ForwardLink';
 
 
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {

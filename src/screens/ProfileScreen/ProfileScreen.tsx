@@ -12,6 +12,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 
     const { user } = useContext(AuthContext);
     const [shifts, setShifts] = useState<Shift[]>([]);
+    const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
 
     if (user === null) return;
 
@@ -27,7 +28,11 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
         async function getShifts() {
             try {
                 // TODO: get shifts from db
-                // const shiftData: Shift = await db.getShifts(user.uid);
+                // const shiftData = await db.getUserShifts(userID);
+                // setShifts(shiftData)
+                const monthlyHours = await db.getMonthlyHours(userID);
+                setMonthlyHours(monthlyHours)
+
             } catch (err) {
                 alert(err);
             }
@@ -45,6 +50,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                     <Text> Graduation year: {gradYear} </Text>
                     <Text> Rank: {rank} </Text>
                     <Text> ID: {userID} </Text>
+                    <Text> Monthly Hours: {monthlyHours} </Text>
                 </View>
             </View>
         </SafeAreaView>

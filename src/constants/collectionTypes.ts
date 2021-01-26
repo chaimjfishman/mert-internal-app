@@ -11,10 +11,7 @@ export interface User {
     takenAthleticShift: boolean;
 }
 
-enum ShiftType {
-    type1,
-    type2
-}
+type ShiftType = "type1" | "type2" | "type3";
 export interface Shift {
     userId: string;
     startTime: Date;

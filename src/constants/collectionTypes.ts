@@ -22,3 +22,7 @@ export interface Shift {
     shiftType: ShiftType;
 }
 
+export interface Contact {
+    name: string;
+    href: string;
+}

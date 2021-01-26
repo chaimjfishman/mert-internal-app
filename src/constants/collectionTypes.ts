@@ -11,8 +11,14 @@ export interface User {
     takenAthleticShift: boolean;
 }
 
+enum ShiftType {
+    type1,
+    type2
+}
 export interface Shift {
     userId: string;
-    nextShiftStart: string; //TODO: change to date type
-    hoursRemaining: number;
+    startTime: Date;
+    endTime: Date;
+    shiftType: ShiftType;
 }
+

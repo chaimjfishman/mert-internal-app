@@ -85,4 +85,12 @@ export async function getNextShift(uid: string): Promise<any> {
     return curNextShift;
 }
 
-// TODO: get N next shiftss
+// TODO: get N next shifts
+
+export async function updateUsername(uid: string, newName: string): Promise<any> {
+    usersRef.doc(uid).set({
+        id: uid,
+        fullName: newName,
+    })
+    return;
+}

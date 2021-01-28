@@ -104,3 +104,12 @@ export async function updateYear(uid: string, newYear: Number): Promise<any> {
         gradYear: newYear,
     })
 }
+
+export async function getStorageImage(path: string, defaultImage: any): Promise<any> {
+    const ref = firebase.storage().ref(path);
+    ref.getDownloadURL().then((data: any) => {
+        return data
+    }).catch((error: any) => {
+        return defaultImage
+    })
+}

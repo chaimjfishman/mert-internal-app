@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity, FlatList, Image } from 'react-native';
+import { Text, View, SafeAreaView } from 'react-native';
+import { Appbar } from 'react-native-paper';
 import styles from './styles';
 import * as db from '../../utils/db';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
@@ -7,6 +8,7 @@ import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import LogoutBtn from '../../components/LogoutBtn'
 import UpdateProfile from '../../components/UpdateProfile'
+import ProfileImage from '../../components/ProfileImage'
 
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
@@ -42,9 +44,13 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
       }, []);
 
     return (
+        <><Appbar.Header>
+            <Appbar.Content title="Profile Page" />
+            <LogoutBtn />
+        </Appbar.Header>
         <SafeAreaView style={styles.horizontalContainer}>
-            <LogoutBtn/>
             <View style={styles.verticalContainer}>
+                <ProfileImage image={profileImagePath} style={{ resizeMode: 'cover', width: 120, height: 120 }}/>
                 <View style={styles.horizontalContainer}>
                     <Text> Name: {fullName} </Text>
                     <Text> Email: {userEmail} </Text>
@@ -54,8 +60,8 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                     <Text> Monthly Hours: {monthlyHours} </Text>
                 </View>
             </View>
-            <UpdateProfile/>
-        </SafeAreaView>
+            <UpdateProfile />
+        </SafeAreaView></>
     );
 }
 

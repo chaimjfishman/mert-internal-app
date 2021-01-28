@@ -88,9 +88,19 @@ export async function getNextShift(uid: string): Promise<any> {
 // TODO: get N next shifts
 
 export async function updateUsername(uid: string, newName: string): Promise<any> {
-    usersRef.doc(uid).set({
-        id: uid,
+    usersRef.doc(uid).update({
         fullName: newName,
     })
-    return;
+}
+
+export async function updateRank(uid: string, newRank: string): Promise<any> {
+    usersRef.doc(uid).update({
+        rank: newRank,
+    })
+}
+
+export async function updateYear(uid: string, newYear: Number): Promise<any> {
+    usersRef.doc(uid).update({
+        gradYear: newYear,
+    })
 }

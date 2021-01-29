@@ -18,7 +18,7 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
                 link="https://docs.google.com/spreadsheets/d/1JwWX54awiqbkUmAZoGOjP5DgkO30EMyK7vPrUyH9frU/edit#gid=0"
             />
             <FormLink
-                title="MERT Equipment Checkout"
+                title="MERT Equipment Checkout Form"
                 link='hhttps://docs.google.com/forms/d/e/1FAIpQLSeCPymiaEl2AgXcFctGIuE9jurxku6evYMS5RO1w1ywrPU5-w/viewform'
             />
             <FormLink

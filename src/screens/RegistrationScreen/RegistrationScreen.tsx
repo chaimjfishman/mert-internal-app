@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import * as Notifications from 'expo-notifications';
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
+import * as notif from '../../utils/notifications'; 
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
 import { User, Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
@@ -15,6 +17,30 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const [expoPushToken, setExpoPushToken] = useState<string>('');
+    const [notification, setNotification] = useState(false);
+    const notificationListener = useRef();
+    const responseListener = useRef();
+
+    useEffect(() => {
+        notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+  
+         // This listener is fired whenever a notification is received while the app is foregrounded
+        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+            setNotification(notification);
+        });
+  
+        // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+            console.log(response);
+        });
+  
+        return () => {
+            Notifications.removeNotificationSubscription(notificationListener);
+            Notifications.removeNotificationSubscription(responseListener);
+        };
+    }, []);
 
     const onFooterLinkPress = () => {
         props.navigation.navigate('Login');
@@ -39,7 +65,8 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
                 dateJoinedMERT: "",
                 profileImagePath: `profileImages/${email}.png`,
                 formCompleted: false,
-                takenAthleticShift: false
+                takenAthleticShift: false,
+                pushToken: expoPushToken
             };
 
             const shiftData: Shift = {

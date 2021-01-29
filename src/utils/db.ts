@@ -86,8 +86,6 @@ export async function getNextShift(uid: string): Promise<any> {
     return curNextShift;
 }
 
-// TODO: get N next shiftss
-
 export async function createNewCall(uid: string): Promise<any> {
     let timeStamp = new Date();
     const docRef = await callsRef.add({
@@ -116,3 +114,24 @@ export async function updateCall(docId: string, sequenceStep: string): Promise<a
     } 
 }
 
+
+export async function updateUsername(uid: string, newName: string): Promise<any> {
+    usersRef.doc(uid).update({
+        fullName: newName,
+    })
+}
+
+export async function updateRank(uid: string, newRank: string): Promise<any> {
+    usersRef.doc(uid).update({
+        rank: newRank,
+    })
+}
+
+export async function updateYear(uid: string, newYear: Number): Promise<any> {
+    usersRef.doc(uid).update({
+        gradYear: newYear,
+    })
+}
+
+
+// TODO: get N next shiftss

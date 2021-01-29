@@ -6,6 +6,7 @@ import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import LogoutBtn from '../../components/LogoutBtn'
+import UpdateProfile from '../../components/UpdateProfile'
 
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
@@ -53,6 +54,8 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                     <Text> Monthly Hours: {monthlyHours} </Text>
                 </View>
             </View>
+            <UpdateProfile/>
         </SafeAreaView>
     );
 }
+

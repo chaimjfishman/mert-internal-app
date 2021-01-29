@@ -9,15 +9,8 @@ const whitelistRef = firestore.collection('userWhitelist');
 
 export async function confirmWhitelist(email: string): Promise<any> {
     //TODO: Error handling
-    const firestoreUserDocument: any = await whitelistRef.doc(email).get()
-    if (!firestoreUserDocument.exists) {
-        return false;
-    } else {
-        return true;
-    }
-
-    const user: User = firestoreUserDocument.data();
-    return user;
+    const firestoreUserDocument: any = await whitelistRef.doc(email).get();
+    return firestoreUserDocument.exists;
 }
 
 export async function createUserDocument(uid: string, dataObj: User) {
@@ -144,6 +137,12 @@ export async function updateRank(uid: string, newRank: string): Promise<any> {
 export async function updateYear(uid: string, newYear: Number): Promise<any> {
     usersRef.doc(uid).update({
         gradYear: newYear,
+    })
+}
+
+export async function updatePushToken(uid: string, newToken: string): Promise<any>  {
+    await usersRef.doc(uid).update({
+        pushToken: newToken,
     })
 }
 

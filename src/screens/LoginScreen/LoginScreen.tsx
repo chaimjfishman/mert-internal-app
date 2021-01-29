@@ -4,9 +4,12 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
+import * as notif from '../../utils/notifications'; 
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
 import { User } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
+
+import Constants from 'expo-constants'; //TODO: remove for production
 
 
 export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
@@ -22,6 +25,16 @@ export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
         try {
             const uid: string = await auth.loginWithEmail(email, password);
             const user: User = await db.getUserDocument(uid);
+
+            //TODO: remove check for production!!!
+            let webBrowsers: string[] = ['Safari', 'Chrome'];
+            console.log(`deviceName: ${Constants.deviceName}`)
+            // Ensure app is running on physical device; push notifications won't work on simulator
+            if (Constants.isDevice && !webBrowsers.includes(Constants.deviceName)) {
+                let token = await notif.registerForPushNotificationsAsync();
+                await db.updatePushToken(uid, token)
+            } 
+
             login(user);
         } catch (err) {
             alert(err);

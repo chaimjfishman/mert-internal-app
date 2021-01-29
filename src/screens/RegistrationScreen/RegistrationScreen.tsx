@@ -17,7 +17,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [expoPushToken, setExpoPushToken] = useState<string>('');
+    const [expoPushToken, setExpoPushToken] = useState<string | null>('');
 
     const onFooterLinkPress = () => {
         props.navigation.navigate('Login');
@@ -40,8 +40,17 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             return;
         }
 
-        // Get user's notification push token
-        await notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
+        //TODO: remove check for production!!!
+        let webBrowsers: string[] = ['Safari', 'Chrome'];
+        console.log(`deviceName: ${Constants.deviceName}`)
+        // Ensure app is running on physical device; push notifications won't work on simulator
+        if (Constants.isDevice && !webBrowsers.includes(Constants.deviceName)) {
+            // Get user's notification push token
+            await notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+        } else {
+            setExpoPushToken(null)
+        }
 
         try {
             const uid: string = await auth.signUp(email, password);

@@ -24,7 +24,6 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
     const responseListener = useRef();
 
     useEffect(() => {
-        notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
   
          // This listener is fired whenever a notification is received while the app is foregrounded
         notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
@@ -51,6 +50,12 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             alert("Passwords don't match.");
             return;
         }
+
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters')
+        }
+
+        notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
 
         try {
             const uid: string = await auth.signUp(email, password);

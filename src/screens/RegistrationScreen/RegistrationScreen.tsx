@@ -53,6 +53,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
 
         if (password.length < 6) {
             alert('Password must be at least 6 characters')
+            return;
         }
 
         notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));

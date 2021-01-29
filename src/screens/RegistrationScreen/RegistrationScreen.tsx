@@ -24,8 +24,14 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
     }
 
     const onRegisterPress = async () => {
+        let isWhitelisted: boolean = await db.confirmWhitelist(email);
+        if (!isWhitelisted) {
+            alert("The email you entered does not have the permissions to register on this app.\n\nIf you believe this is an error, confirm with the MERT admin that your email has been added to the white list.");
+            return;
+        }
+
         if (password !== confirmPassword) {
-            alert("Passwords don't match.");
+            alert("Passwords don't match");
             return;
         }
 

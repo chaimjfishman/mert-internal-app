@@ -5,6 +5,20 @@ const firestore = firebase.firestore();
 const usersRef = firestore.collection('users');
 const shiftsRef = firestore.collection('shifts');
 const callsRef = firestore.collection('calls');
+const whitelistRef = firestore.collection('userWhitelist');
+
+export async function confirmWhitelist(email: string): Promise<any> {
+    //TODO: Error handling
+    const firestoreUserDocument: any = await whitelistRef.doc(email).get()
+    if (!firestoreUserDocument.exists) {
+        return false;
+    } else {
+        return true;
+    }
+
+    const user: User = firestoreUserDocument.data();
+    return user;
+}
 
 export async function createUserDocument(uid: string, dataObj: User) {
     //TODO: Error handling

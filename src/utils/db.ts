@@ -4,6 +4,7 @@ import { User, Shift} from '../constants/collectionTypes';
 const firestore = firebase.firestore();
 const usersRef = firestore.collection('users');
 const shiftsRef = firestore.collection('shifts');
+const callsRef = firestore.collection('calls');
 
 export async function createUserDocument(uid: string, dataObj: User) {
     //TODO: Error handling
@@ -86,3 +87,32 @@ export async function getNextShift(uid: string): Promise<any> {
 }
 
 // TODO: get N next shiftss
+
+export async function createNewCall(uid: string): Promise<any> {
+    let timeStamp = new Date();
+    const docRef = await callsRef.add({
+        userId: uid,
+        callStart: timeStamp,
+        arrived: null,
+        treated: null,
+        transported: null,
+        completed: null,
+    });
+
+    return docRef.id;
+}
+
+export async function updateCall(docId: string, sequenceStep: string): Promise<any> {
+    let timeStamp = new Date();
+    
+    if (sequenceStep === 's1') {
+        await callsRef.doc(docId).update({arrived: timeStamp}) 
+    } else if (sequenceStep === 's2') {
+        await callsRef.doc(docId).update({treated: timeStamp}) 
+    } else if (sequenceStep === 's3') {
+        await callsRef.doc(docId).update({transported: timeStamp}) 
+    } else if (sequenceStep === 's4') {
+        await callsRef.doc(docId).update({completed: timeStamp}) 
+    } 
+}
+

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Button } from 'react-native-paper';
 import { Text, View, FlatList } from 'react-native';
 import { AuthContext } from '../providers/AuthProvider';
@@ -27,9 +27,23 @@ let seqText = {
 }
 
 const LogoutBtn = (props: any) => {
+    const { user } = useContext(AuthContext);
     const [callSeq, setCallSeq] = useState<CallSequence>('s1');
+    const [callId, setCallId] = useState<string>('');
 
-    function handleSequence() {
+    useEffect(() => {
+        beginCall();
+    }, []);
+
+    async function beginCall() {
+        if (user === null) return;
+        const id = await db.createNewCall(user.id);
+        setCallId(id);
+    }
+
+    async function handleSequence() {
+        await db.updateCall(callId, callSeq);
+
         if (callSeq === 's1') {
             setCallSeq('s2')
         } else if (callSeq === 's2') {
@@ -44,7 +58,12 @@ const LogoutBtn = (props: any) => {
     return (
         <View style={{flex: 1, backgroundColor: seqColor[callSeq]}}>
 
-            <Button icon={seqIcon[callSeq]} mode="contained" onPress={() => handleSequence()}>
+            <Button icon={seqIcon[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
+                flex: 1, 
+                alignItems: 'center',
+                justifyContent: 'center', 
+                backgroundColor: seqColor[callSeq]
+            }}>
                 {seqText[callSeq]}
             </Button>
         </View>

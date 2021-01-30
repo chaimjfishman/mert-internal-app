@@ -5,6 +5,7 @@ const firestore = firebase.firestore();
 const usersRef = firestore.collection('users');
 const shiftsRef = firestore.collection('shifts');
 const callsRef = firestore.collection('calls');
+const contactsRef = firestore.collection('contacts');
 
 export async function createUserDocument(uid: string, dataObj: User) {
     //TODO: Error handling
@@ -51,18 +52,14 @@ export async function getUserShifts(uid: string): Promise<any> {
               console.log(error)
             }
         )
-    console.log(listShifts)
     return listShifts;
 }
 
 export async function getMonthlyHours(uid: string): Promise<any> {
     const listShifts: Shift[] = await getUserShifts(uid);
-    const now = Date()
+    const now = new Date()
     let monthlyHours = 0.0;
-    console.log("Getting monthly hours")
-    console.log(listShifts.length)
     listShifts.forEach(shift => {
-        console.log("For each")
         const shiftStartDate = shift.startTime
         const shiftEndDate = shift.endTime
         if (shift.endTime < now && shift.endTime.getMonth() == now.getMonth() && shift.endTime.getYear() == now.getYear() ) {
@@ -74,8 +71,8 @@ export async function getMonthlyHours(uid: string): Promise<any> {
 
 export async function getNextShift(uid: string): Promise<any> {
     const listShifts: Shift[] = await getUserShifts(uid);
-    const now = Date()
-    let curNextShift = null;
+    const now = new Date()
+    let curNextShift: Date = new Date(8640000000000000);
     listShifts.forEach(shift => {
         console.log("For each")
         const shiftStartDate = shift.startTime
@@ -115,22 +112,40 @@ export async function updateCall(docId: string, sequenceStep: string): Promise<a
 }
 
 
-export async function updateUsername(uid: string, newName: string): Promise<any> {
+export function updateUsername(uid: string, newName: string): void {
     usersRef.doc(uid).update({
         fullName: newName,
     })
 }
 
-export async function updateRank(uid: string, newRank: string): Promise<any> {
+export function updateRank(uid: string, newRank: string): void {
     usersRef.doc(uid).update({
         rank: newRank,
     })
 }
 
-export async function updateYear(uid: string, newYear: Number): Promise<any> {
+export function updateYear(uid: string, newYear: Number): void {
     usersRef.doc(uid).update({
         gradYear: newYear,
     })
+}
+
+export async function getContacts(): Promise<any>{
+    let contactList: any[] = [];
+    await contactsRef
+    .orderBy("name", "asc")
+    .onSnapshot(
+      querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const contact = doc.data();
+          contactList.push(contact);
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    return contactList;
 }
 
 

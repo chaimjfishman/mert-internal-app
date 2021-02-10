@@ -9,10 +9,18 @@ export interface User {
     profileImagePath: string; 
     formCompleted: boolean;
     takenAthleticShift: boolean;
+    pushToken: string | null;
 }
 
+type ShiftType = "type1" | "type2" | "type3";
 export interface Shift {
     userId: string;
-    nextShiftStart: string; //TODO: change to date type
-    hoursRemaining: number;
+    startTime: Date;
+    endTime: Date;
+    shiftType: ShiftType;
+}
+
+export interface Contact {
+    name: string;
+    href: string;
 }

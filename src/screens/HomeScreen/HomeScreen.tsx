@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Text, View } from 'react-native';
 import styles from './styles';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { AuthContext } from "../../providers/AuthProvider";
@@ -7,12 +6,14 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { Shift } from '../../constants/collectionTypes';
 import * as db from '../../utils/db';
 
+import DefaultHome from '../../components/DefaultHome'
+import CallMode from '../../components/CallMode'
 
 
 
 
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
-    const { user } = useContext(AuthContext);
+    const [isCallMode, setCallMode] = useState<boolean>(false);
 
     if (user === null) return;
     const [shifts, setShifts] = useState<Shift[]>([]);
@@ -37,4 +38,20 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
         </Card.Actions>
     </Card>
     );
+
+    if (isCallMode) {
+        return (
+            <CallMode  setCallMode={setCallMode}/>
+        );
+    } else {
+        return (
+            <DefaultHome setCallMode={setCallMode}/>
+        );
+    }
+
+    // return (
+    //     // <DefaultHome />
+    //     <CallMode />
+    //     // {isCallMode ? <CallMode /> : <DefaultHome />}
+    // );
 }

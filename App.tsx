@@ -3,6 +3,9 @@ import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
 import { AuthProvider } from "./src/providers/AuthProvider";
 import Routes from "./src/Routes";
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+
+
 
 import * as notif from './src/utils/notifications'; 
 
@@ -37,8 +40,10 @@ export default function App() {
     }, []);
 
     return (
+        <PaperProvider theme = {DefaultTheme}>
         <AuthProvider>
             <Routes />
         </AuthProvider>
+        </PaperProvider>
     );
 }

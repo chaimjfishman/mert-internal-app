@@ -14,22 +14,34 @@ import CallMode from '../../components/CallMode'
 
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const [isCallMode, setCallMode] = useState<boolean>(false);
-
+    const { user } = useContext(AuthContext);
+    const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
+    const [shiftData, setShifts] = useState<Shift[]>([]);
     if (user === null) return;
-    const [shifts, setShifts] = useState<Shift[]>([]);
-    // const currShifts = db.getShifts(user.id);
-    const currShifts: Shift =  db.getShifts(user.id);
+    useEffect(() => {
+        async function getShifts() {
+            try {
+                // TODO: get shifts from db
+                const shiftData = await db.getUserShifts(user.id);
+                setShifts(shiftData)
+                const monthlyHours = await db.getMonthlyHours(user.id);
+                setMonthlyHours(monthlyHours)
 
-    console.log("Shifts: " + currShifts);
-    // const userID = user.id;
+            } catch (err) {
+                alert(err);
+            }
+        }
+        getShifts();
+      }, []);
+
     const LeftContent = props => <Avatar.Icon {...props} icon={require('../../../assets/penn_Logo.png')} />
-
+    console.log(shiftData);
     return (
     <Card>
         <Card.Title title="Shift" left = {LeftContent}/>
             <Card.Content>
                 <Title>Next Shift</Title>
-                <Paragraph>shift:</Paragraph>
+                <Paragraph>shift: </Paragraph>
             </Card.Content>
             <Card.Cover source={require('../../../assets/Penn_MERT_Logo.png')} />
         <Card.Actions>

@@ -61,17 +61,16 @@ export async function getMonthlyHours(uid: string): Promise<any> {
 }
 
 export async function getNextShift(uid: string): Promise<any> {
-    const listShifts: Shift[] = await getUserShifts(uid);
-    const now = Date()
-    let curNextShift = null;
-    listShifts.forEach(shift => {
-        console.log("For each")
-        const shiftStartDate = shift.startTime
-        if (now <= shiftStartDate && ((curNextShift == null) || shiftStartDate < curNextShift)) {
-            curNextShift = shiftStartDate
-        }
-    });
-    return curNextShift;
+    const currTime = new Date();
+    const snapshot: any = await shiftsRef
+        .where("userID", "==", uid)
+        .startAt(currTime)
+        .orderBy("startTime", "asc")
+        .get();
+    let upcomingShift: Shift = snapshot.docs[0].data();
+    upcomingShift.startTime = upcomingShift.startTime.toDate();
+    upcomingShift.endTime = upcomingShift.endTime.toDate();
+    return upcomingShift;
 }
 
 export async function createNewCall(uid: string): Promise<any> {

@@ -35,31 +35,12 @@ export async function getUserDocument(uid: string): Promise<any> {
     return user;
 }
 
-export async function getShifts(uid: string): Promise<any> {
-    //TODO: Error handling
-    const firestoreShiftsDocument: any = await shiftsRef.doc(uid).get();
-    return;
-    // TODO
-}
-
 export async function getUserShifts(uid: string): Promise<any> {
-    const listShifts: any[] = [];
-    await shiftsRef
-        .where("userID", "==", uid)
-        .orderBy("startTime", "asc")
-        .onSnapshot(
-            querySnapshot => {
-              querySnapshot.forEach(doc => {
-                listShifts.push(doc.data())
-                // TODO: convert data types
-              });
-            },
-            error => {
-              console.log(error)
-            }
-        )
-    console.log(listShifts)
-    return listShifts;
+    const snapshot: any = await shiftsRef.where("userID", "==", uid).orderBy("startTime", "asc").get();
+    const data: any = snapshot.docs.map(doc => doc.data());
+    data.forEach(doc => doc.startTime = doc.startTime.toDate());
+    data.forEach(doc => doc.endTime = doc.endTime.toDate());
+    return data;
 }
 
 export async function getMonthlyHours(uid: string): Promise<any> {

@@ -64,8 +64,8 @@ export async function getNextShift(uid: string): Promise<any> {
     const currTime = new Date();
     const snapshot: any = await shiftsRef
         .where("userID", "==", uid)
-        .startAt(currTime)
         .orderBy("startTime", "asc")
+        .startAt(currTime)
         .get();
     let upcomingShift: Shift = snapshot.docs[0].data();
     upcomingShift.startTime = upcomingShift.startTime.toDate();

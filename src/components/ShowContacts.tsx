@@ -7,7 +7,7 @@ import ForwardLink from './ForwardLink'
 
 const ShowContacts = () => {
 
-  const [contactList, setContactList] = useState([]);
+  const [contactList, setContactList] = useState(['test']);
                 
   useEffect(() => {
     async function getContactList() {

@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import * as Notifications from 'expo-notifications';
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
 import * as notif from '../../utils/notifications'; 
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
-import { User, Shift } from '../../constants/collectionTypes';
+import { User } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 
 
@@ -18,36 +17,21 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [expoPushToken, setExpoPushToken] = useState<string>('');
-    const [notification, setNotification] = useState(false);
-    const notificationListener = useRef();
-    const responseListener = useRef();
-
-    useEffect(() => {
-  
-         // This listener is fired whenever a notification is received while the app is foregrounded
-        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-            setNotification(notification);
-        });
-  
-        // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
-        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-            console.log(response);
-        });
-  
-        return () => {
-            Notifications.removeNotificationSubscription(notificationListener);
-            Notifications.removeNotificationSubscription(responseListener);
-        };
-    }, []);
+    const [expoPushToken, setExpoPushToken] = useState<string | null>('');
 
     const onFooterLinkPress = () => {
         props.navigation.navigate('Login');
     }
 
     const onRegisterPress = async () => {
+        let isWhitelisted: boolean = await db.confirmWhitelist(email);
+        if (!isWhitelisted) {
+            alert("The email you entered does not have the permissions to register on this app.\n\nIf you believe this is an error, confirm with the MERT admin that your email has been added to the white list.");
+            return;
+        }
+
         if (password !== confirmPassword) {
-            alert("Passwords don't match.");
+            alert("Passwords don't match");
             return;
         }
 
@@ -56,7 +40,17 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             return;
         }
 
-        notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
+        //TODO: remove check for production!!!
+        let webBrowsers: string[] = ['Safari', 'Chrome'];
+        console.log(`deviceName: ${Constants.deviceName}`)
+        // Ensure app is running on physical device; push notifications won't work on simulator
+        if (Constants.isDevice && !webBrowsers.includes(Constants.deviceName)) {
+            // Get user's notification push token
+            await notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+        } else {
+            setExpoPushToken(null)
+        }
 
         try {
             const uid: string = await auth.signUp(email, password);
@@ -75,14 +69,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
                 pushToken: expoPushToken
             };
 
-            const shiftData: Shift = {
-                userId: uid,
-                nextShiftStart: "", //list of shifts
-                hoursRemaining: 0
-            };
-
             await db.createUserDocument(uid, userData);
-            await db.createShiftsDocument(uid, shiftData);
             login(userData);
         } catch (err) {
             console.log(err);

@@ -6,6 +6,13 @@ const usersRef = firestore.collection('users');
 const shiftsRef = firestore.collection('shifts');
 const callsRef = firestore.collection('calls');
 const contactsRef = firestore.collection('contacts');
+const whitelistRef = firestore.collection('userWhitelist');
+
+export async function confirmWhitelist(email: string): Promise<any> {
+    //TODO: Error handling
+    const firestoreUserDocument: any = await whitelistRef.doc(email).get();
+    return firestoreUserDocument.exists;
+}
 
 export async function createUserDocument(uid: string, dataObj: User) {
     //TODO: Error handling
@@ -29,30 +36,12 @@ export async function getUserDocument(uid: string): Promise<any> {
     return user;
 }
 
-export async function getShifts(uid: string): Promise<any> {
-    //TODO: Error handling
-    const firestoreShiftsDocument: any = await shiftsRef.doc(uid).get();
-    return;
-    // TODO
-}
-
 export async function getUserShifts(uid: string): Promise<any> {
-    const listShifts: any[] = [];
-    await shiftsRef
-        .where("userID", "==", uid)
-        .orderBy("startTime", "asc")
-        .onSnapshot(
-            querySnapshot => {
-              querySnapshot.forEach(doc => {
-                listShifts.push(doc.data())
-                // TODO: convert data types
-              });
-            },
-            error => {
-              console.log(error)
-            }
-        )
-    return listShifts;
+    const snapshot: any = await shiftsRef.where("userID", "==", uid).orderBy("startTime", "asc").get();
+    const data: any = snapshot.docs.map(doc => doc.data());
+    data.forEach(doc => doc.startTime = doc.startTime.toDate());
+    data.forEach(doc => doc.endTime = doc.endTime.toDate());
+    return data;
 }
 
 export async function getMonthlyHours(uid: string): Promise<any> {
@@ -70,17 +59,16 @@ export async function getMonthlyHours(uid: string): Promise<any> {
 }
 
 export async function getNextShift(uid: string): Promise<any> {
-    const listShifts: Shift[] = await getUserShifts(uid);
-    const now = new Date()
-    let curNextShift: Date = new Date(8640000000000000);
-    listShifts.forEach(shift => {
-        console.log("For each")
-        const shiftStartDate = shift.startTime
-        if (now <= shiftStartDate && ((curNextShift == null) || shiftStartDate < curNextShift)) {
-            curNextShift = shiftStartDate
-        }
-    });
-    return curNextShift;
+    const currTime = new Date();
+    const snapshot: any = await shiftsRef
+        .where("userID", "==", uid)
+        .orderBy("startTime", "asc")
+        .startAt(currTime)
+        .get();
+    let upcomingShift: Shift = snapshot.docs[0].data();
+    upcomingShift.startTime = upcomingShift.startTime.toDate();
+    upcomingShift.endTime = upcomingShift.endTime.toDate();
+    return upcomingShift;
 }
 
 export async function createNewCall(uid: string): Promise<any> {
@@ -146,6 +134,12 @@ export async function getContacts(): Promise<any>{
       }
     )
     return contactList;
+}
+
+export async function updatePushToken(uid: string, newToken: string): Promise<any>  {
+    await usersRef.doc(uid).update({
+        pushToken: newToken,
+    })
 }
 
 

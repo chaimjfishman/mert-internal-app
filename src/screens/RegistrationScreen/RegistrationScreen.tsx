@@ -4,8 +4,9 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles';
 import * as db from '../../utils/db';
 import * as auth from '../../utils/auth';
+import * as notif from '../../utils/notifications'; 
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
-import { User, Shift } from '../../constants/collectionTypes';
+import { User } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 
 
@@ -16,14 +17,39 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [expoPushToken, setExpoPushToken] = useState<string | null>('');
+
     const onFooterLinkPress = () => {
         props.navigation.navigate('Login');
     }
 
     const onRegisterPress = async () => {
-        if (password !== confirmPassword) {
-            alert("Passwords don't match.");
+        let isWhitelisted: boolean = await db.confirmWhitelist(email);
+        if (!isWhitelisted) {
+            alert("The email you entered does not have the permissions to register on this app.\n\nIf you believe this is an error, confirm with the MERT admin that your email has been added to the white list.");
             return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords don't match");
+            return;
+        }
+
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters')
+            return;
+        }
+
+
+        //TODO: remove check for production!!!
+        let webBrowsers: string[] = ['Safari', 'Chrome'];
+        console.log(`deviceName: ${Constants.deviceName}`)
+        // Ensure app is running on physical device; push notifications won't work on simulator
+        if (Constants.isDevice && !webBrowsers.includes(Constants.deviceName)) {
+            // Get user's notification push token
+            await notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+        } else {
+            setExpoPushToken(null)
         }
 
         try {
@@ -39,17 +65,11 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
                 dateJoinedMERT: "",
                 profileImagePath: `profileImages/${email}.png`,
                 formCompleted: false,
-                takenAthleticShift: false
-            };
-
-            const shiftData: Shift = {
-                userId: uid,
-                nextShiftStart: "", //list of shifts
-                hoursRemaining: 0
+                takenAthleticShift: false,
+                pushToken: expoPushToken
             };
 
             await db.createUserDocument(uid, userData);
-            await db.createShiftsDocument(uid, shiftData);
             login(userData);
         } catch (err) {
             console.log(err);

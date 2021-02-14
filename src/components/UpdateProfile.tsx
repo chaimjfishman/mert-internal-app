@@ -16,16 +16,33 @@ const UpdateProfile = () => {
   const hideDialog = () => setVisibleDialog(false);
 
   const update = () => {
+    const yearNum = parseInt(year)
+    if (isNaN(yearNum)) {
+      alert('Invalid graduation year.')
+      return 
+    } 
+
+    let changed = false;
+
     if (user?.fullName != name) {
       db.updateUsername(user.id, name)
+      changed = true;
     }
     if (user?.rank != rank) {
       db.updateRank(user.id, rank)
+      changed = true
     }
-    const yearNum = parseInt(year)
-    if (!isNaN(yearNum)) {
+    if (user?.gradYear !=  yearNum ) {
       db.updateYear(user.id, yearNum)
+      changed = true
     } 
+    if (changed) {
+      alert('Updated personal info. Please restart the app for changes to take place.')
+      hideDialog()
+    }
+    else {
+      alert('No changes made.')
+    }
   }
 
   return (

@@ -9,6 +9,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import LogoutBtn from '../../components/LogoutBtn'
 import UpdateProfile from '../../components/UpdateProfile'
 import ProfileImage from '../../components/ProfileImage'
+import ShowContacts from '../../components/ShowContacts'
 
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
@@ -57,8 +58,10 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                     <Text> Graduation year: {gradYear} </Text>
                     <Text> Rank: {rank} </Text>
                     <Text> ID: {userID} </Text>
-                    <Text> Monthly Hours: {monthlyHours} </Text>
-                </View>
+                    <Text> Monthly Hours: {monthlyHours} </Text> 
+                    <ShowContacts/>
+                    <UpdateProfile/>
+                </View>    
             </View>
             <UpdateProfile />
         </SafeAreaView></>

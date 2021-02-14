@@ -45,8 +45,8 @@ export async function registerForPushNotificationsAsync() : Promise<any> {
             finalStatus = status;
         }
         if (finalStatus !== 'granted') {
-            alert('Failed to get push token for push notification!');
-            return;
+            alert('Please enable push notification for this app.');
+            return null;
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
         console.log(`user's ExpoPushToken: ${token}`);

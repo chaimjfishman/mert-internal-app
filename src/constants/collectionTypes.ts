@@ -9,6 +9,7 @@ export interface User {
     profileImagePath: string; 
     formCompleted: boolean;
     takenAthleticShift: boolean;
+    pushToken: string | null;
 }
 
 type ShiftType = "type1" | "type2" | "type3";

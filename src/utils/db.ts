@@ -125,8 +125,7 @@ export async function getContacts(): Promise<any>{
     .onSnapshot(
       querySnapshot => {
         querySnapshot.forEach(doc => {
-          const contact = doc.data();
-          contactList.push(contact);
+          contactList.push(doc.data());
         });
       },
       error => {

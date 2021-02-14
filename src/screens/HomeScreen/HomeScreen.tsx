@@ -16,14 +16,15 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const [isCallMode, setCallMode] = useState<boolean>(false);
     const { user } = useContext(AuthContext);
     const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
-    const [shiftData, setShifts] = useState<Shift[]>([]);
+    const [nextShift, setShifts] = useState<Shift | null>(null);
     if (user === null) return;
     useEffect(() => {
         async function getShifts() {
             try {
                 // TODO: get shifts from db
-                const shiftData = await db.getUserShifts(user.id);
-                setShifts(shiftData)
+                const nextShift = await db.getNextShift(user.id);
+                setShifts(nextShift)
+                console.log(nextShift);
                 const monthlyHours = await db.getMonthlyHours(user.id);
                 setMonthlyHours(monthlyHours)
 
@@ -35,7 +36,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
       }, []);
 
     const LeftContent = props => <Avatar.Icon {...props} icon={require('../../../assets/penn_Logo.png')} />
-    console.log(shiftData);
+    console.log(nextShift?.startTime);
     return (
     <Card>
         <Card.Title title="Shift" left = {LeftContent}/>

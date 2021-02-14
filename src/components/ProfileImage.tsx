@@ -24,7 +24,8 @@ export default class ProfileImage extends React.Component {
         const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg'
 
         if (this.state.mounted == true) {
-            this.setState({url: db.getStorageImage(this.props.image)})
+            const imageUrl = await db.getStorageImage(this.props.image, defaultImage)
+            this.setState({url: imageUrl})
             this.setState({ loading: false })
         }
     }

@@ -31,12 +31,8 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     useEffect(() => {
         async function getShifts() {
             try {
-                // TODO: get shifts from db
-                // const shiftData = await db.getUserShifts(userID);
-                // setShifts(shiftData)
                 const monthlyHours = await db.getMonthlyHours(userID);
                 setMonthlyHours(monthlyHours)
-
             } catch (err) {
                 alert(err);
             }
@@ -60,7 +56,6 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                     <Text> ID: {userID} </Text>
                     <Text> Monthly Hours: {monthlyHours} </Text> 
                     <ShowContacts/>
-                    <UpdateProfile/>
                 </View>    
             </View>
             <UpdateProfile />

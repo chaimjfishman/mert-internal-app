@@ -39,10 +39,8 @@ const ShowContacts = () => {
           querySnapshot.forEach(doc => {
             const contact = doc.data()
             contactList.push(contact)
-            // setHelper(contact.name)
           });
           setContacts(contactList)
-          console.log(contacts)
         },
         error => {
           console.log(error)
@@ -57,7 +55,7 @@ const ShowContacts = () => {
           data={contacts}
           renderItem={Text}
           renderItem={({item}) => <ForwardLink href={"tel:" + item.phoneNumber} text={"  " + item.name}> </ForwardLink>}
-          keyExtractor={(item) => item.id}
+          // keyExtractor={(item) => item.name}
           removeClippedSubviews={true}
       />
     </View>

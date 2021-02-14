@@ -2,11 +2,17 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import styles from './styles';
 import FormLink from '../../components/FormLink';
+import LogoutBtn from '../../components/LogoutBtn'
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
+import { Appbar } from 'react-native-paper';
 
 export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
     
     return (
+        <><Appbar.Header>
+            <Appbar.Content title="Forms Page" />
+            <LogoutBtn />
+        </Appbar.Header>
         <SafeAreaView style={styles.formsContainer}>
             
             <FormLink
@@ -26,6 +32,6 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
                 link='https://docs.google.com/spreadsheets/d/163IBjttNdGNvjn3-k9jIHE82uoupQFl4FG_XhJOCtBg/edit?ts=5b718fe6#gid=0'
             />
 
-        </SafeAreaView>
+        </SafeAreaView></>
     );
 }

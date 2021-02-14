@@ -118,13 +118,14 @@ export function updateYear(uid: string, newYear: Number): void {
     })
 }
 
-export async function getStorageImage(path: string, defaultImage: any): Promise<any> {
+export async function getStorageImage(path: string, defaultImage: string): Promise<string> {
     const ref = firebase.storage().ref(path);
-    ref.getDownloadURL().then((data: any) => {
-        return data
+    let image = defaultImage
+    await ref.getDownloadURL().then((data: string) => {
+        image = data
     }).catch((error: any) => {
-        return defaultImage
     })
+    return image
 }
 
 export async function getContacts(): Promise<any>{

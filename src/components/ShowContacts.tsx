@@ -8,16 +8,14 @@ import { firebase } from '../utils/firebaseConfig';
 
 const ShowContacts = () => {
 
-  // const [contactList, setContactList] = useState([{phoneNumber: "+0", name: "name", id: 12345}]);
+  const [contacts, setContacts] = useState([{phoneNumber: "", name: "No contacts found"}]);
                 
   // useEffect(() => {
   //   async function getContactList() {
   //     try {
-  //       const contacts = await db.getContacts();
-  //       console.log('contacts:')
-  //       console.log(contacts)
-  //       setContactList([{phoneNumber: "+1", name: "ahdskjahk", id: 777}]);
-  //       console.log('contactList:')
+  //       const contactList = await db.getContacts();
+  //       // setContacts([{phoneNumber: "+1", name: "ahdskjahk", id: 777}]);
+  //       setContacts(contactList);
   //       console.log(contactList)
   //     } catch (err) {
   //       alert(err);
@@ -27,7 +25,6 @@ const ShowContacts = () => {
   // }, []);
 
 
-  const [contacts, setContacts] = useState([])
   const contactsRef = firebase.firestore().collection('contacts')
 
   useEffect(() => {
@@ -55,7 +52,7 @@ const ShowContacts = () => {
           data={contacts}
           renderItem={Text}
           renderItem={({item}) => <ForwardLink href={"tel:" + item.phoneNumber} text={"  " + item.name}> </ForwardLink>}
-          // keyExtractor={(item) => item.name}
+          // keyExtractor={(item) => item.ids}
           removeClippedSubviews={true}
       />
     </View>

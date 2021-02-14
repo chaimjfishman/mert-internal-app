@@ -55,9 +55,9 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                     <Text> Rank: {rank} </Text>
                     <Text> ID: {userID} </Text>
                     <Text> Monthly Hours: {monthlyHours} </Text> 
-                    <ShowContacts/>
-                </View>    
+                </View>   
             </View>
+            <ShowContacts/> 
             <UpdateProfile />
         </SafeAreaView></>
     );

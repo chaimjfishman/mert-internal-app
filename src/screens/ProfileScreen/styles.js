@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     verticalContainer: {
-        flex: 1,
-        height: 140,
         flexDirection: 'row',
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
     },
     horizontalContainer: {
         flex: 1,

@@ -11,6 +11,7 @@ const LogoutBtn = () => {
         <Button 
             icon="logout" 
             mode="text" 
+            color='#dcdcdc'
             onPress={() => {
                 try {
                     auth.logout();

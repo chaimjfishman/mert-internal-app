@@ -5,9 +5,9 @@ import * as db from '../../utils/db';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
-import LogoutBtn from '../../components/LogoutBtn'
-import UpdateProfile from '../../components/UpdateProfile'
-
+import UpdateProfile from '../../components/UpdateProfile';
+import Appbar from '../../components/Appbar';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 
@@ -42,8 +42,9 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
       }, []);
 
     return (
-        <SafeAreaView style={styles.horizontalContainer}>
-            <LogoutBtn/>
+        <SafeAreaView >
+            <ScrollView>
+            <Appbar></Appbar>
             <View style={styles.verticalContainer}>
                 <View style={styles.horizontalContainer}>
                     <Text> Name: {fullName} </Text>
@@ -55,6 +56,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 </View>
             </View>
             <UpdateProfile/>
+            </ScrollView>
         </SafeAreaView>
     );
 }

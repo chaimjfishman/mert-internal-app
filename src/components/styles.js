@@ -16,5 +16,9 @@ export default StyleSheet.create({
       fontWeight: "bold",
       alignSelf: "center",
       textTransform: "uppercase"
+    },
+    logoutButton: {
+      color: '#fff',
+      alignSelf: "center"
     }
   });

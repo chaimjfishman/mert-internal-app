@@ -1,16 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, SafeAreaView, Image } from 'react-native';
+import { ScrollView, View, SafeAreaView, Image } from 'react-native';
 import styles from './styles';
 import FormLink from '../../components/FormLink';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { User, Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
-
+import Appbar from '../../components/Appbar';
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
     const { user } = useContext(AuthContext);
 
     return (
+        <ScrollView>
+        <Appbar></Appbar>
         <SafeAreaView style={styles.schedContainer}>
 
             <FormLink
@@ -24,5 +26,6 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
                 link='https://media1.giphy.com/media/3o72FkiKGMGauydfyg/giphy.gif'
             />
         </SafeAreaView>
+        </ScrollView>
     );
 }

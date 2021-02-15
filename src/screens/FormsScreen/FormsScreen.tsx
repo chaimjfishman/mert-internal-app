@@ -3,12 +3,15 @@ import { SafeAreaView } from 'react-native';
 import styles from './styles';
 import FormLink from '../../components/FormLink';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
-
+import Appbar from '../../components/Appbar';
+import { ScrollView } from 'react-native-gesture-handler';
 export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
     
     return (
+        <ScrollView>
+        <Appbar></Appbar>
+
         <SafeAreaView style={styles.formsContainer}>
-            
             <FormLink
                 title="PA Protocol"
                 link="https://www.health.pa.gov/topics/Documents/EMS/2020%20PA%20BLS%20Protocols.pdf"
@@ -27,5 +30,6 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
             />
 
         </SafeAreaView>
+        </ScrollView>
     );
 }

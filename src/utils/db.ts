@@ -1,11 +1,12 @@
 import { firebase } from './firebaseConfig';
-import { User, Shift} from '../constants/collectionTypes';
+import { User, Shift, Contact} from '../constants/collectionTypes';
 
 const firestore = firebase.firestore();
 const usersRef = firestore.collection('users');
 const shiftsRef = firestore.collection('shifts');
 const callsRef = firestore.collection('calls');
 const whitelistRef = firestore.collection('userWhitelist');
+const contactsRef = firestore.collection('contacts');
 
 export async function confirmWhitelist(email: string): Promise<any> {
     //TODO: Error handling
@@ -40,6 +41,13 @@ export async function getUserShifts(uid: string): Promise<any> {
     const data: any = snapshot.docs.map(doc => doc.data());
     data.forEach(doc => doc.startTime = doc.startTime.toDate());
     data.forEach(doc => doc.endTime = doc.endTime.toDate());
+    return data;
+}
+
+export async function getContacts(): Promise<any> {
+    const contacts: any = await contactsRef.orderBy("asc").get();
+    const data: any = contacts.docs.map(doc => doc.data());
+    console.log(contacts);
     return data;
 }
 

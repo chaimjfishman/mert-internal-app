@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { AuthContext } from '../providers/AuthProvider';
 import { Button } from 'react-native-paper';
-
-
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 export default function DefaultHome(props: any) {
 
     const { user } = useContext(AuthContext);
@@ -17,10 +17,11 @@ export default function DefaultHome(props: any) {
               <Button icon="ambulance" mode="contained" onPress={() => props.setCallMode(true)}>
                     Call mode
                 </Button>
-
-            <Text>
-                Home Screen Here
-            </Text>
+                <Card>
+                    <Text>
+                        Hello                        
+                    </Text>
+                </Card>
         </View>
     );   
 }

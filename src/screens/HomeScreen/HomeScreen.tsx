@@ -3,7 +3,7 @@ import styles from './styles';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import { Avatar, Button, List, Card, Title, Paragraph } from 'react-native-paper';
-import { Shift } from '../../constants/collectionTypes';
+import { Shift, Contact } from '../../constants/collectionTypes';
 import * as db from '../../utils/db';
 import {StyleSheet, View, ScrollView } from 'react-native';
 
@@ -18,7 +18,9 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const { user } = useContext(AuthContext);
     const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
     const [nextShift, setShifts] = useState<Shift | null>(null);
-    const [contacts, setContacts] = useState<Shift | null>(null);
+    const [contacts, setContacts] = useState<Contact | null>(null);
+    const contactsListArray = [];
+
     if (user === null) return;
     useEffect(() => {
         async function getInfo() {
@@ -35,6 +37,9 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
                 alert(err);
             }
         }
+        if (nextShift == null) {
+            //TODO add case if there is no upcoming shift
+        }
         getInfo();
       }, []);
 
@@ -42,9 +47,15 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const contact = props => <Avatar.Icon {...props} icon={require('../../../assets/phone_icon.png')} />
     const hours = props => <Avatar.Icon {...props} icon={require('../../../assets/hours_icon.png')} />
     const percent_completed =100*(monthlyHours)/requiredMonthlyHours;
-
+    const fixed_percent = percent_completed.toFixed()
+    // const listItems = contacts.map((contacts) =>
+    //                 <li>Name: {contacts.name}, Number: {contacts.number}</li>
+                        // );
     console.log(contacts);
-    console.log(monthlyHours)
+
+
+
+    
     return (
 
     <ScrollView style={styles.container}>
@@ -64,12 +75,9 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
         <Card style={styles.card}>
             <Card.Title title="Important Contacts" left = {contact}/>
             <Card.Content>
-                {/* {contacts.map((prop, key) => {
-                    return (
-                <Title style={{borderColor: prop[0]}}  key={key}>{prop[1]}</Title>
-                );
-                })}
-                <Title></Title> */}
+                <Title></Title>
+                <Paragraph>
+                </Paragraph>
             </Card.Content>
             <Card.Actions>
             </Card.Actions>
@@ -78,7 +86,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
             <Card.Title title="Hours" left = {hours}/>
             <Card.Content>
                 <CircularProgress percent = {percent_completed}></CircularProgress>
-                <Paragraph>You've completed {percent_completed}% of Your Required Hours</Paragraph>
+                <Paragraph>You've completed {fixed_percent}% of Your Required Hours</Paragraph>
             </Card.Content>
             <Card.Actions>
             </Card.Actions>

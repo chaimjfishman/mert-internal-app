@@ -45,23 +45,22 @@ export async function getUserShifts(uid: string): Promise<any> {
 }
 
 export async function getContacts(): Promise<any> {
-    const contacts: any = await contactsRef.orderBy("asc").get();
+    const contacts: any = await contactsRef.get();
     const data: any = contacts.docs.map(doc => doc.data());
-    console.log(contacts);
+    data.forEach(doc => doc.name = doc.name);
+    data.forEach(doc => doc.number = doc.number);
     return data;
 }
 
 export async function getMonthlyHours(uid: string): Promise<any> {
     const listShifts: Shift[] = await getUserShifts(uid);
-    const now = Date()
+    const now = new Date()
     let monthlyHours = 0.0;
-    console.log("Getting monthly hours")
     console.log(listShifts.length)
     listShifts.forEach(shift => {
-        console.log("For each")
         const shiftStartDate = shift.startTime
         const shiftEndDate = shift.endTime
-        if (shift.endTime < now && shift.endTime.getMonth() == now.getMonth() && shift.endTime.getYear() == now.getYear() ) {
+        if (shift.endTime < now && shift.endTime.getMonth() == now.getMonth() && shift.endTime.getFullYear() == now.getFullYear() ) {
             monthlyHours += (shiftEndDate.getTime() - shiftStartDate.getTime()) / (1000 * 60 * 60)
         }
     });

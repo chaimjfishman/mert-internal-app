@@ -8,6 +8,7 @@ const myAppBar = () => (
     <Appbar.Header>
         <LogoutBtn></LogoutBtn>
         <Appbar.Content title=""/>
+        <Appbar.Action icon={require('../../assets/penn_logo.png')}></Appbar.Action>
         <Appbar.Action icon="magnify" onPress={() => {}} />
     </Appbar.Header>
 );

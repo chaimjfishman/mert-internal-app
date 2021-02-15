@@ -5,20 +5,20 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Avatar, Button, List, Card, Title, Paragraph } from 'react-native-paper';
 import { Shift, Contact } from '../../constants/collectionTypes';
 import * as db from '../../utils/db';
-import {StyleSheet, View, ScrollView } from 'react-native';
+import {StyleSheet, View, ScrollView, Linking } from 'react-native';
 
 import DefaultHome from '../../components/DefaultHome';
 import CallMode from '../../components/CallMode';
 import CircularProgress from '../../components/CircularProgress';
 import Appbar from '../../components/Appbar';
-
+import CallLink from '../../components/CallLink';
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const requiredMonthlyHours = 30;
     const [isCallMode, setCallMode] = useState<boolean>(false);
     const { user } = useContext(AuthContext);
     const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
     const [nextShift, setShifts] = useState<Shift | null>(null);
-    const [contacts, setContacts] = useState<Contact | null>(null);
+    const [contacts, setContacts] = useState<Contact[] | null>([]);
     const contactsListArray = [];
 
     if (user === null) return;
@@ -48,9 +48,16 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const hours = props => <Avatar.Icon {...props} icon={require('../../../assets/hours_icon.png')} />
     const percent_completed =100*(monthlyHours)/requiredMonthlyHours;
     const fixed_percent = percent_completed.toFixed()
-    // const listItems = contacts.map((contacts) =>
-    //                 <li>Name: {contacts.name}, Number: {contacts.number}</li>
-                        // );
+    const listItems = contacts.map((curr) =>
+                    <View>
+                        <Title>Name: {curr.name}</Title>
+                        <Paragraph>
+                            {/* <CallLink> */}
+                                Number: {curr.phoneNumber}
+                            {/* </CallLink> */}
+                            </Paragraph>
+                    </View>
+                        );
     console.log(contacts);
 
 
@@ -75,9 +82,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
         <Card style={styles.card}>
             <Card.Title title="Important Contacts" left = {contact}/>
             <Card.Content>
-                <Title></Title>
-                <Paragraph>
-                </Paragraph>
+                {listItems}
             </Card.Content>
             <Card.Actions>
             </Card.Actions>

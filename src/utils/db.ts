@@ -48,7 +48,7 @@ export async function getContacts(): Promise<any> {
     const contacts: any = await contactsRef.get();
     const data: any = contacts.docs.map(doc => doc.data());
     data.forEach(doc => doc.name = doc.name);
-    data.forEach(doc => doc.number = doc.number);
+    data.forEach(doc => doc.phoneNumber = doc.phoneNumber);
     return data;
 }
 
@@ -119,6 +119,11 @@ export async function updateUsername(uid: string, newName: string): Promise<any>
 export async function updateRank(uid: string, newRank: string): Promise<any> {
     usersRef.doc(uid).update({
         rank: newRank,
+    })
+}
+export async function updateBoardPosition(uid: string, newPos: string): Promise<any> {
+    usersRef.doc(uid).update({
+        boardPosition: newPos,
     })
 }
 

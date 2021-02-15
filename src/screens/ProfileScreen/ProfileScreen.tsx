@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, FlatList, Image } from 'react-native';
 import styles from './styles';
 import * as db from '../../utils/db';
+import Paragraph from 'react-native-paper';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
@@ -26,7 +27,9 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     const fullName = user.fullName;
     const gradYear = user.gradYear;
     const rank = user.rank;
+    const boardPosition = user.boardPosition;
     const profileImagePath = user.profileImagePath;
+    const joined = user.dateJoinedMERT;
     const getTextColor = () => {
         let completed_color;
         if(user.formCompleted) {
@@ -36,18 +39,14 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
         }
         return completed_color
     }
-    
-    const picUpdate = () => {
-        <UpdateProfile/>
-    }
+
 
                 
     useEffect(() => {
         async function getShifts() {
             try {
-                // TODO: get shifts from db
-                // const shiftData = await db.getUserShifts(userID);
-                // setShifts(shiftData)
+                const shifts = await db.getUserShifts(userID);
+                setShifts(shifts)
                 const monthlyHours = await db.getMonthlyHours(userID);
                 setMonthlyHours(monthlyHours)
 
@@ -57,6 +56,21 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
         }
         getShifts();
       }, []);
+
+      const listShifts = shifts.map((curr) =>
+      <View style={styles.mediaImageContainer} >
+          <Text style={styles.shiftData}>
+              Start: {curr.startTime.toString()}
+          </Text>
+          <Text  style={styles.shiftData}>
+              End: {curr.endTime.toString()}
+          </Text>
+          <Text style={styles.shiftData}>
+              Type: {curr.shiftType}
+          </Text>
+      </View>
+      );
+
       const percent_completed =100*(monthlyHours)/requiredMonthlyHours;
       const fixed_percent = percent_completed.toFixed()
     return (
@@ -70,47 +84,50 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 <View style={styles.profileImage}>
                     <Image source={require("../../../assets/penn_logo.png")} style={styles.image} resizeMode="center"></Image>
                 </View>
+                <UpdateProfile/>
+
                 <View style={styles.active}></View>
-                {/* <View style={styles.add}>
-                    <TouchableHighlight onPress={picUpdate()} underlayColor="red">
-                        <View style={styles.button}>
-                        <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
-                        </View>
-                    </TouchableHighlight>
-                </View> */}
             </View>
 
             <View style={styles.infoContainer}>
-                <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>{user.fullName}</Text>
-                <Text style={[styles.text, { fontWright: "100", fontSize: 24, color: "#AEB5BC" }]}>{user.rank}</Text>
-                <Text style={[styles.text, { fontWright: "100", fontSize: 20, color: "#AEB5BC" }]}>{user.email}</Text>
+                <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>{fullName}</Text>
+                <Text style={[styles.text, { fontWright: "100", fontSize: 24, color: "#AEB5BC" }]}>{rank}</Text>
+                <Text style={[styles.text, { fontWright: "100", fontSize: 20, color: "#AEB5BC" }]}>{userEmail}</Text>
 
             </View>
 
             <View style={styles.statsContainer}>
                 <View style={styles.statsBox}>
                     <Text style={[styles.text, { fontSize: 24 }]}>{monthlyHours}</Text>
-                    <Text style={[styles.text, styles.subText]}>Monthly Hours Completed</Text>
+                    <Text style={[styles.text, styles.subText, {textAlign:"center"}]}>Monthly Hours Completed</Text>
                 </View>
                 <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
-                    <Text style={[styles.text, { fontSize: 24 }]}>{user.gradYear}</Text>
+                    <Text style={[styles.text, { fontSize: 24 }]}>{gradYear}</Text>
                     <Text style={[styles.text, styles.subText]}>Graduation Year</Text>
                 </View>
                 <View style={styles.statsBox}>
-                    <Text style={[styles.text, { fontSize: 24 }]}>{user.dateJoinedMERT}</Text>
+                    <Text style={[styles.text, { fontSize: 24 }]}>{joined}</Text>
                     <Text style={[styles.text, styles.subText]}>Date Joined</Text>
                 </View>
             </View>
-            <View style={styles.infoContainer}>
+            <View style={[styles.infoContainer, {alignItems:"center"}]}>
                 <CircularProgress>percent = {percent_completed}</CircularProgress>
-                <Text style={[styles.text, { fontSize: 24, color: "#AEB5BC", textTransform: "uppercase" }]}>You've completed {fixed_percent}% of Your Required Hours</Text>
+                <Text style={[styles.text, { fontSize: 20, color: "#AEB5BC" , alignSelf:"center", textAlign:"center"}]}>You've completed {fixed_percent}% of Your Required Hours</Text>
             </View>
-            <View style={styles.infoContainer}>
-                <Text style={[styles.text, { fontSize: 20, textTransform: "uppercase" }]}>Board Position: {user.boardPosition}</Text>
-                <Text style={[styles.text, { color: getTextColor(), fontSize: 20, textTransform: "uppercase" }]}>Schedule Form Completed: {user.formCompleted.toString()}</Text>
-                <Text style={[styles.text, { color: getTextColor(), fontSize: 20, textTransform: "uppercase" }]}>Athletic Shift Complete: {user.takenAthleticShift.toString()}</Text>
+            <View style={styles.mediaCount}>
+                    <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{shifts.length}</Text>
+                    <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase", textAlign: "center" }]}>Shifts Scheduled</Text>
+                </View>
+            <View style={{ marginTop: 32 }}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    {listShifts}
+                </ScrollView>
+                <View style={[styles.infoContainer, {marginBottom:24}]}>
+                <Text style={[styles.text, { fontSize: 12, textTransform: "uppercase" }]}>Board Position: {boardPosition}</Text>
+                <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Schedule Form Completed: {user.formCompleted.toString()}</Text>
+                <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Athletic Shift Complete: {user.takenAthleticShift.toString()}</Text>
             </View>
-            <UpdateProfile/>
+            </View>
 
 
         </ScrollView>

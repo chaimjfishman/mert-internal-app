@@ -30,7 +30,7 @@ const UpdateProfile = () => {
       db.updateYear(user.id, yearNum)
     } 
     if (user?.boardPosition != boardPos) {
-      db.updateRank(user.id, boardPos)
+      db.updateBoardPosition(user.id, boardPos)
     }
     if(user?.profileImagePath != profilePic) {
       db.updatePic(user.profileImagePath, profilePic)
@@ -60,11 +60,6 @@ const UpdateProfile = () => {
                 label="Rank"
                 value={rank}
                 onChangeText={text => setRank(text)}
-            />
-            <TextInput
-                label="Board Position"
-                value={boardPos}
-                onChangeText={text => setBoardPos(text)}
             />
             <TextInput
                 label="Board Position"

@@ -89,11 +89,17 @@ export default StyleSheet.create({
         flex: 1
     },
     mediaImageContainer: {
-        width: 180,
-        height: 200,
+        width: 350,
+        height: 150,
         borderRadius: 12,
         overflow: "hidden",
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        shadowColor: "rgba(0, 0, 0, 0.38)",
+        shadowOffset: { width: 0, height: 10 },
+        shadowRadius: 20,
+        shadowOpacity: 1,
+        backgroundColor: "#3498db"
+
     },
     mediaCount: {
         backgroundColor: "#41444B",
@@ -130,5 +136,18 @@ export default StyleSheet.create({
         borderRadius: 6,
         marginTop: 3,
         marginRight: 20
+    },
+    shiftData: {
+        padding: 4,
+        marginTop: 3,
+        MarginRight: 12,
+        fontFamily: "HelveticaNeue",
+        color: "#52575D",
+        fontWeight: "300",
+        alignText: "center",
+        alignItems: "center",
+        alignSelf: "center",
+        fontWeight: "550",
+        fontSize: 16,
     }
 })

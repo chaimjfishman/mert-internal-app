@@ -10,6 +10,9 @@ const UpdateProfile = () => {
   const [name, setName] = React.useState(user?.fullName);
   const [rank, setRank] = React.useState(user?.rank);
   const [year, setYear] = React.useState(user?.gradYear.toString());
+  const [boardPos, setBoardPos] = React.useState(user?.boardPosition.toString());
+  const [profilePic, setProfilePic] = React.useState(user?.profileImagePath.toString());
+
 
   const showDialog = () => setVisibleDialog(true);
 
@@ -26,6 +29,13 @@ const UpdateProfile = () => {
     if (!isNaN(yearNum)) {
       db.updateYear(user.id, yearNum)
     } 
+    if (user?.boardPosition != boardPos) {
+      db.updateRank(user.id, boardPos)
+    }
+    if(user?.profileImagePath != profilePic) {
+      db.updatePic(user.profileImagePath, profilePic)
+    }
+
   }
 
   return (
@@ -50,6 +60,21 @@ const UpdateProfile = () => {
                 label="Rank"
                 value={rank}
                 onChangeText={text => setRank(text)}
+            />
+            <TextInput
+                label="Board Position"
+                value={boardPos}
+                onChangeText={text => setBoardPos(text)}
+            />
+            <TextInput
+                label="Board Position"
+                value={boardPos}
+                onChangeText={text => setBoardPos(text)}
+            />
+            <TextInput
+                label="Profile Picture"
+                value={profilePic}
+                onChangeText={text => setProfilePic(text)}
             />
           </Dialog.Content>
           <Dialog.Actions>

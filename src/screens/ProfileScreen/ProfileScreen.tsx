@@ -7,7 +7,7 @@ import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import UpdateProfile from '../../components/UpdateProfile';
 import Appbar from '../../components/Appbar';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import CircularProgress from '../../components/CircularProgress';
 
@@ -37,6 +37,9 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
         return completed_color
     }
     
+    const picUpdate = () => {
+        <UpdateProfile/>
+    }
 
                 
     useEffect(() => {
@@ -68,14 +71,20 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                     <Image source={require("../../../assets/penn_logo.png")} style={styles.image} resizeMode="center"></Image>
                 </View>
                 <View style={styles.active}></View>
-                <View style={styles.add}>
-                    <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
-                </View>
+                {/* <View style={styles.add}>
+                    <TouchableHighlight onPress={picUpdate()} underlayColor="red">
+                        <View style={styles.button}>
+                        <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
+                        </View>
+                    </TouchableHighlight>
+                </View> */}
             </View>
 
             <View style={styles.infoContainer}>
                 <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>{user.fullName}</Text>
                 <Text style={[styles.text, { fontWright: "100", fontSize: 24, color: "#AEB5BC" }]}>{user.rank}</Text>
+                <Text style={[styles.text, { fontWright: "100", fontSize: 20, color: "#AEB5BC" }]}>{user.email}</Text>
+
             </View>
 
             <View style={styles.statsContainer}>

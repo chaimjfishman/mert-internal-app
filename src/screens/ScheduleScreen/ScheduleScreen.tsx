@@ -14,7 +14,7 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         <ScrollView>
         <Appbar></Appbar>
         <SafeAreaView style={styles.schedContainer}>
-
+            
             <FormLink
                 title="Click Here to See Full Schedule"
                 link='https://docs.google.com/spreadsheets/d/1Pq4hw8gndR5udZWyPe-OUQprV2KWUIl4srjstPDu1AU/edit?usp=sharing'

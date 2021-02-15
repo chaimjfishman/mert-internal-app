@@ -128,6 +128,12 @@ export async function updateYear(uid: string, newYear: Number): Promise<any> {
     })
 }
 
+export async function updatePic(uid: string, newPic: string): Promise<any> {
+    usersRef.doc(uid).update({
+        profileImagePath: newPic,
+    })
+}
+
 export async function updatePushToken(uid: string, newToken: string): Promise<any>  {
     await usersRef.doc(uid).update({
         pushToken: newToken,

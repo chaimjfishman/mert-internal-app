@@ -6,7 +6,7 @@ import * as Linking from 'expo-linking';
 
 const FormLink = ({title, link}) => {
     return (
-        <TouchableOpacity onPress={() => Linking.openURL(link)} style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={() => window.open(link)} style={styles.appButtonContainer}>
             <Text style={{textAlign: 'center'}}> {title} </Text>
         </TouchableOpacity>
     );   

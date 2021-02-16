@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import styles from './styles';
 import FormLink from '../../components/FormLink';
+import LogoutBtn from '../../components/LogoutBtn'
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import Appbar from '../../components/Appbar';
 import { ScrollView } from 'react-native-gesture-handler';

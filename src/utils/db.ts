@@ -5,8 +5,9 @@ const firestore = firebase.firestore();
 const usersRef = firestore.collection('users');
 const shiftsRef = firestore.collection('shifts');
 const callsRef = firestore.collection('calls');
-const whitelistRef = firestore.collection('userWhitelist');
 const contactsRef = firestore.collection('contacts');
+const whitelistRef = firestore.collection('userWhitelist');
+// const contactsRef = firestore.collection('contacts');
 
 export async function confirmWhitelist(email: string): Promise<any> {
     //TODO: Error handling
@@ -64,7 +65,6 @@ export async function getMonthlyHours(uid: string): Promise<any> {
     const listShifts: Shift[] = await getUserShifts(uid);
     const now = new Date()
     let monthlyHours = 0.0;
-    console.log(listShifts.length)
     listShifts.forEach(shift => {
         const shiftStartDate = shift.startTime
         const shiftEndDate = shift.endTime
@@ -118,13 +118,13 @@ export async function updateCall(docId: string, sequenceStep: string): Promise<a
 }
 
 
-export async function updateUsername(uid: string, newName: string): Promise<any> {
+export function updateUsername(uid: string, newName: string): void {
     usersRef.doc(uid).update({
         fullName: newName,
     })
 }
 
-export async function updateRank(uid: string, newRank: string): Promise<any> {
+export function updateRank(uid: string, newRank: string): void {
     usersRef.doc(uid).update({
         rank: newRank,
     })
@@ -135,7 +135,7 @@ export async function updateBoardPosition(uid: string, newPos: string): Promise<
     })
 }
 
-export async function updateYear(uid: string, newYear: Number): Promise<any> {
+export function updateYear(uid: string, newYear: Number): void {
     usersRef.doc(uid).update({
         gradYear: newYear,
     })
@@ -146,6 +146,33 @@ export async function updatePic(uid: string, newPic: string): Promise<any> {
         profileImagePath: newPic,
     })
 }
+
+export async function getStorageImage(path: string, defaultImage: string): Promise<string> {
+    const ref = firebase.storage().ref(path);
+    let image = defaultImage
+    await ref.getDownloadURL().then((data: string) => {
+        image = data
+    }).catch((error: any) => {
+    })
+    return image
+}
+
+// export async function getContacts(): Promise<any>{
+//     let contactList: any[] = [];
+//     await contactsRef
+//     .orderBy("name", "asc")
+//     .onSnapshot(
+//       querySnapshot => {
+//         querySnapshot.forEach(doc => {
+//           contactList.push(doc.data());
+//         });
+//       },
+//       error => {
+//         console.log(error);
+//       }
+//     )
+//     return contactList;
+// }
 
 export async function updatePushToken(uid: string, newToken: string): Promise<any>  {
     await usersRef.doc(uid).update({

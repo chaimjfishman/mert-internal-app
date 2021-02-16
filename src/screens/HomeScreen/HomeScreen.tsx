@@ -41,6 +41,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
         }
         if (nextShift == null) {
             //TODO add case if there is no upcoming shift
+            console.log("No next shift")
         }
         getInfo();
       }, []);
@@ -100,15 +101,15 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
 
     );
 
-    if (isCallMode) {
-        return (
-            <CallMode  setCallMode={setCallMode}/>
-        );
-    } else {
-        return (
-            <DefaultHome setCallMode={setCallMode}/>
-        );
-    }
+    // if (isCallMode) {
+    //     return (
+    //         <CallMode  setCallMode={setCallMode}/>
+    //     );
+    // } else {
+    //     return (
+    //         <DefaultHome setCallMode={setCallMode}/>
+    //     );
+    // }
 
     // return (
     //     // <DefaultHome />

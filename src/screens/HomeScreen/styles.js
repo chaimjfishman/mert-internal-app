@@ -11,6 +11,7 @@ export default StyleSheet.create({
         shadowRadius: 2,
         marginHorizontal: 4,
         marginVertical: 6,
+        color: "#20232a",
     },
     cardContent: {
         marginHorizontal: 18,

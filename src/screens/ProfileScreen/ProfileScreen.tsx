@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity, FlatList, Image } from 'react-native';
+import { Text, View, SafeAreaView } from 'react-native';
 import styles from './styles';
 import * as db from '../../utils/db';
-import Paragraph from 'react-native-paper';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import UpdateProfile from '../../components/UpdateProfile';
 import Appbar from '../../components/Appbar';
 import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import CircularProgress from '../../components/CircularProgress';
+import ProfileImage from '../../components/ProfileImage'
+import ShowContacts from '../../components/ShowContacts'
+
 
 //TODO 
 //Fix profile image path
@@ -49,7 +50,6 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 setShifts(shifts)
                 const monthlyHours = await db.getMonthlyHours(userID);
                 setMonthlyHours(monthlyHours)
-
             } catch (err) {
                 alert(err);
             }
@@ -81,9 +81,9 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
             </View>
 
             <View style={{ alignSelf: "center" }}>
-                <View style={styles.profileImage}>
+                {/* <View style={styles.profileImage}>
                     <Image source={require("../../../assets/penn_logo.png")} style={styles.image} resizeMode="center"></Image>
-                </View>
+                </View> */}
                 <UpdateProfile/>
 
                 <View style={styles.active}></View>
@@ -115,25 +115,41 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 <Text style={[styles.text, { fontSize: 20, color: "#AEB5BC" , alignSelf:"center", textAlign:"center"}]}>You've completed {fixed_percent}% of Your Required Hours</Text>
             </View>
             <View style={styles.mediaCount}>
-                    <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{shifts.length}</Text>
-                    <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase", textAlign: "center" }]}>Shifts Scheduled</Text>
-                </View>
+                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{shifts.length}</Text>
+                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase", textAlign: "center" }]}>Shifts Scheduled</Text>
+            </View>
             <View style={{ marginTop: 32 }}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     {listShifts}
                 </ScrollView>
                 <View style={[styles.infoContainer, {marginBottom:24}]}>
-                <Text style={[styles.text, { fontSize: 12, textTransform: "uppercase" }]}>Board Position: {boardPosition}</Text>
-                <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Schedule Form Completed: {user.formCompleted.toString()}</Text>
-                <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Athletic Shift Complete: {user.takenAthleticShift.toString()}</Text>
+                    <Text style={[styles.text, { fontSize: 12, textTransform: "uppercase" }]}>Board Position: {boardPosition}</Text>
+                    <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Schedule Form Completed: {user.formCompleted.toString()}</Text>
+                    <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Athletic Shift Complete: {user.takenAthleticShift.toString()}</Text>
+                </View>
             </View>
-            </View>
-
-
         </ScrollView>
-    </SafeAreaView>
-);
+        </SafeAreaView>
+    );
 }
-
-
-
+//         <><Appbar.Header>
+//             <Appbar.Content title="Profile Page" />
+//             <LogoutBtn />
+//         </Appbar.Header>
+//         <SafeAreaView style={styles.horizontalContainer}>
+//             <View style={styles.verticalContainer}>
+//                 <ProfileImage image={profileImagePath} style={{ resizeMode: 'cover', width: 120, height: 120 }}/>
+//                 <View style={styles.horizontalContainer}>
+//                     <Text> Name: {fullName} </Text>
+//                     <Text> Email: {userEmail} </Text>
+//                     <Text> Graduation year: {gradYear} </Text>
+//                     <Text> Rank: {rank} </Text>
+//                     <Text> ID: {userID} </Text>
+//                     <Text> Monthly Hours: {monthlyHours} </Text> 
+//                 </View>   
+//             </View>
+//             <ShowContacts/> 
+//             <UpdateProfile />
+//         </SafeAreaView></>
+//     );
+// }

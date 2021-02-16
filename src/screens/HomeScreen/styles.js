@@ -11,11 +11,13 @@ export default StyleSheet.create({
         shadowRadius: 2,
         marginHorizontal: 4,
         marginVertical: 6,
-        color: "#20232a",
+        color: '#000'
     },
     cardContent: {
         marginHorizontal: 18,
         marginVertical: 10,
-
+    },
+    blackText: {
+        color: '#000',
     },
 })

@@ -53,10 +53,10 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const fixed_percent = percent_completed.toFixed()
     const listItems = contacts.map((curr) =>
                     <View>
-                        <Title>{curr.name}</Title>
-                        <Paragraph>
+                        <Title style={styles.blackText}>{curr.name}</Title>
+                        <Paragraph style={styles.blackText}>
                             <CallLink title="Call" link = {curr.phoneNumber}/>
-                            </Paragraph>
+                        </Paragraph>
                     </View>
                         );
     console.log(contacts);
@@ -70,54 +70,33 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
         <Appbar title="Home"></Appbar>
         <CallMode></CallMode>
         <Card style={styles.card}>
-            <Card.Title title="Shift" left = {penn_logo}/>
+            <Card.Title title="Shift" left = {penn_logo} titleStyle={styles.blackText}/>
                 <Card.Content>
-                    <Title>Next Shift</Title>
-                    <Paragraph>Start Time: {nextShift?.startTime.toString()}</Paragraph>
-                    <Paragraph>End Time: {nextShift?.endTime.toString()}</Paragraph>
-                    <Paragraph>Shift Type: {nextShift?.shiftType}</Paragraph>
+                    <Title style={styles.blackText}>Next Shift</Title>
+                    <Paragraph style={styles.blackText}>Start Time: {nextShift?.startTime.toString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>End Time: {nextShift?.endTime.toString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>Shift Type: {nextShift?.shiftType}</Paragraph>
                 </Card.Content>
             <Card.Actions>
             </Card.Actions>
         </Card>
         <Card style={styles.card}>
-            <Card.Title title="Important Contacts" left = {contact}/>
-            <Card.Content>
+            <Card.Title title="Important Contacts" left = {contact} titleStyle={styles.blackText}/>
+            <Card.Content  style={styles.blackText}>
                 {listItems}
             </Card.Content>
             <Card.Actions>
             </Card.Actions>
         </Card>
         <Card style={styles.card}>
-            <Card.Title title="Hours" left = {hours}/>
+            <Card.Title title="Hours" left = {hours} titleStyle={styles.blackText}/>
             <Card.Content>
                 <CircularProgress percent = {percent_completed}></CircularProgress>
-                <Paragraph>You've completed {fixed_percent}% of Your Required Hours</Paragraph>
+                <Paragraph style={styles.blackText}>You've completed {fixed_percent}% of Your Required Hours</Paragraph>
             </Card.Content>
             <Card.Actions>
             </Card.Actions>
         </Card>
     </ScrollView>  
-
     );
-
-    // if (isCallMode) {
-    //     return (
-    //         <CallMode  setCallMode={setCallMode}/>
-    //     );
-    // } else {
-    //     return (
-    //         <DefaultHome setCallMode={setCallMode}/>
-    //     );
-    // }
-
-
 }
-
-
-
-        // return (
-    //     // <DefaultHome />
-    //     <CallMode />
-    //     // {isCallMode ? <CallMode /> : <DefaultHome />}
-    // );

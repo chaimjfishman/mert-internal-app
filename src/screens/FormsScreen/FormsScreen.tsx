@@ -10,7 +10,7 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
     
     return (
         <ScrollView>
-        <Appbar></Appbar>
+        <Appbar title="Forms"></Appbar>
 
         <SafeAreaView style={styles.formsContainer}>
             <FormLink

@@ -84,7 +84,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
       const fixed_percent = percent_completed.toFixed()
     return (
         <SafeAreaView style={styles.container}>
-            <Appbar></Appbar>
+            <Appbar title="Profile Page"></Appbar>
         <ScrollView showsVerticalScrollIndicator={false} >
             <View style={styles.titleBar}>
             </View>

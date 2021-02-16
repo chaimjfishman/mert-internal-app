@@ -1,0 +1,1 @@
+export { addLocale } from './weekview';

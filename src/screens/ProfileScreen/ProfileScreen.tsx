@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Text, View, SafeAreaView } from 'react-native';
+import { Text, View, SafeAreaView, Image } from 'react-native';
 import styles from './styles';
 import * as db from '../../utils/db';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
@@ -90,9 +90,9 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
             </View>
 
             <View style={{ alignSelf: "center" }}>
-                {/* <View style={styles.profileImage}>
+                <View style={styles.profileImage}>
                     <Image source={require("../../../assets/penn_logo.png")} style={styles.image} resizeMode="center"></Image>
-                </View> */}
+                </View>
                 <UpdateProfile/>
 
                 <View style={styles.active}></View>

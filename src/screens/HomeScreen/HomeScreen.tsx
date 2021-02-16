@@ -12,6 +12,8 @@ import CallMode from '../../components/CallMode';
 import CircularProgress from '../../components/CircularProgress';
 import Appbar from '../../components/Appbar';
 import CallLink from '../../components/CallLink';
+ 
+
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const requiredMonthlyHours = 30;
     const [isCallMode, setCallMode] = useState<boolean>(false);
@@ -50,11 +52,9 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     const fixed_percent = percent_completed.toFixed()
     const listItems = contacts.map((curr) =>
                     <View>
-                        <Title>Name: {curr.name}</Title>
+                        <Title>{curr.name}</Title>
                         <Paragraph>
-                            {/* <CallLink> */}
-                                Number: {curr.phoneNumber}
-                            {/* </CallLink> */}
+                            <CallLink title="Call" link = {curr.phoneNumber}/>
                             </Paragraph>
                     </View>
                         );

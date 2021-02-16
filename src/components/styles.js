@@ -20,5 +20,14 @@ export default StyleSheet.create({
     logoutButton: {
       color: '#fff',
       alignSelf: "center"
+    },
+    callButton: {
+      elevation: 8,
+      backgroundColor: "lightblue",
+      borderRadius: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 12,
+      width: '100%',
+      padding: 20
     }
   });

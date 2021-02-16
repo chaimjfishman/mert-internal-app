@@ -30,9 +30,18 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     const boardPosition = user.boardPosition;
     const profileImagePath = user.profileImagePath;
     const joined = user.dateJoinedMERT;
-    const getTextColor = () => {
+    const getFormTextColor = () => {
         let completed_color;
         if(user.formCompleted) {
+            completed_color = "#3cb371";
+        } else {
+            completed_color = "#ff4500";
+        }
+        return completed_color
+    }
+    const getShiftTextColor = () => {
+        let completed_color;
+        if(user.takenAthleticShift) {
             completed_color = "#3cb371";
         } else {
             completed_color = "#ff4500";
@@ -124,8 +133,8 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 </ScrollView>
                 <View style={[styles.infoContainer, {marginBottom:24}]}>
                 <Text style={[styles.text, { fontSize: 12, textTransform: "uppercase" }]}>Board Position: {boardPosition}</Text>
-                <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Schedule Form Completed: {user.formCompleted.toString()}</Text>
-                <Text style={[styles.text, { color: getTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Athletic Shift Complete: {user.takenAthleticShift.toString()}</Text>
+                <Text style={[styles.text, { color: getFormTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Schedule Form Completed: {user.formCompleted.toString()}</Text>
+                <Text style={[styles.text, { color: getShiftTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Athletic Shift Complete: {user.takenAthleticShift.toString()}</Text>
             </View>
             </View>
 

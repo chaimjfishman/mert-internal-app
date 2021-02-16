@@ -111,13 +111,13 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     //     );
     // }
 
-    // return (
-    //     // <DefaultHome />
-    //     <CallMode />
-    //     // {isCallMode ? <CallMode /> : <DefaultHome />}
-    // );
+
 }
 
 
 
-    
+        // return (
+    //     // <DefaultHome />
+    //     <CallMode />
+    //     // {isCallMode ? <CallMode /> : <DefaultHome />}
+    // );

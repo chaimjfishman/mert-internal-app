@@ -28,7 +28,7 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
 
     return (
         <ScrollView>
-        <Appbar title="Schedule Screen"></Appbar>
+        <Appbar title="Schedule"></Appbar>
         <SafeAreaView style={styles.schedContainer}>
             
             <FormLink

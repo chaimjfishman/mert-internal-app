@@ -67,7 +67,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
     return (
 
     <ScrollView style={styles.container}>
-        <Appbar></Appbar>
+        <Appbar title="Home"></Appbar>
         <CallMode></CallMode>
         <Card style={styles.card}>
             <Card.Title title="Shift" left = {penn_logo}/>

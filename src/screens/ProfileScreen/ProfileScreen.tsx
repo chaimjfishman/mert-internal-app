@@ -111,7 +111,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 </View>
             </View>
             <View style={[styles.infoContainer, {alignItems:"center"}]}>
-                <CircularProgress>percent = {percent_completed}</CircularProgress>
+                <CircularProgress percent ={percent_completed}></CircularProgress>
                 <Text style={[styles.text, { fontSize: 20, color: "#AEB5BC" , alignSelf:"center", textAlign:"center"}]}>You've completed {fixed_percent}% of Your Required Hours</Text>
             </View>
             <View style={styles.mediaCount}>

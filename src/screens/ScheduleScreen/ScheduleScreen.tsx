@@ -6,9 +6,25 @@ import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { User, Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import Appbar from '../../components/Appbar';
+import * as db from '../../utils/db';
+import CalendarList from 'react-native-calendars';
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
     const { user } = useContext(AuthContext);
+    const [shifts, setShifts] = useState<Shift[]>([]);
+
+    useEffect(() => {
+        async function getShifts() {
+            try {
+                const shifts = await db.getAllShifts();
+                setShifts(shifts)
+            } catch (err) {
+                alert(err);
+            }
+        }
+        getShifts();
+      }, []);
+
 
     return (
         <ScrollView>

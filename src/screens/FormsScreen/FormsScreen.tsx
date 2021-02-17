@@ -1,13 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { SafeAreaView } from 'react-native';
 import styles from './styles';
 import FormLink from '../../components/FormLink';
 import LogoutBtn from '../../components/LogoutBtn'
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import Appbar from '../../components/Appbar';
+import * as storage from '../../utils/storage';
+
 import { ScrollView } from 'react-native-gesture-handler';
 export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
-    
+    const [protocol, setProtocolform] = useState<String | null>(null);
+
+    useEffect(() => {
+        async function getInfo() {
+            try {
+                const protocol = await storage.getPAProtocol();
+                console.log(protocol);
+                setProtocolform(protocol)
+                
+
+            } catch (err) {
+                alert(err);
+            }
+        }
+        if (protocol == null) {
+            //TODO add case if there is no upcoming shift
+            console.log("No protocol form")
+        }
+        getInfo();
+      }, []);
+
     return (
         <ScrollView>
         <Appbar title="Forms"></Appbar>
@@ -23,7 +45,7 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
             />
             <FormLink
                 title="MERT Equipment Checkout Form"
-                link='hhttps://docs.google.com/forms/d/e/1FAIpQLSeCPymiaEl2AgXcFctGIuE9jurxku6evYMS5RO1w1ywrPU5-w/viewform'
+                link='https://docs.google.com/forms/d/e/1FAIpQLSeCPymiaEl2AgXcFctGIuE9jurxku6evYMS5RO1w1ywrPU5-w/viewform'
             />
             <FormLink
                 title="Probationary Logs"

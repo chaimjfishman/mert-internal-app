@@ -141,24 +141,3 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
         </SafeAreaView>
     );
 }
-//         <><Appbar.Header>
-//             <Appbar.Content title="Profile Page" />
-//             <LogoutBtn />
-//         </Appbar.Header>
-//         <SafeAreaView style={styles.horizontalContainer}>
-//             <View style={styles.verticalContainer}>
-//                 <ProfileImage image={profileImagePath} style={{ resizeMode: 'cover', width: 120, height: 120 }}/>
-//                 <View style={styles.horizontalContainer}>
-//                     <Text> Name: {fullName} </Text>
-//                     <Text> Email: {userEmail} </Text>
-//                     <Text> Graduation year: {gradYear} </Text>
-//                     <Text> Rank: {rank} </Text>
-//                     <Text> ID: {userID} </Text>
-//                     <Text> Monthly Hours: {monthlyHours} </Text> 
-//                 </View>   
-//             </View>
-//             <ShowContacts/> 
-//             <UpdateProfile />
-//         </SafeAreaView></>
-//     );
-// }

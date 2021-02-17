@@ -55,6 +55,13 @@ const UpdateProfile = () => {
     }
   }
 
+  const onFileChange = (e) => {
+    const file = e.target.files[e]
+    const storageRef = db.storage().ref()
+    const fileRef = storage.child(file.name)
+    fileRef.put(file).then()
+  }
+
   return (
     <View>
       <Button onPress={showDialog}>Update User Info</Button>

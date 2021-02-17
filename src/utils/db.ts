@@ -7,7 +7,7 @@ const shiftsRef = firestore.collection('shifts');
 const callsRef = firestore.collection('calls');
 const contactsRef = firestore.collection('contacts');
 const whitelistRef = firestore.collection('userWhitelist');
-// const contactsRef = firestore.collection('contacts');
+
 
 export async function confirmWhitelist(email: string): Promise<any> {
     //TODO: Error handling

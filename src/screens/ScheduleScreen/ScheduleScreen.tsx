@@ -6,24 +6,24 @@ import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { User, Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import Appbar from '../../components/Appbar';
+import ShiftsCalendar from '../../components/ShiftsCalendar';
 import * as db from '../../utils/db';
-import CalendarList from 'react-native-calendars';
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
-    const { user } = useContext(AuthContext);
-    const [shifts, setShifts] = useState<Shift[]>([]);
+    // const { user } = useContext(AuthContext);
+    // const [shifts, setShifts] = useState<Shift[]>([]);
 
-    useEffect(() => {
-        async function getShifts() {
-            try {
-                const shifts = await db.getAllShifts();
-                setShifts(shifts)
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        getShifts();
-      }, []);
+    // useEffect(() => {
+    //     async function getShifts() {
+    //         try {
+    //             const shifts = await db.getAllShifts();
+    //             setShifts(shifts)
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+    //     }
+    //     getShifts();
+    //   }, []);
 
 
     return (
@@ -31,7 +31,8 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         <Appbar title="Schedule"></Appbar>
         <SafeAreaView style={styles.schedContainer}>
             
-            <FormLink
+            <ShiftsCalendar/>
+            {/* <FormLink
                 title="Click Here to See Full Schedule"
                 link='https://docs.google.com/spreadsheets/d/1Pq4hw8gndR5udZWyPe-OUQprV2KWUIl4srjstPDu1AU/edit?usp=sharing'
             />
@@ -40,7 +41,7 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
             <FormLink
                 title="Schedule Form"
                 link='https://media1.giphy.com/media/3o72FkiKGMGauydfyg/giphy.gif'
-            />
+            /> */}
         </SafeAreaView>
         </ScrollView>
     );

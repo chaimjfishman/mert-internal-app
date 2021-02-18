@@ -7,7 +7,6 @@ import { User, Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import Appbar from '../../components/Appbar';
 import * as db from '../../utils/db';
-import CalendarList from 'react-native-calendars';
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
     const { user } = useContext(AuthContext);

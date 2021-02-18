@@ -19,7 +19,7 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
                 const shifts = await db.getAllShifts();
                 setShifts(shifts)
             } catch (err) {
-                alert(err);
+                console.log(err);
             }
         }
         getShifts();

@@ -36,7 +36,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
                 setContacts(contacts)
 
             } catch (err) {
-                alert(err);
+                console.log(err);
             }
         }
         if (nextShift == null) {

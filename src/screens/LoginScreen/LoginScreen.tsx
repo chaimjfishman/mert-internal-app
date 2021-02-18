@@ -37,7 +37,7 @@ export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
 
             login(user);
         } catch (err) {
-            alert(err);
+            console.log(err);
         }
     }
 

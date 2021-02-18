@@ -24,7 +24,7 @@ export default function Routes() {
                         const userData: User = await db.getUserDocument(firebaseUser.uid);
                         login(userData);
                     } catch (err) {
-                        alert(err);
+                        console.log(err);
                     }
                 } else {
                     // no user logged in

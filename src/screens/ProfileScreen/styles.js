@@ -147,7 +147,7 @@ export default StyleSheet.create({
         alignText: "center",
         alignItems: "center",
         alignSelf: "center",
-        fontWeight: "550",
+        fontWeight: "500",
         fontSize: 16,
     }
 })

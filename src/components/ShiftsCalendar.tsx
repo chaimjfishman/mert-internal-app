@@ -50,25 +50,7 @@ export default function ShiftsCalendar(props: any) {
     ]
 
     return (
-        <SafeAreaView style={styles.container}>
-        <WeekView
-            // ref={r => {
-            // this.componentRef = r;
-            // }}
-            events={myEvents}
-            // selectedDate={selectedDate}
-            numberOfDays={7}
-            // onEventPress={this.onEventPress}
-            // onGridClick={this.onGridClick}
-            headerStyle={styles.header}
-            headerTextStyle={styles.headerText}
-            hourTextStyle={styles.hourText}
-            eventContainerStyle={styles.eventContainer}
-            // formatDateHeader="MMM D"
-            hoursInDisplay={12}
-            startHour={8}
-        />
-      </SafeAreaView>
+        <SafeAreaView style={styles.container}/>
     );   
 }
 

@@ -12,6 +12,7 @@ import CallMode from '../../components/CallMode';
 import CircularProgress from '../../components/CircularProgress';
 import Appbar from '../../components/Appbar';
 import CallLink from '../../components/CallLink';
+import { SafeAreaView } from 'react-native-safe-area-context';
  
 
 export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
@@ -65,7 +66,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
 
     
     return (
-
+    <SafeAreaView>
     <ScrollView style={styles.container}>
         <Appbar title="Home"></Appbar>
         <CallMode></CallMode>
@@ -98,5 +99,6 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
             </Card.Actions>
         </Card>
     </ScrollView>  
+    </SafeAreaView>
     );
 }

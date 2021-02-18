@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, FlexAlignType, FlexStyle} from 'react-native';
 
 const propStyle = (percent, base_degrees) => {
     const rotateBy = base_degrees + (percent * 3.6);
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     borderWidth:20,
     borderRadius: 100,
     borderColor: 'grey',
-    justifyContent: 'center',
-    alignItems: 'center ',  
+    justifyContent: "center",
+    alignItems: 'center',
   },
   firstProgressLayer: {
     width: 200,
@@ -67,6 +67,8 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
     borderRightColor: '#3498db',
     borderTopColor: '#3498db',
+    alignItems: 'center',
+    alignContent: 'center',
     transform: [{rotateZ: '45deg'}]
   },
   offsetLayer: {

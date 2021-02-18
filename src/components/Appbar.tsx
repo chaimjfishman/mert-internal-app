@@ -5,9 +5,9 @@ import styles from './styles';
 
 
 const myAppBar = ({title}) => (
-    <Appbar.Header>
+    <Appbar.Header >
         <LogoutBtn></LogoutBtn>
-        <Appbar.Content title = {title} />
+        <Appbar.Content title = {title}/>
         <Appbar.Action icon={require('../../assets/penn_logo.png')}></Appbar.Action>
         <Appbar.Action icon="magnify" onPress={() => {}} />
     </Appbar.Header>

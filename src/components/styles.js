@@ -7,8 +7,10 @@ export default StyleSheet.create({
       borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12,
-      width: '80%',
-      padding: 20
+      width: '100%',
+      padding: 20,
+      minWidth: 500
+
     },
     appButtonText: {
       fontSize: 18,
@@ -29,5 +31,20 @@ export default StyleSheet.create({
       paddingHorizontal: 12,
       width: '100%',
       padding: 20
-    }
+    },
+    card: {
+      borderRadius: 6,
+      elevation: 3,
+      backgroundColor: '#fff',
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,
+      marginHorizontal: 4,
+      marginVertical: 6,
+      color: '#000',
+      textAlign: "center",
+      marginLeft: 15,
+      marginRight: 15,
+  },
   });

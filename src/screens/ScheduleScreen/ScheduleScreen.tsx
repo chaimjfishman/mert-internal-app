@@ -26,10 +26,11 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
 
 
     return (
+        <SafeAreaView>
+
         <ScrollView>
         <Appbar title="Schedule"></Appbar>
-        <SafeAreaView style={styles.schedContainer}>
-            
+            <View style={styles.schedContainer}>
             <FormLink
                 title="Click Here to See Full Schedule"
                 link='https://docs.google.com/spreadsheets/d/1Pq4hw8gndR5udZWyPe-OUQprV2KWUIl4srjstPDu1AU/edit?usp=sharing'
@@ -40,7 +41,9 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
                 title="Schedule Form"
                 link='https://media1.giphy.com/media/3o72FkiKGMGauydfyg/giphy.gif'
             />
-        </SafeAreaView>
+            </View>
         </ScrollView>
+        </SafeAreaView>
+
     );
 }

@@ -10,7 +10,6 @@ export default StyleSheet.create({
       width: '100%',
       padding: 20,
       minWidth: 500
-
     },
     appButtonText: {
       fontSize: 18,

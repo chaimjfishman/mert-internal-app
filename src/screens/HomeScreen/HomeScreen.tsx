@@ -46,7 +46,7 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
         getInfo();
       }, []);
 
-    const penn_logo = props => <Avatar.Icon {...props} icon={require('../../../assets/penn_Logo.png')} />
+    const penn_logo = props => <Avatar.Icon {...props} icon={require('../../../assets/penn_logo.png')} />
     const contact = props => <Avatar.Icon {...props} icon={require('../../../assets/phone_icon.png')} />
     const hours = props => <Avatar.Icon {...props} icon={require('../../../assets/hours_icon.png')} />
     const percent_completed =100*(monthlyHours)/requiredMonthlyHours;

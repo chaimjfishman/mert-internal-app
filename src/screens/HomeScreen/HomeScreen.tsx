@@ -11,15 +11,13 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
 
     if (user === null) return;
 
-    if (isCallMode) {
-        return (
-            <CallMode setCallMode={setCallMode}/>
-        );
-    } else {
-        return (
+    let HomeScreen = isCallMode 
+        ?
+            <CallMode setCallMode={setCallMode}/> 
+        : 
             <ScrollView>  
                 <DefaultHome setCallMode={setCallMode}/>
-            </ScrollView>  
-        );
-    }
+            </ScrollView>;
+
+    return (HomeScreen);
 }

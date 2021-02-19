@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import { AuthContext } from "../../providers/AuthProvider";
-
+import { ScrollView } from 'react-native';
 import DefaultHome from '../../components/DefaultHome';
 import CallMode from '../../components/CallMode';
 
@@ -17,7 +17,9 @@ export default function HomeScreen(props: BottomTabScreenProps<'Home'>) {
         );
     } else {
         return (
-            <DefaultHome setCallMode={setCallMode}/>
+            <ScrollView>  
+                <DefaultHome setCallMode={setCallMode}/>
+            </ScrollView>  
         );
     }
 }

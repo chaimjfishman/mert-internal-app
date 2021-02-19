@@ -93,7 +93,7 @@ export async function getNextShift(uid: string): Promise<any> {
 export async function createNewCall(uid: string): Promise<any> {
     let timeStamp = new Date();
     const docRef = await callsRef.add({
-        userId: uid,
+        userID: uid,
         callStart: timeStamp,
         arrived: null,
         treated: null,
@@ -104,20 +104,39 @@ export async function createNewCall(uid: string): Promise<any> {
     return docRef.id;
 }
 
-export async function updateCall(docId: string, sequenceStep: string): Promise<any> {
+export async function updateCall(docId: string, sequenceStep: number): Promise<any> {
     let timeStamp = new Date();
     
-    if (sequenceStep === 's1') {
+    if (sequenceStep === 0) {
         await callsRef.doc(docId).update({arrived: timeStamp}) 
-    } else if (sequenceStep === 's2') {
+    } else if (sequenceStep === 1) {
         await callsRef.doc(docId).update({treated: timeStamp}) 
-    } else if (sequenceStep === 's3') {
+    } else if (sequenceStep === 2) {
         await callsRef.doc(docId).update({transported: timeStamp}) 
-    } else if (sequenceStep === 's4') {
+    } else if (sequenceStep === 3) {
         await callsRef.doc(docId).update({completed: timeStamp}) 
     } 
 }
 
+export async function deleteCall(docId: string): Promise<any> {
+    await callsRef.doc(docId).delete();
+}
+
+
+export async function getLatestCall(uid: string): Promise<any> {
+    const snapshot: any = await callsRef
+        .where("userID", "==", uid)
+        .orderBy("callStart", "desc")
+        .get();
+    let latestCall: any = snapshot.docs[0].data();
+
+    latestCall.callStart = latestCall.callStart.toDate();
+    latestCall.arrived = latestCall.arrived.toDate();
+    latestCall.transported = latestCall.transported.toDate();
+    latestCall.treated = latestCall.treated.toDate();
+    latestCall.completed = latestCall.completed.toDate();
+    return latestCall;
+}
 
 export function updateUsername(uid: string, newName: string): void {
     usersRef.doc(uid).update({

@@ -30,8 +30,11 @@ export default function DefaultHome(props: any) {
                 // const nextShift = await db.getNextShift(user.id);
                 // setShifts(nextShift)
                 console.log(nextShift);
-                const monthlyHours = await db.getMonthlyHours(user.id);
-                setMonthlyHours(monthlyHours)
+                // const monthlyHours = await db.getMonthlyHours(user.id);
+                // setMonthlyHours(monthlyHours)
+                const latestcall = await db.getLatestCall(user.id);
+                console.log('latestcll')
+                console.log(latestcall)
                 // const contacts = await db.getContacts();
                 // setContacts(contacts)
 

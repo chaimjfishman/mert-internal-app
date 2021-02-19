@@ -92,7 +92,7 @@ export async function getNextShift(uid: string): Promise<any> {
 export async function createNewCall(uid: string): Promise<any> {
     let timeStamp = new Date();
     const docRef = await callsRef.add({
-        userId: uid,
+        userID: uid,
         callStart: timeStamp,
         arrived: null,
         treated: null,
@@ -128,7 +128,7 @@ export async function getLatestCall(uid: string): Promise<any> {
         .orderBy("callStart", "desc")
         .get();
     let latestCall: any = snapshot.docs[0].data();
-    console.log(latestCall);
+
     latestCall.callStart = latestCall.callStart.toDate();
     latestCall.arrived = latestCall.arrived.toDate();
     latestCall.transported = latestCall.transported.toDate();

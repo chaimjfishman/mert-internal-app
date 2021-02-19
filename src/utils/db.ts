@@ -117,6 +117,10 @@ export async function updateCall(docId: string, sequenceStep: number): Promise<a
     } 
 }
 
+export async function deleteCall(docId: string): Promise<any> {
+    await callsRef.doc(docId).delete();
+}
+
 
 export function updateUsername(uid: string, newName: string): void {
     usersRef.doc(uid).update({

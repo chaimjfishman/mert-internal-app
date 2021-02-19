@@ -55,7 +55,7 @@ const LogoutBtn = (props: any) => {
     function returnStep() {
         if (callSeq == 0) {
             props.setCallMode(false);
-            //TODO: delete call from db
+           db.deleteCall(callId);
         } else {
             setCallSeq(callSeq - 1);
         }

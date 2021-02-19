@@ -1,34 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Button } from 'react-native-paper';
-import { Text, View, FlatList } from 'react-native';
+import { View } from 'react-native';
 import { AuthContext } from '../providers/AuthProvider';
 import * as db from '../utils/db';
 
-type CallSequence = 's1' | 's2' | 's3' | 's4'
-let seqColor = {
-    's1': '#FF0000',
-    's2': '#00FF00',
-    's3': '#0000FF',
-    's4': '#00FFFF',
-}
+const seqColors = ['#FF0000', '#00FF00', '#0000FF', '#00FFFF'];
+const seqIcons = ['numeric-1-circle', 'numeric-2-circle', 'numeric-3-circle', 'numeric-4-circle'];
+const seqTexts = ['Arrived to Patient', 'Treated Patient', 'Trasported Patient', 'Call Complete'];
 
-let seqIcon = {
-    's1': 'numeric-1-circle',
-    's2': 'numeric-2-circle',
-    's3': 'numeric-3-circle',
-    's4': 'numeric-4-circle',
-}
-
-let seqText = {
-    's1': 'Arrived to Patient',
-    's2': 'Treated Patient',
-    's3': 'Trasported Patient',
-    's4': 'Call Complete',
-}
+const numSequences = 4;
 
 const LogoutBtn = (props: any) => {
     const { user } = useContext(AuthContext);
-    const [callSeq, setCallSeq] = useState<CallSequence>('s1');
+    const [callSeq, setCallSeq] = useState<number>(0);
     const [callId, setCallId] = useState<string>('');
 
     useEffect(() => {
@@ -43,28 +27,22 @@ const LogoutBtn = (props: any) => {
 
     async function handleSequence() {
         await db.updateCall(callId, callSeq);
-
-        if (callSeq === 's1') {
-            setCallSeq('s2')
-        } else if (callSeq === 's2') {
-            setCallSeq('s3')
-        } else if (callSeq === 's3') {
-            setCallSeq('s4')
-        } else {
+        setCallSeq(callSeq + 1);
+        if (callSeq == numSequences) {
             props.setCallMode(false)
         }
     }
 
     return (
-        <View style={{flex: 1, backgroundColor: seqColor[callSeq]}}>
+        <View style={{flex: 1, backgroundColor: seqColors[callSeq]}}>
 
-            <Button icon={seqIcon[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
+            <Button icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
                 flex: 1, 
                 alignItems: 'center',
                 justifyContent: 'center', 
-                backgroundColor: seqColor[callSeq]
+                backgroundColor: seqColors[callSeq]
             }}>
-                {seqText[callSeq]}
+                {seqTexts[callSeq]}
             </Button>
         </View>
     );   

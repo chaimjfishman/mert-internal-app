@@ -103,16 +103,16 @@ export async function createNewCall(uid: string): Promise<any> {
     return docRef.id;
 }
 
-export async function updateCall(docId: string, sequenceStep: string): Promise<any> {
+export async function updateCall(docId: string, sequenceStep: number): Promise<any> {
     let timeStamp = new Date();
     
-    if (sequenceStep === 's1') {
+    if (sequenceStep === 1) {
         await callsRef.doc(docId).update({arrived: timeStamp}) 
-    } else if (sequenceStep === 's2') {
+    } else if (sequenceStep === 2) {
         await callsRef.doc(docId).update({treated: timeStamp}) 
-    } else if (sequenceStep === 's3') {
+    } else if (sequenceStep === 3) {
         await callsRef.doc(docId).update({transported: timeStamp}) 
-    } else if (sequenceStep === 's4') {
+    } else if (sequenceStep === 4) {
         await callsRef.doc(docId).update({completed: timeStamp}) 
     } 
 }

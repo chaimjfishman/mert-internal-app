@@ -23,6 +23,7 @@ export type BottomTabParamList = {
     Profile: undefined
     Forms: undefined,
     Schedule: undefined
+    Contacts: undefined
 };
 
 export type BottomTabScreenProps<T extends keyof BottomTabParamList> = {

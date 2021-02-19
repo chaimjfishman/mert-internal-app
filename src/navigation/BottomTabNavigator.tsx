@@ -5,6 +5,7 @@ import FormsScreen from '../screens/FormsScreen/FormsScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import ScheduleScreen from '../screens/ScheduleScreen/ScheduleScreen';
+import ContactsScreen from '../screens/ContactsScreen/ContactsScreen';
 import { BottomTabParamList } from '../constants/navigationScreenTypes';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -39,6 +40,14 @@ export default function BottomTabNavigator(props: any) {
             <BottomTab.Screen 
                 name="Schedule" 
                 component={ScheduleScreen} 
+                options={{ 
+                    tabBarIcon: () => <AntDesign name="calendar" size={24} color="black" />
+                }}
+            />
+
+            <BottomTab.Screen 
+                name="Contacts" 
+                component={ContactsScreen} 
                 options={{ 
                     tabBarIcon: () => <AntDesign name="calendar" size={24} color="black" />
                 }}

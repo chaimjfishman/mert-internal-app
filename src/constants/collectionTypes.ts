@@ -22,5 +22,6 @@ export interface Shift {
 
 export interface Contact {
     name: string;
-    href: string;
+    phoneNumber: string;
+    position: string;
 }

@@ -3,8 +3,6 @@ import { Button } from 'react-native-paper';
 import { View } from 'react-native';
 import { AuthContext } from '../providers/AuthProvider';
 import * as db from '../utils/db';
-import useStateWithCallback from 'use-state-with-callback';
-
 
 const seqColors = ['#FF0000', '#00FF00', '#0000FF', '#00FFFF'];
 const seqIcons = ['numeric-1-circle', 'numeric-2-circle', 'numeric-3-circle', 'numeric-4-circle'];
@@ -19,21 +17,7 @@ const LogoutBtn = (props: any) => {
     const [goBackText, setBackText] = useState<string>('Cancel');
 
     useEffect(() => {
-        // async function manageCallMode() {
-            // if (callSeq == 0) {
-                beginCall();
-        //     } else {
-        //         try {
-        //             await db.updateCall(callId, callSeq);
-        //             if (callSeq == numSequences) {
-        //                 props.setCallMode(false)
-        //             }
-        //         } catch (err) {
-        //             console.log(err);
-        //         }
-        //     }
-        // }
-        // manageCallMode();
+        beginCall();
     }, []);
 
     async function beginCall() {
@@ -55,8 +39,9 @@ const LogoutBtn = (props: any) => {
     function returnStep() {
         if (callSeq == 0) {
             props.setCallMode(false);
-           db.deleteCall(callId);
+            db.deleteCall(callId);
         } else {
+            if (callSeq == 1) setBackText("Cancel");
             setCallSeq(callSeq - 1);
         }
     }

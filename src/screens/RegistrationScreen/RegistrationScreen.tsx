@@ -8,6 +8,8 @@ import * as notif from '../../utils/notifications';
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
 import { User } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
+import Constants from "expo-constants";
+
 
 
 export default function RegistrationScreen(props: AuthStackScreenProps<'Registration'>) {

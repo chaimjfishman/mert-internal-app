@@ -122,6 +122,21 @@ export async function deleteCall(docId: string): Promise<any> {
 }
 
 
+export async function getLatestCall(uid: string): Promise<any> {
+    const snapshot: any = await callsRef
+        .where("userID", "==", uid)
+        .orderBy("callStart", "desc")
+        .get();
+    let latestCall: any = snapshot.docs[0].data();
+    console.log(latestCall);
+    latestCall.callStart = latestCall.callStart.toDate();
+    latestCall.arrived = latestCall.arrived.toDate();
+    latestCall.transported = latestCall.transported.toDate();
+    latestCall.treated = latestCall.treated.toDate();
+    latestCall.completed = latestCall.completed.toDate();
+    return latestCall;
+}
+
 export function updateUsername(uid: string, newName: string): void {
     usersRef.doc(uid).update({
         fullName: newName,

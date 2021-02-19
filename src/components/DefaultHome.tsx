@@ -1,16 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import styles from './styles';
-import { BottomTabScreenProps } from '../constants/navigationScreenTypes';
-import { AuthContext } from "../providers/AuthProvider";
 import {Button} from 'react-native-paper';
 import {ScrollView} from 'react-native';
-
 
 import Appbar from './Appbar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NextShift from './NextShift';
 import HoursCard from './HoursCard';
-
+import CallTimeInfo from './CallTimeInfo';
 
 export default function DefaultHome(props: any) {
 
@@ -26,6 +23,7 @@ export default function DefaultHome(props: any) {
             }}>
             </Button>
             <NextShift/>
+            <CallTimeInfo/>
             <HoursCard/>
         </ScrollView>  
         </SafeAreaView>

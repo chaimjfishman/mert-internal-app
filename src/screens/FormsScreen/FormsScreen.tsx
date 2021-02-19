@@ -32,9 +32,8 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
 
     return (
         <SafeAreaView>
-        <View>
             <Appbar title="Forms"></Appbar>
-                <View >
+                <SafeAreaView >
                     <FormLink 
                         title="PA Protocol"
                         link="https://www.health.pa.gov/topics/Documents/EMS/2020%20PA%20BLS%20Protocols.pdf"
@@ -51,8 +50,7 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
                         title="Probationary Logs"
                         link='https://docs.google.com/spreadsheets/d/163IBjttNdGNvjn3-k9jIHE82uoupQFl4FG_XhJOCtBg/edit?ts=5b718fe6#gid=0'
                     />
-                </View>
-        </View>
+                </SafeAreaView>
         </SafeAreaView>
 
     );

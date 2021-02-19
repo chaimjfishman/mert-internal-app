@@ -7,6 +7,8 @@ export default StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
         width: '100%',
+        marginLeft: 15,
+        marginRight: 15
     },
     card: {
         borderRadius: 6,

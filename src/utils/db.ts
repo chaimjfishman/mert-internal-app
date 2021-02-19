@@ -58,6 +58,7 @@ export async function getContacts(): Promise<any> {
     const data: any = contacts.docs.map(doc => doc.data());
     data.forEach(doc => doc.name = doc.name);
     data.forEach(doc => doc.phoneNumber = doc.phoneNumber);
+    data.forEach(doc => doc.position = doc.position);
     return data;
 }
 

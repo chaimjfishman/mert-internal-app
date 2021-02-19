@@ -9,8 +9,8 @@ import UpdateProfile from '../../components/UpdateProfile';
 import Appbar from '../../components/Appbar';
 import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
 import CircularProgress from '../../components/CircularProgress';
-import ProfileImage from '../../components/ProfileImage'
-import ShowContacts from '../../components/ShowContacts'
+
+import HoursProgress from '../../components/HoursProgress';
 
 
 //TODO 
@@ -100,8 +100,8 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 
             <View style={styles.infoContainer}>
                 <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>{fullName}</Text>
-                <Text style={[styles.text, { fontWright: "100", fontSize: 24, color: "#AEB5BC" }]}>{rank}</Text>
-                <Text style={[styles.text, { fontWright: "100", fontSize: 20, color: "#AEB5BC" }]}>{userEmail}</Text>
+                <Text style={[styles.text, { fontWeight: "100", fontSize: 24, color: "#AEB5BC" }]}>{rank}</Text>
+                <Text style={[styles.text, { fontWeight: "100", fontSize: 20, color: "#AEB5BC" }]}>{userEmail}</Text>
 
             </View>
 

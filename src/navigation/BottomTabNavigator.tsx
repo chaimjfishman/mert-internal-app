@@ -49,7 +49,7 @@ export default function BottomTabNavigator(props: any) {
                 name="Contacts" 
                 component={ContactsScreen} 
                 options={{ 
-                    tabBarIcon: () => <AntDesign name="calendar" size={24} color="black" />
+                    tabBarIcon: () => <AntDesign name="contacts" size={24} color="black" />
                 }}
             />
         </BottomTab.Navigator>

@@ -1,12 +1,7 @@
-
-
-
 import React, { useEffect, useState } from 'react';
-import {  View, TouchableOpacity, Text} from 'react-native';
+import {  View} from 'react-native';
 import styles from './styles';
-import * as Linking from 'expo-linking';
-import { Card, Button, Avatar, Title, Paragraph} from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Card, Avatar, Title, Paragraph} from 'react-native-paper';
 import * as db from '../utils/db';
 import { Contact } from '../constants/collectionTypes';
 import CallLink from './CallLink';
@@ -16,7 +11,6 @@ import CallLink from './CallLink';
 
 const Contacts = () => {
     const [contacts, setContacts] = useState<Contact[] | null>([]);
-    const contactsListArray = [];
     const contact = props => <Avatar.Icon {...props} icon={require('../../assets/phone_icon.png')} />
 
     useEffect(() => {
@@ -33,9 +27,9 @@ const Contacts = () => {
       }, []);
 
     const listItems = contacts.map((curr) =>
-      <View>
+      <View key={curr.name}>
           <Title style={styles.blackText}>{curr.name}</Title>
-          <Paragraph style={styles.blackText}>
+          <Paragraph style={styles.blackText} >
               <CallLink title="Call" link = {curr.phoneNumber}/>
           </Paragraph>
       </View>

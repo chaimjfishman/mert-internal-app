@@ -10,14 +10,15 @@ import Appbar from '../../components/Appbar';
 import * as db from '../../utils/db';
 
 import {Calendar } from 'react-native-calendars';
+import NextShift from '../../components/NextShift';
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
     const { user } = useContext(AuthContext);
     const [shifts, setShifts] = useState<Shift[]>([]);
-    const [visible, setVisible] = useState(false);
+    const [visible, setDialogVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState('');
 
-    const hideDialog = () => setVisible(false);
+    const hideDialog = () => setDialogVisible(false);
 
     // useEffect(() => {
     //     async function getShifts() {
@@ -38,7 +39,7 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         console.log('onDateClick')
         console.log(day);
         setSelectedDate(day.dateString)
-        setVisible(true)
+        setDialogVisible(true)
     }
 
     return (
@@ -64,9 +65,17 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
             <Portal>
                 <Dialog visible={visible} onDismiss={hideDialog}>
                     <Dialog.Title> {selectedDate} </Dialog.Title>
-                    <Dialog.Content>
-                        <Paragraph> Scheduling info about this date</Paragraph>
-                    </Dialog.Content>
+                        <Dialog.ScrollArea>
+                            <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
+                                <NextShift/>
+                                <NextShift/>
+                                <NextShift/>
+                                <NextShift/>
+                                <NextShift/>
+                            </ScrollView>
+                        </Dialog.ScrollArea>
+                        {/* <Paragraph> Scheduling info about this date</Paragraph> */}
+                        
                 </Dialog>
             </Portal>
 

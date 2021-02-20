@@ -44,6 +44,11 @@ export async function getUserShifts(uid: string): Promise<any> {
     data.forEach(doc => doc.endTime = doc.endTime.toDate());
     return data;
 }
+
+export async function getShiftsForDay(): Promise<any> {
+    return null;
+}
+
 export async function getAllShifts(): Promise<any> {
     const snapshot: any = await shiftsRef.orderBy("startTime", "asc").get();
     const data: any = snapshot.docs.map(doc => doc.data());

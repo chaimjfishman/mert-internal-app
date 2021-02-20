@@ -20,24 +20,35 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
 
     const hideDialog = () => setDialogVisible(false);
 
-    // useEffect(() => {
-    //     async function getShifts() {
-    //         try {
-    //             const shifts = await db.getAllShifts();
-    //             setShifts(shifts)
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     }
-    //     getShifts();
-    //   }, []);
+    useEffect(() => {
+        async function getShifts() {
+            try {
+                const shifts = await db.getUserShifts(user.id);
+                setShifts(shifts)
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        getShifts();
+        createMarkedDays();
+      }, []);
 
+    function createMarkedDays() {
+        markedDates={}
+
+            '2021-02-16': {marked: true},
+            '2021-02-17': {marked: true},
+            '2021-02-20': {selected: true, selectedColor: 'red'}, 
+            '2021-02-21': {selected: true, selectedColor: 'red'},
+
+    }
 
     function onDateClick(day) {
         console.log(day);
         setSelectedDate(day.dateString)
         setDialogVisible(true)
     }
+
 
     return (
         <SafeAreaView>
@@ -46,10 +57,11 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
 
             <Calendar
                 // Collection of dates that have to be marked. Default = {}
+                
                 markedDates={{
                     '2021-02-16': {marked: true},
                     '2021-02-17': {marked: true},
-                    '2021-02-20': {selected: true, selectedColor: 'red'},
+                    '2021-02-20': {selected: true, selectedColor: 'red'}, 
                     '2021-02-21': {selected: true, selectedColor: 'red'},
                 }}
                 horizontal={true}

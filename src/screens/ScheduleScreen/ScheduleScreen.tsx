@@ -32,11 +32,8 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
     //     getShifts();
     //   }, []);
 
-    const userShiftDay = {key:'userShift', color: 'red', selectedDotColor: 'blue'};
-
 
     function onDateClick(day) {
-        console.log('onDateClick')
         console.log(day);
         setSelectedDate(day.dateString)
         setDialogVisible(true)
@@ -46,7 +43,6 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         <SafeAreaView>
 
             <Appbar title="Schedule"></Appbar> 
-
 
             <Calendar
                 // Collection of dates that have to be marked. Default = {}
@@ -66,16 +62,14 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
                 <Dialog visible={visible} onDismiss={hideDialog}>
                     <Dialog.Title> {selectedDate} </Dialog.Title>
                         <Dialog.ScrollArea>
-                            <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
-                                <NextShift/>
-                                <NextShift/>
-                                <NextShift/>
-                                <NextShift/>
-                                <NextShift/>
-                            </ScrollView>
-                        </Dialog.ScrollArea>
-                        {/* <Paragraph> Scheduling info about this date</Paragraph> */}
-                        
+                        <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
+                            <NextShift/>
+                            <NextShift/>
+                            <NextShift/>
+                            <NextShift/>
+                            <NextShift/>
+                        </ScrollView>
+                    </Dialog.ScrollArea>                        
                 </Dialog>
             </Portal>
 

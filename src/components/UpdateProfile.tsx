@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button, Paragraph, Dialog, Portal, TextInput } from 'react-native-paper';
 import * as db from '../utils/db';
@@ -6,12 +6,12 @@ import { AuthContext } from '../providers/AuthProvider';
 
 const UpdateProfile = () => {
   const { user } = useContext(AuthContext);
-  const [visibleDialog, setVisibleDialog] = React.useState(false);
-  const [name, setName] = React.useState(user?.fullName);
-  const [rank, setRank] = React.useState(user?.rank);
-  const [year, setYear] = React.useState(user?.gradYear.toString());
-  const [boardPos, setBoardPos] = React.useState(user?.boardPosition.toString());
-  const [profilePic, setProfilePic] = React.useState(user?.profileImagePath.toString());
+  const [visibleDialog, setVisibleDialog] = useState(false);
+  const [name, setName] = useState(user?.fullName);
+  const [rank, setRank] = useState(user?.rank);
+  const [year, setYear] = useState(user?.gradYear.toString());
+  const [boardPos, setBoardPos] = useState(user?.boardPosition.toString());
+  const [profilePic, setProfilePic] = useState(user?.profileImagePath.toString());
 
 
   const showDialog = () => setVisibleDialog(true);

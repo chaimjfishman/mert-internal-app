@@ -10,7 +10,7 @@ const seqTexts = ['Arrived to Patient', 'Treated Patient', 'Trasported Patient',
 
 const numSequences = 4;
 
-const LogoutBtn = (props: any) => {
+const CallMode = (props: any) => {
     const { user } = useContext(AuthContext);
     const [callSeq, setCallSeq] = useState<number>(0);
     const [callId, setCallId] = useState<string>('');
@@ -65,5 +65,5 @@ const LogoutBtn = (props: any) => {
     );   
 }
 
-export default LogoutBtn;
+export default CallMode;
 

@@ -3,8 +3,11 @@ import { Appbar } from 'react-native-paper';
 import LogoutBtn from './LogoutBtn';
 import styles from './styles';
 
+type AppBarProps = {
+    title: string,
+}
 
-const myAppBar = ({title}) => (
+const AppBar = ({title}: AppBarProps) => (
     <Appbar.Header >
         <LogoutBtn></LogoutBtn>
         <Appbar.Content title = {title}/>
@@ -13,4 +16,4 @@ const myAppBar = ({title}) => (
     </Appbar.Header>
 );
 
-export default myAppBar;
+export default AppBar;

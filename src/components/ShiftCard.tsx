@@ -3,7 +3,11 @@ import React from 'react';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { Shift} from '../constants/collectionTypes';
 
-const ShiftCard = ({shift}) => {
+type ShiftCardProps = {
+    shift: Shift,
+}
+
+const ShiftCard = ({shift}: ShiftCardProps) => {
 
     const penn_logo = props => <Avatar.Icon {...props} icon={require('../../assets/penn_logo.png')} />
     console.log(shift);

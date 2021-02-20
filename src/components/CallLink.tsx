@@ -3,12 +3,12 @@ import { TouchableOpacity, Text} from 'react-native';
 import styles from './styles';
 import * as Linking from 'expo-linking';
 
-type FormLinkProps = {
+type CallLinkProps = {
     title: string,
     link: string
 }
 
-const FormLink = ({title, link}: FormLinkProps) => {
+const CallLink = ({title, link}: CallLinkProps) => {
     return (
         <TouchableOpacity onPress={() => Linking.openURL(`tel:${link}`)}>
             <Text style={styles.callButton}> {title} </Text>
@@ -16,4 +16,4 @@ const FormLink = ({title, link}: FormLinkProps) => {
     );   
 }
 
-export default FormLink;
+export default CallLink;

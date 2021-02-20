@@ -25,3 +25,11 @@ export interface Contact {
     phoneNumber: string;
     position: string;
 }
+
+export interface Call {
+    userId: string;
+    dispatched: Date;
+    onScene: Date;
+    tranScene: Date;
+    completed: Date;
+}

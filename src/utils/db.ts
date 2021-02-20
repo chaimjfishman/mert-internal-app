@@ -1,5 +1,5 @@
 import { firebase } from './firebaseConfig';
-import { User, Shift, Contact} from '../constants/collectionTypes';
+import { User, Shift, Contact, Call} from '../constants/collectionTypes';
 
 const firestore = firebase.firestore();
 const usersRef = firestore.collection('users');
@@ -92,14 +92,14 @@ export async function getNextShift(uid: string): Promise<any> {
 
 export async function createNewCall(uid: string): Promise<any> {
     let timeStamp = new Date();
-    const docRef = await callsRef.add({
-        userID: uid,
-        callStart: timeStamp,
-        arrived: null,
-        treated: null,
-        transported: null,
+    const call: Call = {
+        userId: uid,
+        dispatched: timeStamp,
+        onScene: null,
+        tranScene: null,
         completed: null,
-    });
+    }
+    const docRef = await callsRef.add(call);
 
     return docRef.id;
 }
@@ -108,14 +108,12 @@ export async function updateCall(docId: string, sequenceStep: number): Promise<a
     let timeStamp = new Date();
     
     if (sequenceStep === 0) {
-        await callsRef.doc(docId).update({arrived: timeStamp}) 
+        await callsRef.doc(docId).update({onScene: timeStamp}) 
     } else if (sequenceStep === 1) {
-        await callsRef.doc(docId).update({treated: timeStamp}) 
+        await callsRef.doc(docId).update({tranScene: timeStamp}) 
     } else if (sequenceStep === 2) {
-        await callsRef.doc(docId).update({transported: timeStamp}) 
-    } else if (sequenceStep === 3) {
         await callsRef.doc(docId).update({completed: timeStamp}) 
-    } 
+    }
 }
 
 export async function deleteCall(docId: string): Promise<any> {

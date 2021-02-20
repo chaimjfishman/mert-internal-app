@@ -4,11 +4,11 @@ import { View } from 'react-native';
 import { AuthContext } from '../providers/AuthProvider';
 import * as db from '../utils/db';
 
-const seqColors = ['#FF0000', '#00FF00', '#0000FF', '#00FFFF'];
-const seqIcons = ['numeric-1-circle', 'numeric-2-circle', 'numeric-3-circle', 'numeric-4-circle'];
-const seqTexts = ['Arrived to Patient', 'Treated Patient', 'Trasported Patient', 'Call Complete'];
+const seqColors = ['#FF0000', '#00FF00', '#0000FF'];
+const seqIcons = ['numeric-1-circle', 'numeric-2-circle', 'numeric-3-circle'];
+const seqTexts = ['On Scene', 'Transferred Care', 'Free and Available'];
 
-const numSequences = 4;
+const numSequences = 3;
 
 const CallMode = (props: any) => {
     const { user } = useContext(AuthContext);

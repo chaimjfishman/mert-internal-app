@@ -48,6 +48,7 @@ export async function getUserShifts(uid: string): Promise<any> {
 
 export async function getShiftsForDay(date: Date): Promise<any> {
     const dayStart = null; //TODO: fill in the start time of the date
+    // maybe set the start date to the last hour of the previous date? so if a shift starts on for example Sun 11PM - Mon 1AM you still see that shift listed on Mon?
     const dayEnd = null; //TODO: fill in the end time of the date
     const snapshot: any = await shiftsRef
         .orderBy("startTime", "asc")

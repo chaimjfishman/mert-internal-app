@@ -27,7 +27,7 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         async function getShifts() {
             try {
                 const shifts = await db.getUserShifts(user.id);
-                console.log('schedule shigfsts')
+                // console.log('schedule shigfsts')
                 console.log(shifts)
                 setShifts(shifts)
                 createMarkedDays(shifts);
@@ -56,11 +56,12 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
     }
 
     async function onDateClick(day: any) {
-        console.log(day);
-        //TODO: date = convert day to javascript Date object
+        let month = ('0' + day.month).slice(-2);
+        let dayOfMonth = ('0' + day.day).slice(-2);
+        let shiftDate = day.year + '-' + month + '-' + dayOfMonth;
         setSelectedDate(day.dateString)
-        // let dateShift = await db.getShiftsForDay(date);
-        const dateShift = await db.getUserShifts(user.id);
+        let dateShift = await db.getShiftsForDay(shiftDate);
+        // const dateShift = await db.getUserShifts(user.id);
         const listItems = dateShift.map((curr) =>
             <ShiftCard shift={curr}/>
       );

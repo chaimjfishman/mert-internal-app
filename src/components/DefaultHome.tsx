@@ -42,11 +42,12 @@ export default function DefaultHome(props: any) {
         <ScrollView style={styles.container}>
             <Appbar title="Home"></Appbar>
             <Button onPress={() => props.setCallMode(true)} style={{
-                flex: 1, 
+                flex: 10, 
                 alignItems: 'center',
                 justifyContent: 'center', 
-                backgroundColor: "green"
+                backgroundColor: "pink"
             }}>
+                DISPATCHED
             </Button>
             <ShiftCard shift={nextShift}/>
             <CallTimeInfo/>

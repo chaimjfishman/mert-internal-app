@@ -29,11 +29,11 @@ const CallTimeInfo = () => {
             <Card.Title title="Latest Call" left = {contact} titleStyle={styles.blackText}/>
                 <Card.Content>
                     <Title style={styles.blackText}>Latest Call</Title>
-                    <Paragraph style={styles.blackText}>Start Time: {callInfo?.callStart.toString()}</Paragraph>
-                    <Paragraph style={styles.blackText}>Arrival Time: {callInfo?.arrived.toString()}</Paragraph>
-                    <Paragraph style={styles.blackText}>Treatment Start Time: {callInfo?.treated.toString()}</Paragraph>
-                    <Paragraph style={styles.blackText}>Transported Time: {callInfo?.transported.toString()}</Paragraph>
-                    <Paragraph style={styles.blackText}>Completion Time: {callInfo?.completed.toString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>Start Time: {callInfo?.callStart.toLocaleString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>Arrival Time: {callInfo?.arrived.toLocaleString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>Treatment Start Time: {callInfo?.treated.toLocaleString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>Transported Time: {callInfo?.transported.toLocaleString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>Completion Time: {callInfo?.completed.toLocaleString()}</Paragraph>
                 </Card.Content>
             <Card.Actions>
             </Card.Actions>

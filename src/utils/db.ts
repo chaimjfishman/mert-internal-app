@@ -40,10 +40,32 @@ export async function getUserDocument(uid: string): Promise<any> {
 export async function getUserShifts(uid: string): Promise<any> {
     const snapshot: any = await shiftsRef.where("userID", "==", uid).orderBy("startTime", "asc").get();
     const data: any = snapshot.docs.map(doc => doc.data());
+    console.log(data)
     data.forEach(doc => doc.startTime = doc.startTime.toDate());
     data.forEach(doc => doc.endTime = doc.endTime.toDate());
     return data;
 }
+
+export async function getShiftsForDay(date: Date): Promise<any> {
+    var inputDate = new Date(date);
+
+    let month = inputDate.getMonth()
+    let day = inputDate.getUTCDate()
+    let year = inputDate.getFullYear()
+
+    const dayStart = new Date(year, month, day, 0, 0, 0);
+    const dayEnd = new Date(year, month, day+1, 0, 0, 0);
+    const snapshot: any = await shiftsRef
+        .orderBy("startTime", "asc")
+        .startAt(dayStart)
+        .endAt(dayEnd)
+        .get();
+    const data: any = snapshot.docs.map(doc => doc.data());
+    data.forEach(doc => doc.startTime = doc.startTime.toDate());
+    data.forEach(doc => doc.endTime = doc.endTime.toDate());
+    return data;
+}
+
 export async function getAllShifts(): Promise<any> {
     const snapshot: any = await shiftsRef.orderBy("startTime", "asc").get();
     const data: any = snapshot.docs.map(doc => doc.data());

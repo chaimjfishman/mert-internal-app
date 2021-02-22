@@ -29,7 +29,7 @@ export interface Contact {
 export interface Call {
     userId: string;
     dispatched: Date;
-    onScene: Date;
-    tranScene: Date;
-    completed: Date;
+    onScene: Date | null;
+    tranScene: Date | null;
+    completed: Date | null;
 }

@@ -17,7 +17,7 @@ export default StyleSheet.create({
         backgroundColor: "#FFF"
     },
     text: {
-        fontFamily: "HelveticaNeue",
+        // fontFamily: "HelveticaNeue",
         color: "#52575D"
     },
     image: {
@@ -141,7 +141,7 @@ export default StyleSheet.create({
         padding: 4,
         marginTop: 3,
         marginRight: 12,
-        fontFamily: "HelveticaNeue",
+        // fontFamily: "HelveticaNeue",
         color: "#52575D",
         fontWeight: "300",
         textAlign: "center",

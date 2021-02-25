@@ -12,7 +12,6 @@ const AppBar = ({title}: AppBarProps) => (
         <LogoutBtn></LogoutBtn>
         <Appbar.Content title = {title}/>
         <Appbar.Action icon={require('../../assets/penn_logo.png')}></Appbar.Action>
-        <Appbar.Action icon="magnify" onPress={() => {}} />
     </Appbar.Header>
 );
 

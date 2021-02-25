@@ -78,9 +78,6 @@ export async function getAllShifts(): Promise<any> {
 export async function getContacts(): Promise<any> {
     const contacts: any = await contactsRef.orderBy("ranking", "asc").get();
     const data: any = contacts.docs.map(doc => doc.data());
-    data.forEach(doc => doc.name = doc.name);
-    data.forEach(doc => doc.phoneNumber = doc.phoneNumber);
-    data.forEach(doc => doc.position = doc.position);
     return data;
 }
 
@@ -138,6 +135,22 @@ export async function updateCall(docId: string, sequenceStep: number): Promise<a
     }
 }
 
+export async function getUserCalls(uid: string): Promise<any> {
+    const snapshot: any = await callsRef
+        .where("userId", "==", uid)
+        .orderBy("dispatched", "desc")
+        .limit(10)
+        .get();
+    const data: any = snapshot.docs.map(doc => doc.data());
+    console.log(data[0].completed)
+    console.log(typeof data[0].completed)
+    data.forEach(doc => doc.completed = doc.completed.toDate());
+    data.forEach(doc => doc.dispatched = doc.dispatched.toDate());
+    data.forEach(doc => doc.onScene = doc.onScene.toDate());
+    data.forEach(doc => doc.tranScene = doc.tranScene.toDate());
+    return data;
+}
+
 export async function deleteCall(docId: string): Promise<any> {
     await callsRef.doc(docId).delete();
 }
@@ -145,15 +158,15 @@ export async function deleteCall(docId: string): Promise<any> {
 
 export async function getLatestCall(uid: string): Promise<any> {
     const snapshot: any = await callsRef
-        .where("userID", "==", uid)
-        .orderBy("callStart", "desc")
+        .where("userId", "==", uid)
+        .orderBy("dispatched", "desc")
+        .limit(1)
         .get();
     let latestCall: any = snapshot.docs[0].data();
-
-    latestCall.callStart = latestCall.callStart.toDate();
-    latestCall.arrived = latestCall.arrived.toDate();
-    latestCall.transported = latestCall.transported.toDate();
-    latestCall.treated = latestCall.treated.toDate();
+    console.log(latestCall)
+    latestCall.dispatched = latestCall.dispatched.toDate();
+    latestCall.onScene = latestCall.onScene.toDate();
+    latestCall.tranScene = latestCall.tranScene.toDate();
     latestCall.completed = latestCall.completed.toDate();
     return latestCall;
 }
@@ -197,22 +210,6 @@ export async function getStorageImage(path: string, defaultImage: string): Promi
     return image
 }
 
-// export async function getContacts(): Promise<any>{
-//     let contactList: any[] = [];
-//     await contactsRef
-//     .orderBy("name", "asc")
-//     .onSnapshot(
-//       querySnapshot => {
-//         querySnapshot.forEach(doc => {
-//           contactList.push(doc.data());
-//         });
-//       },
-//       error => {
-//         console.log(error);
-//       }
-//     )
-//     return contactList;
-// }
 
 export async function updatePushToken(uid: string, newToken: string): Promise<any>  {
     await usersRef.doc(uid).update({

@@ -41,10 +41,12 @@ const UpdateProfile = () => {
     } 
     if (user?.boardPosition != boardPos) {
       db.updateBoardPosition(user.id, boardPos)
+      changed = true
     }
-    if(user?.profileImagePath != profilePic) {
-      db.updatePic(user.profileImagePath, profilePic)
-    }
+    // if(user?.profileImagePath != profilePic) {
+    //   db.updatePic(user.profileImagePath, profilePic)
+    //   changed = true
+    // }
 
     if (changed) {
       alert('Updated personal info. Please restart the app for changes to take place.')
@@ -69,7 +71,6 @@ const UpdateProfile = () => {
         <Dialog visible={visibleDialog} onDismiss={hideDialog}>
           <Dialog.Title>Update User Info</Dialog.Title>
           <Dialog.Content>
-            {/* <Paragraph>This is simple dialog</Paragraph> */}
             <TextInput
                 label="Username"
                 value={name}
@@ -90,11 +91,11 @@ const UpdateProfile = () => {
                 value={boardPos}
                 onChangeText={text => setBoardPos(text)}
             />
-            <TextInput
+            {/* <TextInput
                 label="Profile Picture"
                 value={profilePic}
                 onChangeText={text => setProfilePic(text)}
-            />
+            /> */}
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={update}> Update </Button>

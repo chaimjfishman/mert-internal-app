@@ -21,7 +21,7 @@ const ShiftCard = ({shift}: ShiftCardProps) => {
                     <>
                         <Paragraph style={styles.blackText}>Start Time: {shift?.startTime.toLocaleString()}</Paragraph>
                         <Paragraph style={styles.blackText}>End Time: {shift?.endTime.toLocaleString()}</Paragraph>
-                        <Paragraph style={styles.blackText}>Shift Type: {shift?.shiftType}</Paragraph>
+                        <Paragraph style={styles.blackText}>Shift Type: {shift?.role}</Paragraph>
                     </> 
                     : <Paragraph style={styles.blackText}> No Shift Data</Paragraph>
                 }

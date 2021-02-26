@@ -142,8 +142,6 @@ export async function getUserCalls(uid: string): Promise<any> {
         .limit(10)
         .get();
     const data: any = snapshot.docs.map(doc => doc.data());
-    console.log(data[0].completed)
-    console.log(typeof data[0].completed)
     data.forEach(doc => doc.completed = doc.completed.toDate());
     data.forEach(doc => doc.dispatched = doc.dispatched.toDate());
     data.forEach(doc => doc.onScene = doc.onScene.toDate());

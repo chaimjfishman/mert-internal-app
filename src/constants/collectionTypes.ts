@@ -12,12 +12,12 @@ export interface User {
     pushToken: string | null;
 }
 
-type ShiftType = "type1" | "type2" | "type3";
+type ShiftType = "type1" | "type2" | "type3"; //TODO: update
 export interface Shift {
     userID: string;
     startTime: Date;
     endTime: Date;
-    shiftType: ShiftType;
+    role: ShiftType;
 }
 
 export interface Contact {

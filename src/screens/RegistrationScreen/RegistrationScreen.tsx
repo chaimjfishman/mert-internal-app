@@ -74,7 +74,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             await db.createUserDocument(uid, userData);
             login(userData);
         } catch (err) {
-            console.log(err);
+            alert(err);
         }
     }
 

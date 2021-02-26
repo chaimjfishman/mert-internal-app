@@ -42,7 +42,7 @@ const NextShift = () => {
                     <Title style={styles.blackText}>Next Shift</Title>
                     <Paragraph style={styles.blackText}>Start Time: {nextShift?.startTime.toString()}</Paragraph>
                     <Paragraph style={styles.blackText}>End Time: {nextShift?.endTime.toString()}</Paragraph>
-                    <Paragraph style={styles.blackText}>Shift Type: {nextShift?.shiftType}</Paragraph>
+                    <Paragraph style={styles.blackText}>Role: {nextShift?.role}</Paragraph>
                 </Card.Content>
             <Card.Actions>
             </Card.Actions>

@@ -46,4 +46,7 @@ export default StyleSheet.create({
       marginLeft: 15,
       marginRight: 15,
   },
-  });
+  blackText: {
+      color: '#000',
+  },
+});

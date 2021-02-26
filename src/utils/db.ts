@@ -112,7 +112,7 @@ export async function getNextShift(uid: string): Promise<any> {
 export async function createNewCall(uid: string): Promise<any> {
     let timeStamp = new Date();
     const call: Call = {
-        userId: uid,
+        userID: uid,
         dispatched: timeStamp,
         onScene: null,
         tranScene: null,
@@ -137,7 +137,7 @@ export async function updateCall(docId: string, sequenceStep: number): Promise<a
 
 export async function getUserCalls(uid: string): Promise<any> {
     const snapshot: any = await callsRef
-        .where("userId", "==", uid)
+        .where("userID", "==", uid)
         .orderBy("dispatched", "desc")
         .limit(10)
         .get();
@@ -158,7 +158,7 @@ export async function deleteCall(docId: string): Promise<any> {
 
 export async function getLatestCall(uid: string): Promise<any> {
     const snapshot: any = await callsRef
-        .where("userId", "==", uid)
+        .where("userID", "==", uid)
         .orderBy("dispatched", "desc")
         .limit(1)
         .get();

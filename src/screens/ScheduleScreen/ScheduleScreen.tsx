@@ -10,7 +10,6 @@ import Appbar from '../../components/Appbar';
 import * as db from '../../utils/db';
 
 import {Calendar } from 'react-native-calendars';
-import NextShift from '../../components/NextShift';
 import ShiftCard from '../../components/ShiftCard';
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {

@@ -14,7 +14,7 @@ export interface User {
 
 type ShiftType = "type1" | "type2" | "type3";
 export interface Shift {
-    userId: string;
+    userID: string;
     startTime: Date;
     endTime: Date;
     shiftType: ShiftType;
@@ -27,7 +27,7 @@ export interface Contact {
 }
 
 export interface Call {
-    userId: string;
+    userID: string;
     dispatched: Date;
     onScene: Date | null;
     tranScene: Date | null;

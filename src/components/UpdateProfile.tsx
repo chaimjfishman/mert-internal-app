@@ -1,10 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button, Paragraph, Dialog, Portal, TextInput } from 'react-native-paper';
 import * as db from '../utils/db';
 import { AuthContext } from '../providers/AuthProvider';
 
-const UpdateProfile = () => {
+type UpdateProfile = {
+  setProfileUsername: Dispatch<SetStateAction<string>>,
+  setProfileRank: Dispatch<SetStateAction<string>>,
+  setProfileGradYear: Dispatch<SetStateAction<number>>,
+  setProfilePosition: Dispatch<SetStateAction<string>>,
+}
+
+const UpdateProfile = ({setProfileUsername, setProfileRank, setProfileGradYear, setProfilePosition}: UpdateProfile) => {
   const { user } = useContext(AuthContext);
   const [visibleDialog, setVisibleDialog] = useState(false);
   const [name, setName] = useState(user?.fullName);
@@ -28,20 +35,24 @@ const UpdateProfile = () => {
     let changed = false;
 
     if (user?.fullName != name) {
-      db.updateUsername(user.id, name)
+      db.updateUsername(user.id, name);
+      setProfileUsername(name);
       changed = true;
     }
     if (user?.rank != rank) {
-      db.updateRank(user.id, rank)
-      changed = true
+      db.updateRank(user.id, rank);
+      setProfileRank(rank);
+      changed = true;
     }
     if (user?.gradYear !=  yearNum ) {
-      db.updateYear(user.id, yearNum)
-      changed = true
+      db.updateYear(user.id, yearNum);
+      setProfileGradYear(yearNum);
+      changed = true;
     } 
     if (user?.boardPosition != boardPos) {
-      db.updateBoardPosition(user.id, boardPos)
-      changed = true
+      db.updateBoardPosition(user.id, boardPos);
+      setProfilePosition(boardPos);
+      changed = true;
     }
     // if(user?.profileImagePath != profilePic) {
     //   db.updatePic(user.profileImagePath, profilePic)
@@ -49,11 +60,11 @@ const UpdateProfile = () => {
     // }
 
     if (changed) {
-      alert('Updated personal info. Please restart the app for changes to take place.')
+      alert('Profile Successfully Updated!')
       hideDialog()
     }
     else {
-      alert('No changes made.')
+      alert('No changes made')
     }
   }
 
@@ -99,7 +110,7 @@ const UpdateProfile = () => {
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={update}> Update </Button>
-            <Button onPress={hideDialog}> Close </Button>
+            <Button onPress={hideDialog}> Cancel </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

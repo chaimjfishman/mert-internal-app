@@ -13,24 +13,23 @@ import CircularProgress from '../../components/CircularProgress';
 import HoursProgress from '../../components/HoursProgress';
 
 
-//TODO 
-//Fix profile image path
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 
     const { user } = useContext(AuthContext);
+    if (user == null) return;
     const [shifts, setShifts] = useState<Shift[]>([]);
     const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
+    const [email, setEmail] = useState<string>(user.email);
+    const [fullName, setFullName] = useState<string>(user.fullName);
+    const [gradYear, setGradYear] = useState<number>(user.gradYear);
+    const [rank, setRank] = useState<string>(user.rank);
+    const [boardPosition, setBoardPosition] = useState<string>(user.boardPosition);
+    const [joined, setJoined] = useState<string>(user.dateJoinedMERT);
 
     if (user === null) return;
     const requiredMonthlyHours = 30;
     const userID = user.id;
-    const userEmail = user.email;
-    const fullName = user.fullName;
-    const gradYear = user.gradYear;
-    const rank = user.rank;
-    const boardPosition = user.boardPosition;
-    const profileImagePath = user.profileImagePath;
-    const joined = user.dateJoinedMERT;
+
     const getFormTextColor = () => {
         let completed_color;
         if(user.formCompleted) {
@@ -75,7 +74,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
               End: {curr.endTime.toString()}
           </Text>
           <Text style={styles.shiftData}>
-              Type: {curr.shiftType}
+              Role: {curr.role}
           </Text>
       </View>
       );
@@ -93,7 +92,13 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 <View style={styles.profileImage}>
                     <Image source={require("../../../assets/penn_logo.png")} style={styles.image} resizeMode="center"></Image>
                 </View>
-                <UpdateProfile/>
+
+                <UpdateProfile 
+                    setProfileUsername={setFullName} 
+                    setProfileRank={setRank}
+                    setProfileGradYear={setGradYear}
+                    setProfilePosition={setBoardPosition}
+                />
 
                 <View style={styles.active}></View>
             </View>
@@ -101,7 +106,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
             <View style={styles.infoContainer}>
                 <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>{fullName}</Text>
                 <Text style={[styles.text, { fontWeight: "100", fontSize: 24, color: "#AEB5BC" }]}>{rank}</Text>
-                <Text style={[styles.text, { fontWeight: "100", fontSize: 20, color: "#AEB5BC" }]}>{userEmail}</Text>
+                <Text style={[styles.text, { fontWeight: "100", fontSize: 20, color: "#AEB5BC" }]}>{email}</Text>
 
             </View>
 

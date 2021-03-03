@@ -10,7 +10,7 @@ type CallLinkProps = {
 
 const CallLink = ({title, link}: CallLinkProps) => {
     return (
-        <TouchableOpacity onPress={() => Linking.openURL(`tel:${link}`)}>
+        <TouchableOpacity onPress={() => Linking.openURL(`tel:${link}`)} style={{padding: 10}}>
             <Text style={styles.callButton}> {title} </Text>
         </TouchableOpacity>
     );   

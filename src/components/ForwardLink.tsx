@@ -12,7 +12,7 @@ export default class ForwardLink extends React.Component<any>{
 
   render() {
     return (
-      <Text {...this.props} onPress={this._handlePress}>
+      <Text {...this.props} onPress={this._handlePress} style={{justifyContent: 'flex-start'}}>
         {this.props.text}
       </Text>
       // <DataTable.Cell {...this.props} onPress={this._handlePress}>

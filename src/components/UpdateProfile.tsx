@@ -18,7 +18,7 @@ const UpdateProfile = ({setProfileUsername, setProfileRank, setProfileGradYear, 
   const [rank, setRank] = useState(user?.rank);
   const [year, setYear] = useState(user?.gradYear.toString());
   const [boardPos, setBoardPos] = useState(user?.boardPosition.toString());
-  const [profilePic, setProfilePic] = useState(user?.profileImagePath.toString());
+  // const [profilePic, setProfilePic] = useState(user?.profileImagePath.toString());
 
 
   const showDialog = () => setVisibleDialog(true);
@@ -68,12 +68,12 @@ const UpdateProfile = ({setProfileUsername, setProfileRank, setProfileGradYear, 
     }
   }
 
-  const onFileChange = (e) => {
-    const file = e.target.files[e]
-    const storageRef = db.storage().ref()
-    const fileRef = storage.child(file.name)
-    fileRef.put(file).then()
-  }
+  // const onFileChange = (e) => {
+  //   const file = e.target.files[e]
+  //   const storageRef = db.storage().ref()
+  //   const fileRef = storage.child(file.name)
+  //   fileRef.put(file).then()
+  // }
 
   return (
     <View>

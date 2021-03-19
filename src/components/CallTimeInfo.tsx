@@ -27,6 +27,8 @@ const CallTimeInfo = () => {
       }, []);
 
     async function getPrevCalls(uid: any) {
+        console.log("pressed")
+        
         const listItems = prevCalls.map((curr) =>
             <CallCard call={curr}/>
       );
@@ -43,7 +45,7 @@ const CallTimeInfo = () => {
                     <Paragraph style={styles.blackText}>Completion Time: {callInfo?.completed.toLocaleString()}</Paragraph>
                 </Card.Content>
                 <Card.Actions>
-                    {/* <Button >See More Calls</Button> */}
+                    {/* <Button onPress={getPrevCalls} >See More Calls</Button> */}
                 </Card.Actions>
         </Card>
     );   

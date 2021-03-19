@@ -7,10 +7,8 @@ import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import UpdateProfile from '../../components/UpdateProfile';
 import Appbar from '../../components/Appbar';
-import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import CircularProgress from '../../components/CircularProgress';
-
-import HoursProgress from '../../components/HoursProgress';
 
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
@@ -19,16 +17,16 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     if (user == null) return;
     const [shifts, setShifts] = useState<Shift[]>([]);
     const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
-    const [email, setEmail] = useState<string>(user.email);
     const [fullName, setFullName] = useState<string>(user.fullName);
     const [gradYear, setGradYear] = useState<number>(user.gradYear);
-    const [rank, setRank] = useState<string>(user.rank);
-    const [boardPosition, setBoardPosition] = useState<string>(user.boardPosition);
     const [joined, setJoined] = useState<string>(user.dateJoinedMERT);
 
     if (user === null) return;
     const requiredMonthlyHours = 30;
     const userID = user.id;
+    const email = user.email
+    const rank = user.rank
+    const boardPosition = user.boardPosition
 
     const getFormTextColor = () => {
         let completed_color;
@@ -95,9 +93,8 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
 
                 <UpdateProfile 
                     setProfileUsername={setFullName} 
-                    setProfileRank={setRank}
                     setProfileGradYear={setGradYear}
-                    setProfilePosition={setBoardPosition}
+                    setProfileJoined={setJoined}
                 />
 
                 <View style={styles.active}></View>

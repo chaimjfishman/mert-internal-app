@@ -175,14 +175,9 @@ export function updateUsername(uid: string, newName: string): void {
     })
 }
 
-export function updateRank(uid: string, newRank: string): void {
+export async function updateDateJoined(uid: string, newJoined: string): Promise<any> {
     usersRef.doc(uid).update({
-        rank: newRank,
-    })
-}
-export async function updateBoardPosition(uid: string, newPos: string): Promise<any> {
-    usersRef.doc(uid).update({
-        boardPosition: newPos,
+        dateJoinedMERT: newJoined,
     })
 }
 

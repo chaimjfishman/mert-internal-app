@@ -14,7 +14,7 @@ const UpdateProfile = ({setProfileUsername, setProfileJoined, setProfileGradYear
   const { user } = useContext(AuthContext);
   const [visibleDialog, setVisibleDialog] = useState(false);
   const [name, setName] = useState(user?.fullName);
-  const [year, setYear] = useState(user?.gradYear.toString());
+  const [year, setYear] = useState(user?.gradYear == null ? "Please Update" : user?.gradYear.toString());
   const [joined, setJoined] = useState(user?.dateJoinedMERT.toString());
 
   const showDialog = () => setVisibleDialog(true);

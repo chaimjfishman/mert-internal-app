@@ -62,7 +62,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
                 email,
                 fullName,
                 rank: "",
-                gradYear: 2021,
+                gradYear: null,
                 boardPosition: "",
                 dateJoinedMERT: "",
                 profileImagePath: `profileImages/${email}.png`,

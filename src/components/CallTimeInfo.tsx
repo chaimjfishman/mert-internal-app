@@ -27,8 +27,6 @@ const CallTimeInfo = () => {
       }, []);
 
     async function getPrevCalls(uid: any) {
-        console.log("pressed")
-        
         const listItems = prevCalls.map((curr) =>
             <CallCard call={curr}/>
       );

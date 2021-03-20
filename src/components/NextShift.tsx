@@ -21,7 +21,6 @@ const NextShift = () => {
             try {
                 const nextShift = await db.getNextShift(user.id);
                 setShifts(nextShift)
-                console.log(nextShift);
 
             } catch (err) {
                 console.log(err);

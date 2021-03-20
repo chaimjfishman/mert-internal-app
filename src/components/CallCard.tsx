@@ -10,7 +10,6 @@ type CallCardProps = {
 const CallCard = ({call}: CallCardProps) => {
 
     const penn_logo = props => <Avatar.Icon {...props} icon={require('../../assets/penn_logo.png')} />
-    console.log(call);
 
     return (
         <Card style={styles.card}>

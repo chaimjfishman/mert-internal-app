@@ -25,7 +25,6 @@ export default function DefaultHome(props: any) {
             try {
                 const nextShift = await db.getNextShift(user.id);
                 setShifts(nextShift)
-                console.log(nextShift);
             } catch (err) {
                 console.log(err);
             }
@@ -34,7 +33,6 @@ export default function DefaultHome(props: any) {
         if (nextShift == null) {
             console.log("No next shift")
         }
-        console.log(nextShift)
       }, []);
 
     return (

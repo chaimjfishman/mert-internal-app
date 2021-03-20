@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styles from './styles';
-import { Card, Button, Avatar, Title, Paragraph} from 'react-native-paper';
+import { Card, Avatar, Title, Paragraph} from 'react-native-paper';
 import * as db from '../utils/db';
 import { AuthContext } from "../providers/AuthProvider";
 import CallCard from "./CallCard"

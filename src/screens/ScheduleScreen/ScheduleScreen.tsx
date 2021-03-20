@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ScrollView, View, SafeAreaView, Image } from 'react-native';
-import { Paragraph, Dialog, Portal } from 'react-native-paper';
-// import styles from './styles';
-import FormLink from '../../components/FormLink';
+import { ScrollView, SafeAreaView } from 'react-native';
+import { Dialog, Portal } from 'react-native-paper';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
-import { User, Shift} from '../../constants/collectionTypes';
+import { Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import Appbar from '../../components/Appbar';
 import * as db from '../../utils/db';
@@ -53,7 +51,6 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         let shiftDate = day.year + '-' + month + '-' + dayOfMonth;
         setSelectedDate(day.dateString)
         let dateShift = await db.getShiftsForDay(shiftDate);
-        // const dateShift = await db.getUserShifts(user.id);
         const listItems = dateShift.map((curr) =>
             <ShiftCard shift={curr}/>
       );

@@ -6,6 +6,5 @@ const protocolRef = storage.refFromURL("gs://mert-internal-app.appspot.com/forms
 
 export async function getPAProtocol(): Promise<any>{
     const PAProtocol = await protocolRef.getMetadata();
-    console.log(PAProtocol);
    return PAProtocol;
 }

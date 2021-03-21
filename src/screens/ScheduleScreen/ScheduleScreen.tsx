@@ -6,9 +6,23 @@ import { Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import Appbar from '../../components/Appbar';
 import * as db from '../../utils/db';
+import * as PropTypes from 'prop-types';
+
+
 
 import {Calendar } from 'react-native-calendars';
 import ShiftCard from '../../components/ShiftCard';
+
+const propTypes = {
+    markedDates: PropTypes.any,
+    horizontal: PropTypes.bool,
+    pagingEnabled: PropTypes.bool,
+    enableSwipeMonths: PropTypes.bool,
+    onDayPress: PropTypes.func,
+    style: PropTypes.any
+  };
+ScheduleScreen.propTypes = propTypes;
+
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
     const { user } = useContext(AuthContext);
@@ -57,6 +71,10 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         setDateShifts(listItems)
         setDialogVisible(true)
     }
+    async function onDayPress() {
+        (day) => {onDateClick(day)}
+    }
+
 
 
     return (

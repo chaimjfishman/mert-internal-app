@@ -26,19 +26,19 @@ export default function DefaultHome(props: any) {
                 const nextShift = await db.getNextShift(user.id);
                 setShifts(nextShift)
             } catch (err) {
-                console.log(err);
+                const nextShift = null;
+                setShifts(nextShift)
             }
         }
         getInfo();
         if (nextShift == null) {
-            console.log("No next shift")
         }
       }, []);
 
     return (
         <SafeAreaView>
-        <ScrollView style={styles.container}>
             <Appbar title="Home"></Appbar>
+        <ScrollView>
             <Button onPress={() => props.setCallMode(true)} style={{
                 flex: 10, 
                 alignItems: 'center',

@@ -11,7 +11,6 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
         async function getInfo() {
             try {
                 const protocol = await storage.getPAProtocol();
-                console.log(protocol);
                 setProtocolform(protocol)
                 
 
@@ -21,7 +20,6 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
         }
         if (protocol == null) {
             //TODO add case if there is no upcoming shift
-            console.log("No protocol form")
         }
         getInfo();
       }, []);

@@ -50,4 +50,20 @@ export default StyleSheet.create({
   blackText: {
       color: '#000',
   },
+  container: {
+    marginTop: 50,
+  },
+  callContainer: {
+    marginTop: 50,
+    backgroundColor: "lightgrey",
+    maxWidth: 500
+  },
+  dialogStyle: {
+    alignSelf: "center",
+    maxHeight: 500,
+  },
+  dialogContainer: {
+    alignSelf: "center",
+    maxHeight: 700,
+  }
 });

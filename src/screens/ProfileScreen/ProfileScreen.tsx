@@ -82,13 +82,17 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     return (
         <SafeAreaView style={styles.container}>
             <Appbar title="Profile Page"></Appbar>
+            <View style={styles.mediaCount}>
+                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{shifts.length}</Text>
+                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase", textAlign: "center" }]}>Shifts Scheduled</Text>
+            </View>
         <ScrollView showsVerticalScrollIndicator={false} >
             <View style={styles.titleBar}>
             </View>
 
             <View style={{ alignSelf: "center" }}>
                 <View style={styles.profileImage}>
-                    <Image source={require("../../../assets/penn_logo.png")} style={styles.image} resizeMode="center"></Image>
+                    <Image source={require("../../../assets/Penn_MERT_Logo.png")} style={styles.image} resizeMode="center"></Image>
                 </View>
 
                 <UpdateProfile 
@@ -123,11 +127,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
             </View>
             <View style={[styles.infoContainer, {alignItems:"center"}]}>
                 <CircularProgress percent ={percent_completed}></CircularProgress>
-                <Text style={[styles.text, { fontSize: 20, color: "#AEB5BC" , alignSelf:"center", textAlign:"center"}]}>You've completed {fixed_percent}% of Your Required Hours</Text>
-            </View>
-            <View style={styles.mediaCount}>
-                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{shifts.length}</Text>
-                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase", textAlign: "center" }]}>Shifts Scheduled</Text>
+                <Text style={[styles.text, { fontSize: 20, color: "#AEB5BC" , alignSelf:"center", textAlign:"center"}]}>You've completed {monthlyHours} hours, {fixed_percent}% of your requirement</Text>
             </View>
             <View style={{ marginTop: 32 }}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

@@ -1,8 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Button } from 'react-native-paper';
 import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthContext } from '../providers/AuthProvider';
 import * as db from '../utils/db';
+
+import AudioRecording from './AudioRecording';
 
 const seqColors = ['#FF0000', '#00FF00', '#0000FF'];
 const seqIcons = ['numeric-1-circle', 'numeric-2-circle', 'numeric-3-circle'];
@@ -47,21 +50,25 @@ const CallMode = (props: any) => {
     }
 
     return (
-        <View style={{flex: 1, backgroundColor: seqColors[callSeq]}}>
+        // <SafeAreaView>
+            <View style={{flex: 1, backgroundColor: seqColors[callSeq]}}>
 
-            <Button icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
-                flex: 1, 
-                alignItems: 'center',
-                justifyContent: 'center', 
-                backgroundColor: seqColors[callSeq]
-            }}>
-                {seqTexts[callSeq]}
-            </Button>
+                <AudioRecording/>
 
-            <Button mode="contained" onPress={() => returnStep()}>
-                {goBackText}
-            </Button>
-        </View>
+                <Button icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
+                    flex: 1, 
+                    alignItems: 'center',
+                    justifyContent: 'center', 
+                    backgroundColor: seqColors[callSeq]
+                }}>
+                    {seqTexts[callSeq]}
+                </Button>
+
+                <Button mode="contained" onPress={() => returnStep()}>
+                    {goBackText}
+                </Button>
+            </View>
+        // </SafeAreaView>
     );   
 }
 

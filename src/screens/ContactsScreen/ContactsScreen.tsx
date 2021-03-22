@@ -16,6 +16,5 @@ export default function ContactsScreen(props: BottomTabScreenProps<'Contacts'>) 
                 <Contacts/>
             </ScrollView>
         </SafeAreaView>
-
     );
 }

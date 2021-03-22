@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import FormLink from '../../components/FormLink';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import Appbar from '../../components/Appbar';
@@ -11,7 +11,6 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
         async function getInfo() {
             try {
                 const protocol = await storage.getPAProtocol();
-                console.log(protocol);
                 setProtocolform(protocol)
                 
 
@@ -21,7 +20,6 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
         }
         if (protocol == null) {
             //TODO add case if there is no upcoming shift
-            console.log("No protocol form")
         }
         getInfo();
       }, []);

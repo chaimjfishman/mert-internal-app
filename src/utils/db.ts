@@ -1,5 +1,5 @@
 import { firebase } from './firebaseConfig';
-import { User, Shift, Contact, Call} from '../constants/collectionTypes';
+import { User, Shift, Call} from '../constants/collectionTypes';
 
 const firestore = firebase.firestore();
 const usersRef = firestore.collection('users');
@@ -40,7 +40,6 @@ export async function getUserDocument(uid: string): Promise<any> {
 export async function getUserShifts(uid: string): Promise<any> {
     const snapshot: any = await shiftsRef.where("userID", "==", uid).orderBy("startTime", "asc").get();
     const data: any = snapshot.docs.map(doc => doc.data());
-    console.log(data)
     data.forEach(doc => doc.startTime = doc.startTime.toDate());
     data.forEach(doc => doc.endTime = doc.endTime.toDate());
     return data;
@@ -103,7 +102,6 @@ export async function getNextShift(uid: string): Promise<any> {
         .startAt(currTime)
         .get();
     let upcomingShift: Shift = snapshot.docs[0].data();
-    console.log(upcomingShift);
     upcomingShift.startTime = upcomingShift.startTime.toDate();
     upcomingShift.endTime = upcomingShift.endTime.toDate();
     return upcomingShift;
@@ -161,7 +159,6 @@ export async function getLatestCall(uid: string): Promise<any> {
         .limit(1)
         .get();
     let latestCall: any = snapshot.docs[0].data();
-    console.log(latestCall)
     latestCall.dispatched = latestCall.dispatched.toDate();
     latestCall.onScene = latestCall.onScene.toDate();
     latestCall.tranScene = latestCall.tranScene.toDate();
@@ -175,14 +172,9 @@ export function updateUsername(uid: string, newName: string): void {
     })
 }
 
-export function updateRank(uid: string, newRank: string): void {
+export async function updateDateJoined(uid: string, newJoined: string): Promise<any> {
     usersRef.doc(uid).update({
-        rank: newRank,
-    })
-}
-export async function updateBoardPosition(uid: string, newPos: string): Promise<any> {
-    usersRef.doc(uid).update({
-        boardPosition: newPos,
+        dateJoinedMERT: newJoined,
     })
 }
 

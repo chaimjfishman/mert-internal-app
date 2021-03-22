@@ -10,7 +10,6 @@ type ShiftCardProps = {
 const ShiftCard = ({shift}: ShiftCardProps) => {
 
     const penn_logo = props => <Avatar.Icon {...props} icon={require('../../assets/penn_logo.png')} />
-    console.log(shift);
 
     return (
         <Card style={styles.card}>

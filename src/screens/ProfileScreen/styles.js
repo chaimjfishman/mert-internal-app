@@ -102,9 +102,8 @@ export default StyleSheet.create({
 
     },
     mediaCount: {
-        backgroundColor: "#41444B",
-        position: "absolute",
-        top: "50%",
+        backgroundColor: "grey",
+        top: "10%",
         marginTop: -50,
         marginLeft: 30,
         width: 100,

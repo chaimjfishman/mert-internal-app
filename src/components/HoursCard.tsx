@@ -38,9 +38,8 @@ const HoursCard = () => {
         <Card style={styles.card}>
             <Card.Title title="Hours" left = {hours} titleStyle={styles.blackText}/>
             <Card.Content>
-                {/* <HoursProgress/> */}
                 <CircularProgress percent = {percent_completed}></CircularProgress>
-                <Paragraph style={styles.blackText}>You've completed {fixed_percent}% of Your Required Hours</Paragraph>
+                <Paragraph style={[styles.blackText, {alignItems:"center"}]}>You've completed {monthlyHours} hours, {fixed_percent}% of your requirement</Paragraph>
             </Card.Content> 
         </Card>
     );   

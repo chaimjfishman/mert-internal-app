@@ -1,16 +1,28 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ScrollView, View, SafeAreaView, Image } from 'react-native';
-import { Paragraph, Dialog, Portal } from 'react-native-paper';
-// import styles from './styles';
-import FormLink from '../../components/FormLink';
+import { ScrollView, SafeAreaView } from 'react-native';
+import { Dialog, Portal } from 'react-native-paper';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
-import { User, Shift} from '../../constants/collectionTypes';
+import { Shift} from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import Appbar from '../../components/Appbar';
 import * as db from '../../utils/db';
+import * as PropTypes from 'prop-types';
+
+
 
 import {Calendar } from 'react-native-calendars';
 import ShiftCard from '../../components/ShiftCard';
+
+const propTypes = {
+    markedDates: PropTypes.any,
+    horizontal: PropTypes.bool,
+    pagingEnabled: PropTypes.bool,
+    enableSwipeMonths: PropTypes.bool,
+    onDayPress: PropTypes.func,
+    style: PropTypes.any
+  };
+ScheduleScreen.propTypes = propTypes;
+
 
 export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) {
     const { user } = useContext(AuthContext);
@@ -26,8 +38,6 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         async function getShifts() {
             try {
                 const shifts = await db.getUserShifts(user.id);
-                // console.log('schedule shigfsts')
-                console.log(shifts)
                 setShifts(shifts)
                 createMarkedDays(shifts);
             } catch (err) {
@@ -40,18 +50,13 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
     function createMarkedDays(shifts: Shift[]) {
         let markedDates = {};
         const marking = {selected: true, selectedColor: 'red'}
-        console.log(shifts)
         shifts.forEach(shift => {
             let month = ('0' + (shift.startTime.getMonth()+1)).slice(-2)
             let day = ('0' + shift.startTime.getDate()).slice(-2)
             let shiftDate = shift.startTime.getFullYear() + '-' + month + '-' + day;
-            console.log(shiftDate)
             markedDates[shiftDate] = marking;
         });
-        console.log(markedDates)
         setMarkedDates(markedDates);
-        console.log('markedDates')
-        console.log(markedDates)
     }
 
     async function onDateClick(day: any) {
@@ -60,13 +65,16 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         let shiftDate = day.year + '-' + month + '-' + dayOfMonth;
         setSelectedDate(day.dateString)
         let dateShift = await db.getShiftsForDay(shiftDate);
-        // const dateShift = await db.getUserShifts(user.id);
         const listItems = dateShift.map((curr) =>
             <ShiftCard shift={curr}/>
       );
         setDateShifts(listItems)
         setDialogVisible(true)
     }
+    async function onDayPress() {
+        (day) => {onDateClick(day)}
+    }
+
 
 
     return (

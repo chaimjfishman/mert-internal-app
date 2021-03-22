@@ -37,7 +37,7 @@ const HoursProgress = () => {
     return (
         <View>
             <CircularProgress percent = {percent_completed}></CircularProgress>
-            <Paragraph style={styles.blackText}>You've completed {fixed_percent}% of Your Required Hours</Paragraph>
+            <Paragraph style={[styles.blackText, {alignItems:"center"}]}>You've completed {monthlyHours} hours, {fixed_percent}% of your requirement</Paragraph>
         </View>
     );   
 }

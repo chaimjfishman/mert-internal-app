@@ -7,10 +7,8 @@ import { Shift } from '../../constants/collectionTypes';
 import { AuthContext } from "../../providers/AuthProvider";
 import UpdateProfile from '../../components/UpdateProfile';
 import Appbar from '../../components/Appbar';
-import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import CircularProgress from '../../components/CircularProgress';
-
-import HoursProgress from '../../components/HoursProgress';
 
 
 export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
@@ -19,16 +17,16 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     if (user == null) return;
     const [shifts, setShifts] = useState<Shift[]>([]);
     const [monthlyHours, setMonthlyHours] = useState<number>(0.0);
-    const [email, setEmail] = useState<string>(user.email);
     const [fullName, setFullName] = useState<string>(user.fullName);
     const [gradYear, setGradYear] = useState<number>(user.gradYear);
-    const [rank, setRank] = useState<string>(user.rank);
-    const [boardPosition, setBoardPosition] = useState<string>(user.boardPosition);
     const [joined, setJoined] = useState<string>(user.dateJoinedMERT);
 
     if (user === null) return;
     const requiredMonthlyHours = 30;
     const userID = user.id;
+    const email = user.email
+    const rank = user.rank
+    const boardPosition = user.boardPosition
 
     const getFormTextColor = () => {
         let completed_color;
@@ -84,20 +82,23 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     return (
         <SafeAreaView style={styles.container}>
             <Appbar title="Profile Page"></Appbar>
+            <View style={styles.mediaCount}>
+                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{shifts.length}</Text>
+                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase", textAlign: "center" }]}>Shifts Scheduled</Text>
+            </View>
         <ScrollView showsVerticalScrollIndicator={false} >
             <View style={styles.titleBar}>
             </View>
 
             <View style={{ alignSelf: "center" }}>
                 <View style={styles.profileImage}>
-                    <Image source={require("../../../assets/penn_logo.png")} style={styles.image} resizeMode="center"></Image>
+                    <Image source={require("../../../assets/Penn_MERT_Logo.png")} style={styles.image} resizeMode="center"></Image>
                 </View>
 
                 <UpdateProfile 
                     setProfileUsername={setFullName} 
-                    setProfileRank={setRank}
                     setProfileGradYear={setGradYear}
-                    setProfilePosition={setBoardPosition}
+                    setProfileJoined={setJoined}
                 />
 
                 <View style={styles.active}></View>
@@ -126,11 +127,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
             </View>
             <View style={[styles.infoContainer, {alignItems:"center"}]}>
                 <CircularProgress percent ={percent_completed}></CircularProgress>
-                <Text style={[styles.text, { fontSize: 20, color: "#AEB5BC" , alignSelf:"center", textAlign:"center"}]}>You've completed {fixed_percent}% of Your Required Hours</Text>
-            </View>
-            <View style={styles.mediaCount}>
-                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{shifts.length}</Text>
-                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase", textAlign: "center" }]}>Shifts Scheduled</Text>
+                <Text style={[styles.text, { fontSize: 20, color: "#AEB5BC" , alignSelf:"center", textAlign:"center"}]}>You've completed {monthlyHours} hours, {fixed_percent}% of your requirement</Text>
             </View>
             <View style={{ marginTop: 32 }}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

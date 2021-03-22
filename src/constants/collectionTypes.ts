@@ -3,7 +3,7 @@ export interface User {
     email: string;
     fullName: string;
     rank: string;
-    gradYear: number;
+    gradYear: number | null;
     boardPosition: string;
     dateJoinedMERT: string; //TODO: change to date type
     profileImagePath: string; 

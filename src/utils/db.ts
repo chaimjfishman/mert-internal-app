@@ -6,6 +6,7 @@ const usersRef = firestore.collection('users');
 const shiftsRef = firestore.collection('shifts');
 const callsRef = firestore.collection('calls');
 const contactsRef = firestore.collection('contacts');
+const formsRef = firestore.collection('forms');
 const whitelistRef = firestore.collection('userWhitelist');
 
 
@@ -77,6 +78,12 @@ export async function getAllShifts(): Promise<any> {
 export async function getContacts(): Promise<any> {
     const contacts: any = await contactsRef.orderBy("ranking", "asc").get();
     const data: any = contacts.docs.map(doc => doc.data());
+    return data;
+}
+
+export async function getForms(): Promise<any> {
+    const forms: any = await formsRef.get();
+    const data: any = forms.docs.map(doc => doc.data());
     return data;
 }
 

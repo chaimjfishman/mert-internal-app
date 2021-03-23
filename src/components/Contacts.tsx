@@ -28,13 +28,13 @@ const Contacts = () => {
       }, []);
 
     const listItems = contacts.map((curr) =>
-    <View key={curr.name} style={{flexDirection: 'row'}}>
-          {/* <Paragraph style={styles.blackText} >
-              <CallLink title="Call" link = {curr.phoneNumber}/>
-          </Paragraph>
-          <Title style={styles.blackText}> {curr.name}</Title> */}
-          <CallLink title={curr.name} link = {curr.phoneNumber}/>
-      </View>
+        <View key={curr.name} style={{flexDirection: 'row'}}>
+            {/* <Paragraph style={styles.blackText} >
+                <CallLink title="Call" link = {curr.phoneNumber}/>
+            </Paragraph>
+            <Title style={styles.blackText}> {curr.name}</Title> */}
+            <CallLink title={curr.name} link = {curr.phoneNumber}/>
+        </View>
     );
 
     return (

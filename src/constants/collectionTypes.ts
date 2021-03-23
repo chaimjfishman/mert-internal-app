@@ -26,6 +26,11 @@ export interface Contact {
     position: string;
 }
 
+export interface Form {
+    title: string;
+    url: string;
+}
+
 export interface Call {
     userID: string;
     dispatched: Date;

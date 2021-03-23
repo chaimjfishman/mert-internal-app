@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     appButtonContainer: {
       elevation: 8,
-      backgroundColor: "lightblue",
+      backgroundColor: "blue",
       borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12,
@@ -28,20 +28,19 @@ export default StyleSheet.create({
       borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12,
-      width: '100%',
+      width: 300,
       padding: 20,
       color: "white"
     },
     formsButton: {
       elevation: 8,
-      backgroundColor: "crimson",
+      backgroundColor: "blue",
       borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12,
-      width: '100%',
+      width: 300,
       padding: 20,
-      contentStyle: {
-          color:"white"}
+      color: "white"
     },
     card: {
       borderRadius: 6,

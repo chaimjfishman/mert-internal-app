@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as db from '../utils/db';
 import { Form } from '../constants/collectionTypes';
 import FormLink from './FormLink';
+import {Card, Avatar} from 'react-native-paper';
+import styles from './styles';
 
 
 const Forms = () => {
     const [forms, setForms] = useState<Form[] | null>([]);
+    const form = props => <Avatar.Icon style={styles.avatarContainer} {...props} icon={require('../../assets/forms.png')} />
 
     useEffect(() => {
         async function getInfo() {
@@ -28,7 +31,14 @@ const Forms = () => {
     );
 
     return (
-        listItems
+        <Card style={styles.card}>
+            <Card.Title title="Forms" left = {form} titleStyle={styles.blackText}/>
+            <Card.Content>
+                {listItems}
+            </Card.Content>
+            <Card.Actions>
+            </Card.Actions>
+        </Card>
     );   
 }
 

@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     borderLeftColor: 'transparent',
     borderBottomColor: 'transparent',
-    borderRightColor: '#3498db',
-    borderTopColor: '#3498db',
+    borderRightColor: 'blue',
+    borderTopColor: 'blue',
     transform:[{rotateZ: '-135deg'}]
   },
   secondProgressLayer:{
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderLeftColor: 'transparent',
     borderBottomColor: 'transparent',
-    borderRightColor: '#3498db',
-    borderTopColor: '#3498db',
+    borderRightColor: 'blue',
+    borderTopColor: 'blue',
     alignItems: 'center',
     alignContent: 'center',
     transform: [{rotateZ: '45deg'}]

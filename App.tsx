@@ -11,13 +11,23 @@ import {decode, encode} from 'base-64';
 if (!global.btoa) {  global.btoa = encode };
 if (!global.atob) { global.atob = decode };
 
+const theme = {
+    ...DefaultTheme,
+    roundness: 2,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: 'blue',
+      accent: 'crimson',
+    },
+  };
+
 export default function App() {
 
 
     return (
-        <PaperProvider theme = {DefaultTheme}>
+        <PaperProvider theme = {theme}>
         <AuthProvider>
-            <PaperProvider>
+            <PaperProvider theme = {theme}>
                 <Routes />
             </PaperProvider>
         </AuthProvider>

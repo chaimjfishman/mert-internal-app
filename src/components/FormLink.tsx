@@ -10,7 +10,7 @@ type FormLinkProps = {
 
 const FormLink = ({title, link}: FormLinkProps) => {
     return (
-        <Button style={[styles.callButton, {margin: 5, alignSelf: 'center'}]} mode="outlined" compact onPress={() => Linking.openURL(link)}>
+        <Button style={[styles.formsButton, {margin: 5, alignSelf: 'center'}]} mode="outlined" compact onPress={() => Linking.openURL(link)}>
             {title}
         </Button>
     );   

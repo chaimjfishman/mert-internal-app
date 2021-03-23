@@ -9,7 +9,7 @@ type ShiftCardProps = {
 
 const ShiftCard = ({shift}: ShiftCardProps) => {
 
-    const penn_logo = props => <Avatar.Icon {...props} icon={require('../../assets/penn_logo.png')} />
+    const penn_logo = props => <Avatar.Icon {...props} style={styles.avatarContainer} icon={require('../../assets/penn_logo.png')} />
 
     return (
         <Card style={styles.card}>

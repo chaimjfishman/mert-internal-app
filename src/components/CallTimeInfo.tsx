@@ -16,7 +16,7 @@ const CallTimeInfo = () => {
     const { user } = useContext(AuthContext);
     const [callInfo, setCallInfo] = useState<any>(null);
     const [prevCalls, setPrevCalls] = useState<Call[]>([]);
-    const contact = props => <Avatar.Icon {...props} icon={require('../../assets/phone_icon.png')} />
+    const contact = props => <Avatar.Icon style={styles.avatarContainer} {...props} icon={require('../../assets/phone_icon.png')} />
 
     useEffect(() => {
         async function getInfo() {

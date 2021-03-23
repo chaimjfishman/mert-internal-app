@@ -12,7 +12,7 @@ import ForwardLink from './ForwardLink';
 
 const Contacts = () => {
     const [contacts, setContacts] = useState<Contact[] | null>([]);
-    const contact = props => <Avatar.Icon {...props} icon={require('../../assets/phone_icon.png')} />
+    const contact = props => <Avatar.Icon style={styles.avatarContainer} {...props} icon={require('../../assets/phone_icon.png')} />
 
     useEffect(() => {
         async function getInfo() {
@@ -33,14 +33,14 @@ const Contacts = () => {
                 <CallLink title="Call" link = {curr.phoneNumber}/>
             </Paragraph>
             <Title style={styles.blackText}> {curr.name}</Title> */}
-            <CallLink title={curr.name} link = {curr.phoneNumber}/>
+            <CallLink title={curr.name} link = {curr.phoneNumber} />
         </View>
     );
 
     return (
         <Card style={styles.card}>
             <Card.Title title="Important Contacts" left = {contact} titleStyle={styles.blackText}/>
-            <Card.Content  style={styles.blackText}>
+            <Card.Content>
                 {listItems}
             </Card.Content>
             <Card.Actions>

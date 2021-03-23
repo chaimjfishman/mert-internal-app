@@ -42,7 +42,7 @@ const CallCard = () => {
         }
     }
 
-    const penn_logo = props => <Avatar.Icon {...props} icon={require('../../assets/penn_logo.png')} />
+    const penn_logo = props => <Avatar.Icon style={styles.avatarContainer} {...props} icon={require('../../assets/penn_logo.png')} />
 
     const hideDialog = () => setVisible(false);
 

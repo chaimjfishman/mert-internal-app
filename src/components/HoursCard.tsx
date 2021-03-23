@@ -28,7 +28,7 @@ const HoursCard = () => {
         getInfo();
       }, []);
 
-    const hours = props => <Avatar.Icon {...props} icon={require('../../assets/hours_icon.png')} />
+    const hours = props => <Avatar.Icon style={styles.avatarContainer} {...props} icon={require('../../assets/hours_icon.png')} />
     const percent_completed =100*(monthlyHours)/requiredMonthlyHours;
     const fixed_percent = percent_completed.toFixed()
 

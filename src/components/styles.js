@@ -24,12 +24,24 @@ export default StyleSheet.create({
     },
     callButton: {
       elevation: 8,
-      backgroundColor: "lightblue",
+      backgroundColor: "blue",
       borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12,
       width: '100%',
-      padding: 20
+      padding: 20,
+      color: "white"
+    },
+    formsButton: {
+      elevation: 8,
+      backgroundColor: "crimson",
+      borderRadius: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 12,
+      width: '100%',
+      padding: 20,
+      contentStyle: {
+          color:"white"}
     },
     card: {
       borderRadius: 6,
@@ -50,6 +62,9 @@ export default StyleSheet.create({
   blackText: {
       color: '#000',
   },
+  whiteText: {
+    color: "white"
+  },
   container: {
     marginTop: 50,
   },
@@ -65,5 +80,8 @@ export default StyleSheet.create({
   dialogContainer: {
     alignSelf: "center",
     maxHeight: 700,
+  },
+  avatarContainer: {
+    backgroundColor : "crimson"
   }
 });

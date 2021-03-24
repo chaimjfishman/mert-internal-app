@@ -24,7 +24,7 @@ const Forms = () => {
       }, []);
 
     const listItems = forms.map((curr) =>
-        <FormLink key={curr.toLocaleString()}
+        <FormLink key={curr.url}
             title={curr.title}
             link={curr.url}
         />   

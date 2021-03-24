@@ -41,7 +41,6 @@ export default function DefaultHome(props: any) {
         <ScrollView>
             <Button onPress={() => props.setCallMode(true)} style={{
                 flex: 10, 
-                alignItems: 'center',
                 justifyContent: 'center', 
                 backgroundColor: "pink"
             }}>

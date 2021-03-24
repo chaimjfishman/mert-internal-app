@@ -6,6 +6,8 @@ import { AuthContext } from '../providers/AuthProvider';
 import * as db from '../utils/db';
 
 import AudioRecording from './AudioRecording';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { block } from 'react-native-reanimated';
 
 const seqColors = ['#FF0000', '#00FF00', '#0000FF'];
 const seqIcons = ['numeric-1-circle', 'numeric-2-circle', 'numeric-3-circle'];
@@ -55,11 +57,10 @@ const CallMode = (props: any) => {
 
                 <AudioRecording/>
 
-                <Button icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
+                <Button contentStyle={{height:750}} icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
                     flex: 1, 
-                    alignItems: 'center',
                     justifyContent: 'center', 
-                    backgroundColor: seqColors[callSeq]
+                    backgroundColor: seqColors[callSeq],
                 }}>
                     {seqTexts[callSeq]}
                 </Button>

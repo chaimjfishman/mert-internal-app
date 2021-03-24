@@ -98,7 +98,7 @@ export default StyleSheet.create({
         shadowOffset: { width: 0, height: 10 },
         shadowRadius: 20,
         shadowOpacity: 1,
-        backgroundColor: "#3498db"
+        backgroundColor: "blue",
 
     },
     mediaCount: {
@@ -141,7 +141,7 @@ export default StyleSheet.create({
         marginTop: 3,
         marginRight: 12,
         // fontFamily: "HelveticaNeue",
-        color: "#52575D",
+        color: "white",
         fontWeight: "300",
         textAlign: "center",
         alignSelf: "center",

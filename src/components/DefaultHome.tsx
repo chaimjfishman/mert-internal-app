@@ -39,10 +39,10 @@ export default function DefaultHome(props: any) {
         <SafeAreaView>
             <Appbar title="Home"></Appbar>
         <ScrollView>
-            <Button onPress={() => props.setCallMode(true)} style={{
+            <Button onPress={() => props.setCallMode(true)} color="white" style={{
                 flex: 10, 
                 justifyContent: 'center', 
-                backgroundColor: "pink"
+                backgroundColor: "steelblue",
             }}>
                 DISPATCHED
             </Button>

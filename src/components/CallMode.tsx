@@ -65,7 +65,7 @@ const CallMode = (props: any) => {
                     {seqTexts[callSeq]}
                 </Button>
 
-                <Button mode="contained" onPress={() => returnStep()}>
+                <Button  style={[{backgroundColor: "steelblue"}, {color: "white"}]} mode="contained" onPress={() => returnStep()}>
                     {goBackText}
                 </Button>
             </View>

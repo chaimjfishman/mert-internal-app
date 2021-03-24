@@ -42,6 +42,16 @@ export default StyleSheet.create({
       padding: 20,
       color: "white"
     },
+    audioRecordingButton: {
+      elevation: 8,
+      backgroundColor: "steelblue",
+      borderRadius: 10,
+      paddingHorizontal: 12,
+      padding: 5,
+      width: 500,
+      alignSelf: "center",
+      marginHorizontal: 10,
+    },
     card: {
       borderRadius: 6,
       elevation: 3,

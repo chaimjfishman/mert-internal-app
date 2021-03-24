@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Button } from 'react-native';
+import { View } from 'react-native';
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system';
+import styles from './styles';
+import {Button, Text} from 'react-native-paper';
 
 export default function AudioRecording(props: any) {
     const [recording, setRecording] = useState();
@@ -59,15 +61,26 @@ export default function AudioRecording(props: any) {
     }
   
     return (
-        <View>
+        <View style={[{flexDirection: "row"}, {alignSelf: "center"}, 
+        {marginVertical: 10}]}>
             <Button
                 title={recording ? 'Stop Recording' : 'Start Recording'}
                 onPress={recording ? stopRecording : startRecording}
-            />
+                style={[styles.audioRecordingButton]}
+                mode = "contained">
+                <Text style={{color:"white"}}>
+                    {recording ? 'Stop Recording' : 'Start Recording'}
+                </Text> 
+            </Button>
             <Button 
                 title={playing ? 'Stop Sound' : 'Play Sound'}
                 onPress={playing ? stopSound : playSound}
-            />
+                style={[styles.audioRecordingButton]}
+                mode = "contained">
+                <Text style={{color:"white"}}>
+                    {recording ? 'Stop Recording' : 'Start Recording'}
+                </Text> 
+            </Button>
         </View>
     );
 }

@@ -4,11 +4,11 @@ import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthContext } from '../providers/AuthProvider';
 import * as db from '../utils/db';
-
+import Appbar from './Appbar';
 import AudioRecording from './AudioRecording';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { block } from 'react-native-reanimated';
-
+import styles from './styles';
 const seqColors = ['#FF0000', '#00FF00', '#0000FF'];
 const seqIcons = ['numeric-1-circle', 'numeric-2-circle', 'numeric-3-circle'];
 const seqTexts = ['On Scene', 'Transferred Care', 'Free and Available'];
@@ -52,12 +52,13 @@ const CallMode = (props: any) => {
     }
 
     return (
-        // <SafeAreaView>
-            <View style={{flex: 1, backgroundColor: seqColors[callSeq]}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: seqColors[callSeq]}}>
+            <Appbar/>
+            <View>
 
                 <AudioRecording/>
 
-                <Button contentStyle={{height:750}} icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
+                <Button contentStyle={{height:700}} icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
                     flex: 1, 
                     justifyContent: 'center', 
                     backgroundColor: seqColors[callSeq],
@@ -65,11 +66,11 @@ const CallMode = (props: any) => {
                     {seqTexts[callSeq]}
                 </Button>
 
-                <Button  style={[{backgroundColor: "steelblue"}, {color: "white"}]} mode="contained" onPress={() => returnStep()}>
+                <Button  style={styles.audioRecordingButton} mode="contained" onPress={() => returnStep()}>
                     {goBackText}
                 </Button>
             </View>
-        // </SafeAreaView>
+        </SafeAreaView>
     );   
 }
 

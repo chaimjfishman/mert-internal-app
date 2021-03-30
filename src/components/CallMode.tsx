@@ -58,7 +58,7 @@ const CallMode = (props: any) => {
 
                 <AudioRecording/>
 
-                <Button contentStyle={{height:700}} icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
+                <Button contentStyle={{height:550}} icon={seqIcons[callSeq]} mode="contained" onPress={() => handleSequence()} style={{
                     flex: 1, 
                     justifyContent: 'center', 
                     backgroundColor: seqColors[callSeq],
@@ -66,7 +66,7 @@ const CallMode = (props: any) => {
                     {seqTexts[callSeq]}
                 </Button>
 
-                <Button  style={styles.audioRecordingButton} mode="contained" onPress={() => returnStep()}>
+                <Button  style={[styles.audioRecordingButton, {maxWidth:400}]} mode="contained" onPress={() => returnStep()}>
                     {goBackText}
                 </Button>
             </View>

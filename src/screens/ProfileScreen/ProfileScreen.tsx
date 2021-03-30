@@ -64,7 +64,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
       }, []);
 
       const listShifts = shifts.map((curr) =>
-      <View style={styles.mediaImageContainer} >
+      <View key={curr.endTime}style={styles.mediaImageContainer} >
           <Text style={styles.shiftData}>
               Start: {curr.startTime.toString()}
           </Text>

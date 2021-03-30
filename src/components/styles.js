@@ -46,11 +46,11 @@ export default StyleSheet.create({
       elevation: 8,
       backgroundColor: "steelblue",
       borderRadius: 10,
-      paddingHorizontal: 12,
       padding: 5,
-      width: 500,
+      width: "100%",
       alignSelf: "center",
       marginHorizontal: 10,
+      flex: 3
     },
     card: {
       borderRadius: 6,

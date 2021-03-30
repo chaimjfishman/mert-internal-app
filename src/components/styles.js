@@ -50,7 +50,20 @@ export default StyleSheet.create({
       width: "100%",
       alignSelf: "center",
       marginHorizontal: 10,
-      flex: 3
+      flex: 3,
+    },
+    goBackButton: {
+      elevation: 8,
+      backgroundColor: "steelblue",
+      borderRadius: 10,
+      padding: 5,
+      width: "100%",
+      alignSelf: "center",
+      marginHorizontal: 10,
+      padding: 10,
+      flex: 3,
+      position: "absolute",
+      bottom: 0
     },
     card: {
       borderRadius: 6,

@@ -32,6 +32,16 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             return;
         }
 
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters.");
+            return;
+        }
+
+        if (password == "123456" || password == "password") {
+            alert("Please provide a stronger password.");
+            return;
+        }
+
         if (password !== confirmPassword) {
             alert("Passwords don't match");
             return;

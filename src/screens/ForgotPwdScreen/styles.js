@@ -36,6 +36,7 @@ export default StyleSheet.create({
         borderRadius: 5,
         alignItems: "center",
         textAlign: "center",
+        textAlignVertical: "center",
         justifyContent: 'center'
     },
 

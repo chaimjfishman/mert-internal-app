@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {SafeAreaView, View } from 'react-native';
+import {SafeAreaView, View, ScrollView } from 'react-native';
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system';
 import styles from './styles';
@@ -61,7 +61,7 @@ export default function AudioRecording(props: any) {
     }
   
     return (
-        <SafeAreaView style={[ {alignSelf: "center"}]}>
+        <ScrollView style={[ {alignSelf: "center"}]}>
             <Button
                 title={recording ? 'Stop Recording' : 'Start Recording'}
                 onPress={recording ? stopRecording : startRecording}
@@ -80,6 +80,6 @@ export default function AudioRecording(props: any) {
                     {playing ? 'Stop Sound' : 'Play Sound'}
                 </Text> 
             </Button>
-        </SafeAreaView>
+        </ScrollView>
     );
 }

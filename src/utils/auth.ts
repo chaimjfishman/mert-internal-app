@@ -1,3 +1,4 @@
+import { AuthContext } from '../providers/AuthProvider';
 import { firebase } from './firebaseConfig';
 
 const auth = firebase.auth();
@@ -12,7 +13,6 @@ export async function signUp(email: string, password: string): Promise<any> {
 export async function passwordReset(email: string): Promise<any> {
     return auth.sendPasswordResetEmail(email)
 }
-
 
 export async function loginWithEmail(email: string, password: string): Promise<any> {
     //TODO: Error handling

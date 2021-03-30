@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 import styles from './styles';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import Appbar from '../../components/Appbar';
@@ -39,10 +39,11 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
             </SafeAreaView>
         </SafeAreaView>
     : 
-        <SafeAreaView>
-            <Appbar title="Forms"></Appbar>
-            <Card.Title title="Please have an admin update your rank before accessing forms." titleStyle={styles.blackText}/>
-        </SafeAreaView>
-
+        <ScrollView>
+            <SafeAreaView>
+                <Appbar title="Forms"></Appbar>
+                <Card.Title title="Please have an admin update your rank before accessing forms." titleStyle={styles.blackText}/>
+            </SafeAreaView>
+        </ScrollView>
     return (FormScreen);
 }

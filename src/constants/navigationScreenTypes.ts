@@ -10,7 +10,8 @@ that params are optional.
 
 export type AuthStackParamList = {
     Login: undefined,
-    Registration: undefined
+    Registration: undefined,
+    ForgotPassword: undefined
 };
 
 export type AuthStackScreenProps<T extends keyof AuthStackParamList> = {

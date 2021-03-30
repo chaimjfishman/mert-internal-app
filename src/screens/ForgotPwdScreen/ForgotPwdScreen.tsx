@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import styles from './styles'
 import { Button } from 'react-native-paper'
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
+import * as auth from '../../utils/auth';
 
 export default function ForgotPassword(props: AuthStackScreenProps<'ForgotPassword'>){
     const validationSchema = Yup.object().shape({
@@ -18,7 +19,7 @@ export default function ForgotPassword(props: AuthStackScreenProps<'ForgotPasswo
         const { email } = values
       
         try {
-          await props.firebase.passwordReset(email)
+          await auth.passwordReset(email)
           console.log('Password reset email sent successfully')
           props.navigation.navigate('Login')
         } catch (error) {

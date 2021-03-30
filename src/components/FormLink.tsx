@@ -14,7 +14,7 @@ const openLink = (link : string) => {
     if(Platform.OS == 'web'){
         window.open(link, '_blank');
     } else {
-        Linking.openURL(link); // normal Linking react-native
+        Linking.openURL(link);
     }
 }
 
@@ -27,4 +27,3 @@ const FormLink = ({title, link}: FormLinkProps) => {
 }
 
 export default FormLink;
-

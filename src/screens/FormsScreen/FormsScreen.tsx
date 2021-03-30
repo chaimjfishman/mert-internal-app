@@ -1,13 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { SafeAreaView } from 'react-native';
-import FormLink from '../../components/FormLink';
+import styles from './styles';
 import { BottomTabScreenProps } from '../../constants/navigationScreenTypes';
 import Appbar from '../../components/Appbar';
 import * as storage from '../../utils/storage';
 import Forms from '../../components/Forms';
+import { AuthContext } from '../../providers/AuthProvider';
+import { Card } from 'react-native-paper';
 
 
 export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
+    const { user } = useContext(AuthContext);
     const [protocol, setProtocolform] = useState<String | null>(null);
 
     useEffect(() => {
@@ -27,13 +30,19 @@ export default function FormsScreen(props: BottomTabScreenProps<'Forms'>) {
         getInfo();
       }, []);
 
-    return (
+    let FormScreen = typeof user?.rank != undefined && user?.rank != null && user.rank 
+    ?
         <SafeAreaView>
             <Appbar title="Forms"></Appbar>
             <SafeAreaView >
-                <Forms/>
+                <Forms rank={user?.rank}/>
             </SafeAreaView>
         </SafeAreaView>
+    : 
+        <SafeAreaView>
+            <Appbar title="Forms"></Appbar>
+            <Card.Title title="Please have an admin update your rank before accessing forms." titleStyle={styles.blackText}/>
+        </SafeAreaView>
 
-    );
+    return (FormScreen);
 }

@@ -9,6 +9,10 @@ export async function signUp(email: string, password: string): Promise<any> {
     return uid;
 }
 
+export async function passwordReset(email: string): Promise<any> {
+    return auth.sendPasswordResetEmail(email)
+}
+
 
 export async function loginWithEmail(email: string, password: string): Promise<any> {
     //TODO: Error handling

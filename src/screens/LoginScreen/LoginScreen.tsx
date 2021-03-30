@@ -21,6 +21,10 @@ export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
         props.navigation.navigate('Registration');
     }
 
+    const goToForgotPassword = () => {
+        props.navigation.navigate('ForgotPassword');
+    }
+    
     const onLoginPress = async () => {
         try {
             const uid: string = await auth.loginWithEmail(email, password);
@@ -76,6 +80,9 @@ export default function LoginScreen(props: AuthStackScreenProps<'Login'>) {
                 </TouchableOpacity>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+                </View>
+                <View style={styles.footerView}>
+                    <Text onPress={goToForgotPassword} style={styles.footerLink}>Forgot Password?</Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>

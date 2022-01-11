@@ -14,6 +14,7 @@ const Contacts = () => {
         async function getInfo() {
             try {
                 const contacts = await db.getContacts();
+                console.log(contacts)
                 setContacts(contacts)
 
             } catch (err) {
@@ -25,7 +26,7 @@ const Contacts = () => {
 
     const listItems = contacts.map((curr) =>
         <View key={curr.name} style={{flexDirection: 'row'}}>
-            <CallLink title={curr.name} link = {curr.phoneNumber} />
+            <CallLink title={`${curr.name} - ${curr.number}`} link = {curr.number} />
         </View>
     );
 

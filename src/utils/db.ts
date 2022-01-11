@@ -76,7 +76,7 @@ export async function getAllShifts(): Promise<any> {
 
 
 export async function getContacts(): Promise<any> {
-    const contacts: any = await contactsRef.orderBy("ranking", "asc").get();
+    const contacts: any = await contactsRef.orderBy("name", "asc").get();
     const data: any = contacts.docs.map(doc => doc.data());
     return data;
 }

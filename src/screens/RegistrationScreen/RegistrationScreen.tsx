@@ -59,7 +59,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
 
 
         //TODO: remove check for production!!!
-        let webBrowsers: string[] = ['Safari', 'Chrome'];
+        let webBrowsers: string[] = ['Safari', 'Chrome', 'Firefox'];
         console.log(`deviceName: ${Constants.deviceName}`)
         // Ensure app is running on physical device; push notifications won't work on simulator
         if (Constants.isDevice && !webBrowsers.includes(Constants.deviceName)) {

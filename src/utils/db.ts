@@ -82,22 +82,8 @@ export async function getContacts(): Promise<any> {
 }
 
 export async function getForms(userRank: string): Promise<any> {
-    const forms: any = await formsRef.get();
-    const data: any = forms.docs.map(doc => doc.data());
-    let finalForms = [];
-    data.forEach((element: { availableForRanks: { array: any[]; } | null; }) => {
-        if (typeof element.availableForRanks == undefined || element.availableForRanks == null) {
-            finalForms.push(element)
-        }
-        else {
-            element.availableForRanks.forEach((rank) => {
-                if (rank === userRank.rank) {
-                    finalForms.push(element);
-                }
-            });
-        }
-    });
-    return finalForms;
+    const forms: any = await formsRef.where('availableForRanks', 'array-contains', userRank).get();
+    return forms.docs.map(doc => doc.data());
 }
 
 export async function getMonthlyHours(uid: string): Promise<any> {

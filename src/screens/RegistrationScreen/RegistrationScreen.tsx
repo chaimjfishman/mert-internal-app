@@ -47,17 +47,6 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             return;
         }
 
-        if (password.length < 6) {
-            alert('Password must be at least 6 characters.')
-            return;
-        }
-
-        if (password == "123456" || password == "password") {
-            alert("Please provide a stronger password.");
-            return;
-        }
-
-
         //TODO: remove check for production!!!
         let webBrowsers: string[] = ['Safari', 'Chrome', 'Firefox'];
         console.log(`deviceName: ${Constants.deviceName}`)

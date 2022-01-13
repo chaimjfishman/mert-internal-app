@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {SafeAreaView, View, ScrollView } from 'react-native';
 import { Audio } from 'expo-av';
-import * as FileSystem from 'expo-file-system';
 import styles from './styles';
 import {Button, Text} from 'react-native-paper';
 

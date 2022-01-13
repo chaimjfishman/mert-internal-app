@@ -14,7 +14,6 @@ const Contacts = () => {
         async function getInfo() {
             try {
                 const contacts = await db.getContacts();
-                console.log(contacts)
                 setContacts(contacts)
 
             } catch (err) {

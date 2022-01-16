@@ -4,7 +4,7 @@
     "slug": "mert-internal-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Penn_MERT_Logo.png",
+    "icon": "./assets/Penn_MERT_Logo_sq.png",
     "githubUrl": "https://github.com/chaimjfishman/mert-internal-app",
     "splash": {
       "image": "./assets/splash.png",
@@ -18,10 +18,12 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "PennMERT.MERTapp",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true
     },
     "android": {
-      "package": "com.mert.internal",
+      "package": "MERT.app.android",
       "adaptiveIcon": {
         "foregroundImage": "./assets/mert_transparent.png",
         "backgroundColor": "#FFFFFF"

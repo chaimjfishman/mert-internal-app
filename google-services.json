@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "933393895833",
+    "firebase_url": "https://mert-app-5ce19.firebaseio.com",
+    "project_id": "mert-app-5ce19",
+    "storage_bucket": "mert-app-5ce19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933393895833:android:a6ed9542e8498c5b9d8308",
+        "android_client_info": {
+          "package_name": "MERT.app.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "933393895833-7oebqmjrb3bo2mj4i2s3cc3sgnrknuac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzjGDFkwY1w9vcrwiIaIMA03E646oGbQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "933393895833-7oebqmjrb3bo2mj4i2s3cc3sgnrknuac.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "933393895833-hpmc4u85shsgb5r89tjsa2jagi58n5hq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "PennMERT.MERTapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

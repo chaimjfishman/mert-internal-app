@@ -2,17 +2,17 @@
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-
 import getEnvVars from '../../environment';
-const { 
-    REACT_APP_APIKEY, 
-    REACT_APP_AUTHDOMAIN, 
-    REACT_APP_PID, 
-    REACT_APP_SB, 
-    REACT_APP_SID, 
-    REACT_APP_APPID, 
+
+const {
+    REACT_APP_APIKEY,
+    REACT_APP_AUTHDOMAIN,
+    REACT_APP_PID,
+    REACT_APP_SB,
+    REACT_APP_SID,
+    REACT_APP_APPID,
     REACT_APP_MID
-} = getEnvVars();
+} = getEnvVars()
 
 const firebaseConfig = {
     apiKey: REACT_APP_APIKEY,

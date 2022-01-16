@@ -13,6 +13,3 @@ web-build/
 .DS_Store
 
 *.env
-*environment.js
-
-*google-services.json

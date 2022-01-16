@@ -6,15 +6,14 @@ import {Card, Avatar} from 'react-native-paper';
 import styles from './styles';
 
 
-const Forms = (rank : string | undefined) => {
+const Forms = (rank : any | undefined) => {
     const [forms, setForms] = useState<Form[] | null>([]);
     const form = props => <Avatar.Icon style={styles.avatarContainer} {...props} icon={require('../../assets/forms.png')} />
-
     useEffect(() => {
         async function getInfo() {
             try {
                 if (typeof rank != undefined && rank != null){
-                    const forms = await db.getForms(rank);
+                    const forms = await db.getForms(rank.rank);
                     setForms(forms)
                 }
                 else {

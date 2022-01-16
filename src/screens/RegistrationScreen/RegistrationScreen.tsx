@@ -19,8 +19,6 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [expoPushToken, setExpoPushToken] = useState<string | null>('');
-
     const onFooterLinkPress = () => {
         props.navigation.navigate('Login');
     }
@@ -47,31 +45,18 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
             return;
         }
 
-        if (password.length < 6) {
-            alert('Password must be at least 6 characters.')
-            return;
-        }
-
-        if (password == "123456" || password == "password") {
-            alert("Please provide a stronger password.");
-            return;
-        }
-
-
         //TODO: remove check for production!!!
-        let webBrowsers: string[] = ['Safari', 'Chrome'];
+        let webBrowsers: string[] = ['Safari', 'Chrome', 'Firefox'];
         console.log(`deviceName: ${Constants.deviceName}`)
+        let token: string = ''
         // Ensure app is running on physical device; push notifications won't work on simulator
         if (Constants.isDevice && !webBrowsers.includes(Constants.deviceName)) {
             // Get user's notification push token
-            await notif.registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-        } else {
-            setExpoPushToken(null)
+            token = await notif.registerForPushNotificationsAsync();
         }
 
         try {
             const uid: string = await auth.signUp(email, password);
-
             const userData: User = {
                 id: uid,
                 email,
@@ -83,7 +68,7 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
                 profileImagePath: `profileImages/${email}.png`,
                 formCompleted: false,
                 takenAthleticShift: false,
-                pushToken: expoPushToken
+                pushToken: token
             };
 
             await db.createUserDocument(uid, userData);

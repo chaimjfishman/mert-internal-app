@@ -27,6 +27,7 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
     const email = user.email
     const rank = user.rank
     const boardPosition = user.boardPosition
+    const isAdmin = user.admin
 
     const getFormTextColor = () => {
         let completed_color;
@@ -135,6 +136,9 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
                 </ScrollView>
                 <View style={[styles.infoContainer, {marginBottom:24}]}>
                 <Text style={[styles.text, { fontSize: 12, textTransform: "uppercase" }]}>Board Position: {boardPosition}</Text>
+                {isAdmin ?
+                    <Text style={[styles.text, { fontSize: 12, textTransform: "uppercase" }]}>User is an admin</Text>
+                        : null}
                 <Text style={[styles.text, { color: getFormTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Schedule Form Completed: {user.formCompleted.toString()}</Text>
                 <Text style={[styles.text, { color: getShiftTextColor(), fontSize: 12, textTransform: "uppercase" }]}>Athletic Shift Complete: {user.takenAthleticShift.toString()}</Text>
             </View>

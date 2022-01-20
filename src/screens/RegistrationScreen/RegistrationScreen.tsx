@@ -61,14 +61,15 @@ export default function RegistrationScreen(props: AuthStackScreenProps<'Registra
                 id: uid,
                 email,
                 fullName,
-                rank: "",
+                rank: "Probationary EMT",
                 gradYear: null,
                 boardPosition: "",
                 dateJoinedMERT: "",
                 profileImagePath: `profileImages/${email}.png`,
                 formCompleted: false,
                 takenAthleticShift: false,
-                pushToken: token
+                pushToken: token,
+                admin: false
             };
 
             await db.createUserDocument(uid, userData);

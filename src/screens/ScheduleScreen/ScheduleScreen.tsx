@@ -51,9 +51,9 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         let markedDates = {};
         const marking = {selected: true, selectedColor: 'red'}
         shifts.forEach(shift => {
-            let month = ('0' + (shift.startTime.getMonth()+1)).slice(-2)
-            let day = ('0' + shift.startTime.getDate()).slice(-2)
-            let shiftDate = shift.startTime.getFullYear() + '-' + month + '-' + day;
+            let month = ('0' + (shift.start.getMonth()+1)).slice(-2)
+            let day = ('0' + shift.start.getDate()).slice(-2)
+            let shiftDate = shift.start.getFullYear() + '-' + month + '-' + day;
             markedDates[shiftDate] = marking;
         });
         setMarkedDates(markedDates);
@@ -65,6 +65,7 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
         let shiftDate = day.year + '-' + month + '-' + dayOfMonth;
         setSelectedDate(day.dateString)
         let dateShift = await db.getShiftsForDay(shiftDate);
+        console.log(dateShift);
         const listItems = dateShift.map((curr) =>
             <ShiftCard shift={curr}/>
       );

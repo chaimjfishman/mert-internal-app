@@ -31,9 +31,13 @@ export default function DefaultHome(props: any) {
             }
         }
         getInfo();
-        if (nextShift == null) {
-        }
       }, []);
+
+    let nextShiftCard = null;
+    
+    if (nextShift != null) {
+        nextShiftCard = <ShiftCard shift={nextShift}/>
+    }
 
     return (
         <SafeAreaView>
@@ -46,7 +50,7 @@ export default function DefaultHome(props: any) {
             }}>
                 DISPATCHED
             </Button>
-            <ShiftCard shift={nextShift}/>
+            {nextShiftCard}
             <CallTimeInfo/>
             <HoursCard/>
         </ScrollView>  

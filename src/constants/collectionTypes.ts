@@ -10,14 +10,21 @@ export interface User {
     formCompleted: boolean;
     takenAthleticShift: boolean;
     pushToken: string | null;
+    admin: boolean;
 }
 
-type ShiftType = "type1" | "type2" | "type3"; //TODO: update
+export interface shiftMember {
+    id: string;
+    role: string;
+    start: Date;
+    end: Date;
+    token: string;
+}
+
 export interface Shift {
-    userID: string;
-    startTime: Date;
-    endTime: Date;
-    role: ShiftType;
+    start: Date;
+    end: Date;
+    members: Array<shiftMember>;
 }
 
 export interface Contact {

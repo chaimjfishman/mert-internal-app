@@ -64,19 +64,27 @@ export default function ProfileScreen(props: BottomTabScreenProps<'Profile'>) {
         getShifts();
       }, []);
 
-      const listShifts = shifts.map((curr) =>
-      <View key={curr.endTime}style={styles.mediaImageContainer} >
-          <Text style={styles.shiftData}>
-              Start: {curr.startTime.toString()}
-          </Text>
-          <Text  style={styles.shiftData}>
-              End: {curr.endTime.toString()}
-          </Text>
-          <Text style={styles.shiftData}>
-              Role: {curr.role}
-          </Text>
-      </View>
-      );
+      const listShifts = shifts.map((curr) => {
+        let role: String = '';
+        for (let i=0; i<curr.members.length; i++) {
+            if (curr.members[i].id == userID) {
+                role = curr.members[i].role;
+                break;
+            };
+        };
+
+        return <View key={curr.end}style={styles.mediaImageContainer} >
+                    <Text style={styles.shiftData}>
+                        Start: {curr.start.toString()}
+                    </Text>
+                    <Text  style={styles.shiftData}>
+                        End: {curr.end.toString()}
+                    </Text>
+                    <Text style={styles.shiftData}>
+                        Role: {role}
+                    </Text>
+                </View>
+      });
 
       const percent_completed =100*(monthlyHours)/requiredMonthlyHours;
       const fixed_percent = percent_completed.toFixed()

@@ -39,9 +39,9 @@ const NextShift = () => {
             <Card.Title title="Shift" left = {penn_logo} titleStyle={styles.blackText}/>
                 <Card.Content>
                     <Title style={styles.blackText}>Next Shift</Title>
-                    <Paragraph style={styles.blackText}>Start Time: {nextShift?.startTime.toString()}</Paragraph>
-                    <Paragraph style={styles.blackText}>End Time: {nextShift?.endTime.toString()}</Paragraph>
-                    <Paragraph style={styles.blackText}>Role: {nextShift?.role}</Paragraph>
+                    <Paragraph style={styles.blackText}>Start Time: {nextShift?.start.toString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>End Time: {nextShift?.end.toString()}</Paragraph>
+                    <Paragraph style={styles.blackText}>Role: FIX</Paragraph>
                 </Card.Content>
             <Card.Actions>
             </Card.Actions>

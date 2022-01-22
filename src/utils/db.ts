@@ -39,10 +39,10 @@ export async function getUserDocument(uid: string): Promise<any> {
 }
 
 export async function getUserShifts(uid: string): Promise<any> {
-    const snapshot: any = await shiftsRef.where("userID", "==", uid).orderBy("startTime", "asc").get();
+    const snapshot: any = await shiftsRef.where("memberIds", "array-contains", uid).orderBy("start", "asc").get();
     const data: any = snapshot.docs.map(doc => doc.data());
-    data.forEach(doc => doc.startTime = doc.startTime.toDate());
-    data.forEach(doc => doc.endTime = doc.endTime.toDate());
+    data.forEach(doc => doc.start = doc.start.toDate());
+    data.forEach(doc => doc.end = doc.end.toDate());
     return data;
 }
 
@@ -56,21 +56,21 @@ export async function getShiftsForDay(date: Date): Promise<any> {
     const dayStart = new Date(year, month, day, 0, 0, 0);
     const dayEnd = new Date(year, month, day+1, 0, 0, 0);
     const snapshot: any = await shiftsRef
-        .orderBy("startTime", "asc")
+        .orderBy("start", "asc")
         .startAt(dayStart)
         .endAt(dayEnd)
         .get();
     const data: any = snapshot.docs.map(doc => doc.data());
-    data.forEach(doc => doc.startTime = doc.startTime.toDate());
-    data.forEach(doc => doc.endTime = doc.endTime.toDate());
+    data.forEach(doc => doc.start = doc.start.toDate());
+    data.forEach(doc => doc.end = doc.end.toDate());
     return data;
 }
 
 export async function getAllShifts(): Promise<any> {
-    const snapshot: any = await shiftsRef.orderBy("startTime", "asc").get();
+    const snapshot: any = await shiftsRef.orderBy("start", "asc").get();
     const data: any = snapshot.docs.map(doc => doc.data());
-    data.forEach(doc => doc.startTime = doc.startTime.toDate());
-    data.forEach(doc => doc.endTime = doc.endTime.toDate());
+    data.forEach(doc => doc.start = doc.start.toDate());
+    data.forEach(doc => doc.end = doc.end.toDate());
     return data;
 }
 
@@ -91,9 +91,9 @@ export async function getMonthlyHours(uid: string): Promise<any> {
     const now = new Date()
     let monthlyHours = 0.0;
     listShifts.forEach(shift => {
-        const shiftStartDate = shift.startTime
-        const shiftEndDate = shift.endTime
-        if (shift.endTime < now && shift.endTime.getMonth() == now.getMonth() && shift.endTime.getFullYear() == now.getFullYear() ) {
+        const shiftStartDate = shift.start
+        const shiftEndDate = shift.start
+        if (shift.end < now && shift.end.getMonth() == now.getMonth() && shift.end.getFullYear() == now.getFullYear() ) {
             monthlyHours += (shiftEndDate.getTime() - shiftStartDate.getTime()) / (1000 * 60 * 60)
         }
     });
@@ -103,13 +103,13 @@ export async function getMonthlyHours(uid: string): Promise<any> {
 export async function getNextShift(uid: string): Promise<any> {
     const currTime = new Date();
     const snapshot: any = await shiftsRef
-        .where("userID", "==", uid)
-        .orderBy("startTime", "asc")
+        .where("memberIds", "array-contains", uid)
+        .orderBy("start", "asc")
         .startAt(currTime)
         .get();
     let upcomingShift: Shift = snapshot.docs[0].data();
-    upcomingShift.startTime = upcomingShift.startTime.toDate();
-    upcomingShift.endTime = upcomingShift.endTime.toDate();
+    upcomingShift.start = upcomingShift.start.toDate();
+    upcomingShift.end = upcomingShift.end.toDate();
     return upcomingShift;
 }
 

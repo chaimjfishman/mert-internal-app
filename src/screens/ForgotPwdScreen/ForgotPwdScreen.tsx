@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Text, SafeAreaView, View, StyleSheet, TextInput } from 'react-native'
+import { Text, SafeAreaView, View, StyleSheet, TextInput, Button } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import styles from './styles'
-import { Button } from 'react-native-paper'
 import { AuthStackScreenProps } from '../../constants/navigationScreenTypes';
 import * as auth from '../../utils/auth';
 
@@ -52,7 +51,7 @@ export default function ForgotPassword(props: AuthStackScreenProps<'ForgotPasswo
                 autoCapitalize="none"
             />
             <View style={styles.buttonContainer}>
-                <Text onPress={handleSubmit} style={styles.buttonTitle}>Send Email</Text>
+                <Button onPress={handleSubmit} style={styles.buttonTitle} title={'Send Email'}/>
             </View>
             </Fragment>
           )}

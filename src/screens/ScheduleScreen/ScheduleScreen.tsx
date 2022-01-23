@@ -94,13 +94,13 @@ export default function ScheduleScreen(props: BottomTabScreenProps<'Schedule'>) 
             /> 
 
             <Portal>
-                <Dialog visible={visible} onDismiss={hideDialog}>
+                <Dialog visible={visible} onDismiss={hideDialog} style={{maxHeight: '100%'}}>
                     <Dialog.Title> {selectedDate} </Dialog.Title>
                         <Dialog.ScrollArea>
-                        <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
-                            {dateShifts}
-                        </ScrollView>
-                    </Dialog.ScrollArea>                        
+                            <ScrollView contentContainerStyle={{paddingHorizontal: 24}}>
+                                {dateShifts}
+                            </ScrollView>
+                        </Dialog.ScrollArea>                        
                 </Dialog>
             </Portal>
 

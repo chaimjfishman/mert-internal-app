@@ -92,7 +92,7 @@ export async function getMonthlyHours(uid: string): Promise<any> {
     let monthlyHours = 0.0;
     listShifts.forEach(shift => {
         const shiftStartDate = shift.start
-        const shiftEndDate = shift.start
+        const shiftEndDate = shift.end
         if (shift.end < now && shift.end.getMonth() == now.getMonth() && shift.end.getFullYear() == now.getFullYear() ) {
             monthlyHours += (shiftEndDate.getTime() - shiftStartDate.getTime()) / (1000 * 60 * 60)
         }

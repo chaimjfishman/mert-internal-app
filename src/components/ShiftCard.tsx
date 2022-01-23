@@ -29,7 +29,7 @@ const ShiftCard = ({shift}: ShiftCardProps) => {
         <Card style={styles.card}>
             <Card.Title title="Shift" left = {penn_logo} titleStyle={styles.blackText}/>
             <Card.Content>
-            <Title style={styles.blackText}>Next Shift</Title>
+            <Title style={styles.blackText}></Title>
                 {shift ?
                     <>
                         <Paragraph style={styles.blackText}>Start Time: {shift?.start.toLocaleString()}</Paragraph>

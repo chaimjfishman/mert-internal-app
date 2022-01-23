@@ -24,7 +24,9 @@ export default StyleSheet.create({
         marginBottom: 10,
         marginLeft: 30,
         marginRight: 30,
-        paddingLeft: 16
+        paddingLeft: 16,
+        width: '100%',
+        maxWidth: 250
     },
 
     button: {
@@ -43,7 +45,7 @@ export default StyleSheet.create({
     buttonTitle: {
         color: 'red',
         fontSize: 16,
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
     footerView: {
         flex: 1,
